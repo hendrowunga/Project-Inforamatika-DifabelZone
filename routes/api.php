@@ -30,8 +30,6 @@ Route::prefix('v1')->group(function () {
         Route::post('/register', [UserRegisterController::class, 'register']);
         Route::post('/login', [UserLoginController::class, 'login']);
         Route::post('/logout', [UserLogoutController::class, 'logout'])->middleware('auth:sanctum');
-        Route::post('/password/email', [ForgetPasswordController::class, 'sendResetLinkEmail']);
-        Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.resetPassword');
     });
 
     // Admin Routes
