@@ -6,14 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Responses\ApiResponse;
 
-
 class LogoutController extends Controller
 {
     public function logout(Request $request)
     {
         try {
-            // Delete the current token that was used for the request
-            $request->user()->tokens()->where('id', $request->user()->currentAccessToken()->id)->delete();
+            // Cek jika pengguna terautentikasi
+            $user = $request->user();
+            if (!$user) {
+                return ApiResponse::error('User not authenticated', 401);
+            }
+
+            // Hapus token akses saat ini
+            $user->currentAccessToken()->delete();
 
             return ApiResponse::success(
                 null,
