@@ -36,5 +36,5 @@ Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetFo
 // Handle the actual password reset process
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
 
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+// Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+// Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
