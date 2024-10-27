@@ -39,8 +39,8 @@ Route::prefix('v1')->group(function () {
         Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form.show');
     });
 
-    Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
-    Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+    // Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+    // Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
     // Admin Routes
     Route::prefix('admin')->group(function () {
