@@ -19,7 +19,6 @@ class ForgotPasswordController extends Controller
     {
         try {
             $token = Str::random(64);
-            // Menyimpan token dalam tabel password_resets
             DB::table('password_reset_tokens')->updateOrInsert(
                 ['email' => $request->email],
                 [
@@ -27,12 +26,13 @@ class ForgotPasswordController extends Controller
                     'created_at' => Carbon::now()
                 ]
             );
-            Mail::to($request->email)->send(new ResetPasswordMail($token));
+            // Send email with a link including the token
+            Mail::to($request->email)->send(new ResetPasswordMail($token, $request->email));
+
             return ApiResponse::success(
                 null,
                 'If this email exists, a reset link has been sent',
                 200
-
             );
         } catch (\Throwable $e) {
             return ApiResponse::error(
