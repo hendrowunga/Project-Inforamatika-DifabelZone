@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Http\Responses\ApiResponse;
 use Illuminate\Support\Facades\Auth;
 
-class Logincontroller extends Controller
+class LoginController extends Controller
 {
     public function login(AdminLoginRequest $request)
     {
