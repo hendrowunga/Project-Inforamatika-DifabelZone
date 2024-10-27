@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->string('google_id')->nullable()->unique(); // Kolom Google ID, nullable jika tidak menggunakan Google login
+            $table->string('avatar')->nullable(); // Kolom avatar
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->string('password');
