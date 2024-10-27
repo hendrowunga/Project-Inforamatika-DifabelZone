@@ -4,11 +4,12 @@ namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Auth\ResetPasswordRequest;
+use App\Http\Responses\ApiResponse;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Carbon;
-use App\Http\Responses\ApiResponse;
 
 class ResetPasswordController extends Controller
 {
@@ -23,7 +24,6 @@ class ResetPasswordController extends Controller
                 return ApiResponse::error('Invalid or expired token', 400);
             }
 
-            // Check if token is expired (24 hours)
             if (Carbon::parse($resetRecord->created_at)->addHours(24)->isPast()) {
                 DB::table('password_reset_tokens')->where('email', $request->email)->delete();
                 return ApiResponse::error('Token expired', 400);
@@ -45,5 +45,16 @@ class ResetPasswordController extends Controller
                 500
             );
         }
+    }
+    public function showResetForm(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'token' => 'required'
+        ]);
+        return view('auth.reset-password', [
+            'email' => $request->query('email'),
+            'token' => $request->query('token')
+        ]);
     }
 }
