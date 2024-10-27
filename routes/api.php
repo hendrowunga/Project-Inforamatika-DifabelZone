@@ -9,6 +9,7 @@ use App\Http\Controllers\User\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\User\Auth\LogoutController as UserLogoutController;
 use App\Http\Controllers\User\Auth\RegisterController as UserRegisterController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
+use App\Http\Controllers\User\Auth\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,15 @@ Route::prefix('v1')->group(function () {
         Route::post('/login', [UserLoginController::class, 'login']);
         Route::post('/logout', [UserLogoutController::class, 'logout'])
             ->middleware('auth:sanctum');
+
         // Password Reset Routes
-        // Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword']);
         Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword'])->name('api.password.email');
-        // Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword']);
         Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('api.password.update');
-        Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
+        Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form.show');
     });
+
+    Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+    Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
     // Admin Routes
     Route::prefix('admin')->group(function () {

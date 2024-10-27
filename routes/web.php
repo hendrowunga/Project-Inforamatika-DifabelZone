@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
+use App\Http\Controllers\User\Auth\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,9 @@ Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword
 // View for displaying the reset password form (with token)
 Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
 
+
 // Handle the actual password reset process
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
