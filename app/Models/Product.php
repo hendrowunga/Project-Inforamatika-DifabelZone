@@ -25,6 +25,11 @@ class Product extends Model
         return $this->hasMany(cart_of_product::class, 'product_id','id');
     }
 
+    public function review()
+    {//relasi one product to many cartOfProducts
+        return $this->hasMany(review::class, 'product_id','id');
+    }
+
     public function category()
     {//relasi many product to one category
         return $this->belongsTo(category::class, 'category_id','id');

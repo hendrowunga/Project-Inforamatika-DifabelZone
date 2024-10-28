@@ -38,7 +38,6 @@ return new class extends Migration
         });
 
         Schema::create('cart_of_product', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('product_id')->constrained('products','id')->onDelete('cascade'); // Relasi ke product
             $table->foreignId('cart_id')->constrained('cart','id')->onDelete('cascade'); // Relasi ke cart
             $table->integer('quantity_product');
@@ -52,6 +51,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('review');
         Schema::dropIfExists('cart_of_product');
         Schema::dropIfExists('products');
         Schema::dropIfExists('category');
