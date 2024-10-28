@@ -53,6 +53,16 @@ class User extends Authenticatable
         return $this->hasMany(Address::class, 'user_id', 'id'); // Mengubah user_id sesuai dengan ID
     }
 
+    public function carts()
+    {
+        return $this->hasMany(cart::class, 'customer_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'admin_id');
+    }
+
     /**
      * Check if the user has a specific role.
      *
