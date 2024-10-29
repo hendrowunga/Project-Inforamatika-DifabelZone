@@ -232,7 +232,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="user-info-dropdown">
+
+                @if (Auth::guard('admin')->check())
+                <div class="user-info-dropdown">
 					<div class="dropdown">
 						<a
 							class="dropdown-toggle"
@@ -257,17 +259,26 @@
 							<a class="dropdown-item" href="faq.html"
 								><i class="dw dw-help"></i> Help</a
 							>
-							<a class="dropdown-item" href="login.html"
+							<a class="dropdown-item" href="{{ route('admin.login_handler') }}" onclick="event.preventDefault();document.getElementById('adminLogoutForm').submit();"
 								><i class="dw dw-logout"></i> Log Out</a
 							>
+                            <form action="{{ route('admin.logout_handler') }}" id="adminLogoutForm" method="POST">@csrf</form>
 						</div>
 					</div>
 				</div>
-				<div class="github-link">
+
+
+                {{-- @elseif (Auth::guard('seller')->check()) --}}
+
+
+
+                @endif
+
+				{{-- <div class="github-link">
 					<a href="https://github.com/dropways/deskapp" target="_blank"
 						><img src="/back/vendors/images/github.svg" alt=""
 					/></a>
-				</div>
+				</div> --}}
 			</div>
 		</div>
 
