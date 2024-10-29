@@ -33,3 +33,9 @@ Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetFo
 
 // Handle the actual password reset process
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
+
+
+
+// Admin
+Route::view('/example-page', 'example-page');
+Route::view('/example-auth', 'example-auth');
