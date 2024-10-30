@@ -20,12 +20,6 @@ class Product extends Model
         'price'
     ];
 
-<<<<<<< HEAD
-    // public function cartOfProducts()
-    // {//relasi one product to many cartOfProducts
-    //     return $this->hasMany(cart_of_product::class, 'product_id','id');
-    // }
-=======
     public function cartOfProducts()
     {//relasi one product to many cartOfProducts
         return $this->hasMany(cart_of_product::class, 'product_id','id');
@@ -35,7 +29,6 @@ class Product extends Model
     {//relasi one product to many cartOfProducts
         return $this->hasMany(review::class, 'product_id','id');
     }
->>>>>>> b4cf5d986f32e1964211a384f1433b0a553f42a4
 
     public function category()
     {//relasi many product to one category
