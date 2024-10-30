@@ -108,5 +108,6 @@ return new class extends Migration
         Schema::dropIfExists('profiles');
         Schema::dropIfExists('sessions');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('products');
     }
 };
