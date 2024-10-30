@@ -99,6 +99,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('review');
+        Schema::dropIfExists('migrations');
         Schema::dropIfExists('addresses');
         Schema::dropIfExists('postal_codes');
         Schema::dropIfExists('villages');
