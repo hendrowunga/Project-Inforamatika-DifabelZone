@@ -36,10 +36,4 @@ Route::prefix('v1')->group(function () {
         Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('api.password.update');
         Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
     });
-
-    // Admin Routes
-    Route::prefix('admin')->group(function () {
-        Route::post('/login', [AdminLoginController::class, 'login']);
-        Route::post('/logout', [AdminLogoutController::class, 'logout'])->middleware('auth:sanctum');
-    });
 });
