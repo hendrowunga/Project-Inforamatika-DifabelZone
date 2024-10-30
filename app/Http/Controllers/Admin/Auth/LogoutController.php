@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Responses\ApiResponse;
 
-class Logoutcontroller extends Controller
+class LogoutController extends Controller
 {
     public function logout(Request $request)
     {
