@@ -321,7 +321,8 @@
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.profile') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }} ">
                                 <span class="micon fa fa-user"></span>
                                 <span class="mtext">Profile</span>
                             </a>
