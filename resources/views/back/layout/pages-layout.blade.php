@@ -39,6 +39,10 @@
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
     <!-- End Google Tag Manager -->
+    <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
+    <link rel="stylesheet" href="/extra-assets/ijaboCropTool/ijaboCropTool.min.css">
+
+    @livewireStyles()
     @stack('stylesheets')
 </head>
 
@@ -180,37 +184,9 @@
                 </div>
             </div>
 
-            @if (Auth::guard('admin')->check())
-                <div class="user-info-dropdown">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                            <span class="user-icon">
-                                <img src="/back/vendors/images/photo1.jpg" alt="" />
-                            </span>
-                            <span class="user-name">Ross C. Lopez</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                            <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
-                            <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
-                            <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
-                            <a class="dropdown-item" href="{{ route('admin.login_handler') }}"
-                                onclick="event.preventDefault();document.getElementById('adminLogoutForm').submit();"><i
-                                    class="dw dw-logout"></i> Log Out</a>
-                            <form action="{{ route('admin.logout_handler') }}" id="adminLogoutForm" method="POST">
-                                @csrf</form>
-                        </div>
-                    </div>
-                </div>
+            {{-- <livewire:admin-seller-header-profile-info> --}}
+            @livewire('admin-seller-header-profile-info')
 
-
-                {{-- @elseif (Auth::guard('seller')->check()) --}}
-            @endif
-
-            {{-- <div class="github-link">
-					<a href="https://github.com/dropways/deskapp" target="_blank"
-						><img src="/back/vendors/images/github.svg" alt=""
-					/></a>
-				</div> --}}
         </div>
     </div>
 
@@ -345,7 +321,7 @@
                         </li>
 
                         <li>
-                            <a href="" target="_blank" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.profile') }}" class="dropdown-toggle no-arrow">
                                 <span class="micon fa fa-user"></span>
                                 <span class="mtext">Profile</span>
                             </a>
@@ -387,63 +363,48 @@
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
-                <div class="page-header">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="title">
-                                <h4>blank</h4>
-                            </div>
-                            <nav aria-label="breadcrumb" role="navigation">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="index.html">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">
-                                        blank
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-md-6 col-sm-12 text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown">
-                                    January 2018
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Export List</a>
-                                    <a class="dropdown-item" href="#">Policies</a>
-                                    <a class="dropdown-item" href="#">View Assets</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
+
+                <div>
                     @yield('content')
                 </div>
-            </div>
-            <div class="footer-wrap pd-20 mb-20 card-box">
-                DeskApp - Bootstrap 4 Admin Template By
-                <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-            </div>
-        </div>
-    </div>
 
-    <!-- js -->
-    <script src="/back/vendors/scripts/core.js"></script>
-    <script src="/back/vendors/scripts/script.min.js"></script>
-    <script src="/back/vendors/scripts/process.js"></script>
-    <script src="/back/vendors/scripts/layout-settings.js"></script>
-    <script>
-        if (navigator.userAgent.indexOf("Firefox") != -1) {
-            history.pushState(null, null, document.URL);
-            window.addEventListener('popstate', function() {
-                history.pushState(null, null, document.URL);
-            });
-        }
-    </script>
-    @stack('scripts')
+            </div>
+
+            <!-- js -->
+            <script src="/back/vendors/scripts/core.js"></script>
+            <script src="/back/vendors/scripts/script.min.js"></script>
+            <script src="/back/vendors/scripts/process.js"></script>
+            <script src="/back/vendors/scripts/layout-settings.js"></script>
+            <script>
+                if (navigator.userAgent.indexOf("Firefox") != -1) {
+                    history.pushState(null, null, document.URL);
+                    window.addEventListener('popstate', function() {
+                        history.pushState(null, null, document.URL);
+                    });
+                }
+            </script>
+            <script src="/extra-assets/ijabo/ijabo.min.js"></script>
+            <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
+            <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
+            <script>
+                window.addEventListener('showToastr', function(event) {
+                    toastr.remove();
+                    if (event.detail[0].type === 'info') {
+                        toastr.info(event.detail[0].message);
+                    } else if (event.detail[0].type === 'success') {
+                        toastr.success(event.detail[0].message);
+                    } else if (event.detail[0].type === 'error') {
+                        toastr.error(event.detail[0].message);
+                    } else if (event.detail[0].type === 'warning') {
+                        toastr.warning(event.detail[0].message);
+                    } else {
+                        return false;
+                    }
+                });
+            </script>
+
+            @livewireScripts()
+            @stack('scripts')
 </body>
 
 </html>
