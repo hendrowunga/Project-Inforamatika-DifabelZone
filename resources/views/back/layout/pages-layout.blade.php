@@ -102,13 +102,13 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="dashboard-setting user-notification">
+            {{-- <div class="dashboard-setting user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
                         <i class="dw dw-settings2"></i>
                     </a>
                 </div>
-            </div>
+            </div> --}}
             <div class="user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -287,7 +287,7 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
                 <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
             </a>
@@ -325,6 +325,15 @@
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }} ">
                                 <span class="micon fa fa-user"></span>
                                 <span class="mtext">Profile</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.settings') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                                <span class="micon icon-copy fi-widget"></span>
+                                <span class="mtext">Settings
+                                </span>
                             </a>
                         </li>
                     @else
