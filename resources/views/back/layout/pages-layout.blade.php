@@ -102,13 +102,13 @@
             </div>
         </div>
         <div class="header-right">
-            <div class="dashboard-setting user-notification">
+            {{-- <div class="dashboard-setting user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
                         <i class="dw dw-settings2"></i>
                     </a>
                 </div>
-            </div>
+            </div> --}}
             <div class="user-notification">
                 <div class="dropdown">
                     <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
@@ -327,6 +327,19 @@
                                 <span class="mtext">Profile</span>
                             </a>
                         </li>
+
+                        <li>
+							<a
+								href="{{ route('admin.settings') }}"
+
+								class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}"
+							>
+								<span class="micon icon-copy fi-widget"></span>
+								<span class="mtext"
+									>Settings
+									</span>
+							</a>
+						</li>
                     @else
                         <li>
                             <a href="calendar.html" class="dropdown-toggle no-arrow">
