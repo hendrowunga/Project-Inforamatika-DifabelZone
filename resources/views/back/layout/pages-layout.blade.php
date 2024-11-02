@@ -287,7 +287,7 @@
 
     <div class="left-side-bar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
                 <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
             </a>
@@ -329,17 +329,13 @@
                         </li>
 
                         <li>
-							<a
-								href="{{ route('admin.settings') }}"
-
-								class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}"
-							>
-								<span class="micon icon-copy fi-widget"></span>
-								<span class="mtext"
-									>Settings
-									</span>
-							</a>
-						</li>
+                            <a href="{{ route('admin.settings') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}">
+                                <span class="micon icon-copy fi-widget"></span>
+                                <span class="mtext">Settings
+                                </span>
+                            </a>
+                        </li>
                     @else
                         <li>
                             <a href="calendar.html" class="dropdown-toggle no-arrow">
