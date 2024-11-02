@@ -11,7 +11,7 @@ class AdminSettings extends Component
     public $tab = null;
     public $default_tab = 'general_settings';
     protected $queryString = ['tab' => ['keep' => true]];
-    public $site_name, $site_email, $site_phone, $site_meta_keywords, $site_meta_description;
+    public $site_name, $site_email, $site_phone, $site_meta_keywords, $site_meta_description, $site_address;
     public $facebook_url, $instagram_url;
 
     public function selectTab($tab)
@@ -27,6 +27,7 @@ class AdminSettings extends Component
         $this->site_name = get_settings()->site_name;
         $this->site_email = get_settings()->site_email;
         $this->site_phone = get_settings()->site_phone;
+        $this->site_address = get_settings()->site_address;
         $this->site_meta_keywords = get_settings()->site_meta_keywords;
         $this->site_meta_description = get_settings()->site_meta_description;
 
