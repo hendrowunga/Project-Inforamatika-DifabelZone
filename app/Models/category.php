@@ -4,24 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
-class category extends Model
+class Category extends Model
 {
     use HasFactory;
-
-    protected $primaryKey = 'id'; // Menggunakan ID sebagai primary key
-    public $incrementing = true; // ID adalah auto-incrementing
-    protected $keyType = 'int'; // Tipe kunci adalah integer
+    use Sluggable;
 
     protected $fillable = [
-        'name',
-        'deskripsi'
+        'category_name',
+        'category_slug',
+        'category_image',
+        'ordering'
     ];
 
-    public function products()
+    public function sluggable(): array
     {
-        return $this->hasMany(Product::class, 'category_id'); // Mengubah user_id sesuai dengan ID
+        return [
+            'category_slug' => [
+                'source' => 'category_name'
+            ]
+        ];
     }
-
-    
 }
