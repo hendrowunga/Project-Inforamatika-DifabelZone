@@ -43,16 +43,12 @@
         });
 
         $('#change_site_logo_form').on('submit', function(e) {
-            e.preventDefault(); // Mencegah pengiriman formulir default
+            e.preventDefault();
             var form = this;
             var formdata = new FormData(form);
             var inputFileVal = $(form).find('input[type="file"][name="site_logo"]').val();
 
-            // Hapus pesan error sebelumnya
-            $(form).find('span.error-text').text('');
-
             if (inputFileVal.length > 0) {
-                // Lanjutkan dengan pengiriman AJAX
                 $.ajax({
                     url: $(form).attr('action'),
                     method: $(form).attr('method'),
@@ -61,23 +57,23 @@
                     dataType: 'json',
                     contentType: false,
                     beforeSend: function() {
-                        toastr.remove(); // Hapus pesan toastr sebelumnya
+                        toastr.remove();
+                        $(form).find('span.error-text').text('');
                     },
                     success: function(response) {
                         if (response.status == 1) {
                             toastr.success(response.msg);
-                            $(form)[0].reset(); // Reset formulir
+                            $(form)[0].reset();
                         } else {
                             toastr.error(response.msg);
                         }
                     }
                 });
             } else {
-                // Tampilkan pesan error ketika tidak ada file yang dipilih
-                $(form).find('span.error-text').text('Silakan pilih file gambar logo. Jenis file PNG disarankan.');
+                $(form).find('span.error-text').text(
+                    'Please, select logo image file. PNG file type is recommended.');
             }
         });
-
 
 
         $('input[type="file"][name="site_favicon"][id="site_favicon"]').ijaboViewer({
