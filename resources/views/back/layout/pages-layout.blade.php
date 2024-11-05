@@ -7,9 +7,7 @@
     <title>@yield('pageTitle')</title>
 
     <!-- Site favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/back/vendors/images/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/back/vendors/images/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/back/vendors/images/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -288,8 +286,8 @@
     <div class="left-side-bar">
         <div class="brand-logo">
             <a href="{{ route('admin.home') }}">
-                <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
-                <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
+                <img src="/images/site/{{ get_settings()->site_logo }}" alt="" class="dark-logo" />
+                <img src="/images/site/{{ get_settings()->site_logo }}" alt="" class="light-logo" />
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
@@ -377,44 +375,53 @@
                 <div>
                     @yield('content')
                 </div>
-
             </div>
+            <div class="footer-wrap pd-20 mb-20 card-box">
+                DifabZone - Admin By
+                @if (Auth::check())
+                    <strong>{{ Auth::user()->name }}</strong>
+                @else
+                    Not logged in
+                @endif
+            </div>
+        </div>
+    </div>
 
-            <!-- js -->
-            <script src="/back/vendors/scripts/core.js"></script>
-            <script src="/back/vendors/scripts/script.min.js"></script>
-            <script src="/back/vendors/scripts/process.js"></script>
-            <script src="/back/vendors/scripts/layout-settings.js"></script>
-            <script>
-                if (navigator.userAgent.indexOf("Firefox") != -1) {
-                    history.pushState(null, null, document.URL);
-                    window.addEventListener('popstate', function() {
-                        history.pushState(null, null, document.URL);
-                    });
-                }
-            </script>
-            <script src="/extra-assets/ijabo/ijabo.min.js"></script>
-            <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
-            <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
-            <script>
-                window.addEventListener('showToastr', function(event) {
-                    toastr.remove();
-                    if (event.detail[0].type === 'info') {
-                        toastr.info(event.detail[0].message);
-                    } else if (event.detail[0].type === 'success') {
-                        toastr.success(event.detail[0].message);
-                    } else if (event.detail[0].type === 'error') {
-                        toastr.error(event.detail[0].message);
-                    } else if (event.detail[0].type === 'warning') {
-                        toastr.warning(event.detail[0].message);
-                    } else {
-                        return false;
-                    }
-                });
-            </script>
+    <!-- js -->
+    <script src="/back/vendors/scripts/core.js"></script>
+    <script src="/back/vendors/scripts/script.min.js"></script>
+    <script src="/back/vendors/scripts/process.js"></script>
+    <script src="/back/vendors/scripts/layout-settings.js"></script>
+    <script>
+        if (navigator.userAgent.indexOf("Firefox") != -1) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', function() {
+                history.pushState(null, null, document.URL);
+            });
+        }
+    </script>
+    <script src="/extra-assets/ijabo/ijabo.min.js"></script>
+    <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
+    <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
+    <script>
+        window.addEventListener('showToastr', function(event) {
+            toastr.remove();
+            if (event.detail[0].type === 'info') {
+                toastr.info(event.detail[0].message);
+            } else if (event.detail[0].type === 'success') {
+                toastr.success(event.detail[0].message);
+            } else if (event.detail[0].type === 'error') {
+                toastr.error(event.detail[0].message);
+            } else if (event.detail[0].type === 'warning') {
+                toastr.warning(event.detail[0].message);
+            } else {
+                return false;
+            }
+        });
+    </script>
 
-            @livewireScripts()
-            @stack('scripts')
+    @livewireScripts()
+    @stack('scripts')
 </body>
 
 </html>

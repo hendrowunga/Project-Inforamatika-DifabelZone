@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,30 @@ Route::get('/forgot-password', function () {
 Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword'])->name('password.email');
 
 // View for displaying the reset password form (with token)
-Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
+// Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
 
 // Handle the actual password reset process
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
+
+
+//Admin Page
+// Route::get('/admin', function () {
+//     return view('admin.adminPage');
+// });
+
+//ADMIN
+Route::get('/admin', [ProductController::class, 'index']);
+
+Route::post('/admin/product', [ProductController::class, 'store'])->name('admin.product.store');
+
+Route::get('/admin/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
+
+Route::put('/admin/product/{id}', [ProductController::class, 'store'])->name('admin.product.update');
+
+Route::delete('/admin/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
+
+Route::get('/admin/products/reload', [ProductController::class, 'reloadProducts'])->name('admin.products.reload');
+
 
 
 
