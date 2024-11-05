@@ -18,6 +18,11 @@ class cart extends Model
         'total_price'
     ];
 
+    protected $attributes = [
+        'total_quantity' => 0,
+        'total_price' => 0.000,
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'customer_id');
