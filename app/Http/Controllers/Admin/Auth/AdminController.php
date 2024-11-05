@@ -230,8 +230,19 @@ class AdminController extends Controller
     }
     public function changeLogo(Request $request)
     {
+        // Validate the request to ensure a file is provided
+        $request->validate([
+            'site_logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation rules as needed
+        ]);
+
         $path = 'images/site/';
         $file = $request->file('site_logo');
+
+        // Check if a file was uploaded
+        if (!$file) {
+            return redirect()->back()->with('error', 'Please upload a logo image.'); // Handle the error
+        }
+
         $settings = new GeneralSettings();
         $old_logo = $settings->first()->site_logo;
         $file_path = $path . $old_logo;
@@ -240,18 +251,24 @@ class AdminController extends Controller
         $upload = $file->move(public_path($path), $filename);
 
         if ($upload) {
-            if ($old_logo != null && File::exists(public_path($path . $old_logo))) {
-                File::delete(public_path($path . $old_logo));
+            // Hapus logo lama jika ada
+            if ($old_logo != null && File::exists(public_path($file_path))) {
+                File::delete(public_path($file_path));
             }
+
             $settings = $settings->first();
             $settings->site_logo = $filename;
             $update = $settings->save();
 
-            return response()->json(['status' => 1, 'msg' => 'Site logo has been updated successfully.']);
+            // Redirect ke halaman sebelumnya dengan pesan sukses
+            return redirect()->back()->with('success', 'Site logo has been updated successfully.');
         } else {
-            return response()->json(['status' => 0, 'msg' => 'Something went wrong.']);
+            // Redirect ke halaman sebelumnya dengan pesan error
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
         }
     }
+
+
     public function changeFavicon(Request $request)
     {
         $path = 'images/site/';
@@ -269,10 +286,12 @@ class AdminController extends Controller
             $settings = $settings->first();
             $settings->site_favicon = $filename;
             $update = $settings->save();
+            return redirect()->back()->with('success', 'Done!, site favicon has been updated successfully.');
 
-            return response()->json(['status' => 1, 'msg' => 'Done!, site favicon has been updated successfully.']);
+            // return response()->json(['status' => 1, 'msg' => 'Done!, site favicon has been updated successfully.']);
         } else {
-            return response()->json(['status' => 0, 'msg' => 'Something went wrong.']);
+            return redirect()->back()->with('error', 'Something went wrong. Please try again.');
+            // return response()->json(['status' => 0, 'msg' => 'Something went wrong.']);
         }
     }
 }

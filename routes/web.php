@@ -31,7 +31,7 @@ Route::get('/forgot-password', function () {
 Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword'])->name('password.email');
 
 // View for displaying the reset password form (with token)
-Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
+// Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
 
 // Handle the actual password reset process
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
