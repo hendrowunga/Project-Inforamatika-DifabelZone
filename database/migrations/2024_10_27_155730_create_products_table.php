@@ -11,37 +11,37 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('deskripsi');
-            $table->timestamps();
-        });
+        // Schema::create('category', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->text('deskripsi');
+        //     $table->timestamps();
+        // });
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
+            $table->string('name', 100);
             $table->integer('stock')->default(0);
             $table->string('image');
-            $table->decimal('price',6, 3);
-            $table->foreignId('seller_id')->constrained('users','id')->onDelete('cascade'); // Relasi ke users
-            $table->foreignId('category_id')->constrained('category','id')->onDelete('cascade'); // Relasi ke category
+            $table->decimal('price', 6, 3);
+            $table->foreignId('seller_id')->constrained('users', 'id')->onDelete('cascade'); // Relasi ke users
+            $table->foreignId('category_id')->constrained('category', 'id')->onDelete('cascade'); // Relasi ke category
             $table->timestamps();
         });
 
         Schema::create('cart', function (Blueprint $table) {
             $table->id();
             $table->integer('total_quantity');
-            $table->decimal('total_price',6,3);
-            $table->foreignId('customer_id')->constrained('users','id')->onDelete('cascade'); // Relasi ke user
+            $table->decimal('total_price', 6, 3);
+            $table->foreignId('customer_id')->constrained('users', 'id')->onDelete('cascade'); // Relasi ke user
             $table->timestamps();
         });
 
         Schema::create('cart_of_product', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained('products','id')->onDelete('cascade'); // Relasi ke product
-            $table->foreignId('cart_id')->constrained('cart','id')->onDelete('cascade'); // Relasi ke cart
+            $table->foreignId('product_id')->constrained('products', 'id')->onDelete('cascade'); // Relasi ke product
+            $table->foreignId('cart_id')->constrained('cart', 'id')->onDelete('cascade'); // Relasi ke cart
             $table->integer('quantity_product');
-            $table->decimal('price_product',6,3);
+            $table->decimal('price_product', 6, 3);
             $table->timestamps();
         });
     }
