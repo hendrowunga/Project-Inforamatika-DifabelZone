@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\Auth\AdminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\CategoriesController;
 use App\Models\Admin;
 
 Route::prefix('admin')->name('admin.')->group(function () {

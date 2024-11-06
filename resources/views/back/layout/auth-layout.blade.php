@@ -7,23 +7,22 @@
     <title>@yield('pageTitle')</title>
 
     <!-- Site favicon -->
-    <<<<<<< HEAD=======>>>>>>> 54-hotfixes
-        <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
 
-        <!-- Mobile Specific Metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-            rel="stylesheet" />
-        <!-- CSS -->
-        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
-        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
-        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
-        <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
+    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
+    <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
 
-        @livewireStyles()
-        @stack('stylesheets')
+    @livewireStyles()
+    @stack('stylesheets')
 
 </head>
 
@@ -33,11 +32,8 @@
             <div class="brand-logo">
                 {{-- login.html --}}
                 <a href="{{ route('admin.login') }}">
-                    <<<<<<< HEAD <img src="/images/site/{{ get_settings()->site_logo }}" alt="" />
-                    =======
                     {{-- /images/site/{{ get_settings()site_logo }} --}}
                     <img src="/back/vendors/images/deskapp-logo.svg" alt="" />
-                    >>>>>>> 54-hotfixes
                 </a>
             </div>
             <div class="login-menu">
