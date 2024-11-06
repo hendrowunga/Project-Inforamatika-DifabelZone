@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\GeneralSettings;
-use App\Models\SocialNetwork;
+use App\Models\SocialNetworks;
 
 class AdminSettings extends Component
 {
@@ -12,7 +12,9 @@ class AdminSettings extends Component
     public $default_tab = 'general_settings';
     protected $queryString = ['tab' => ['keep' => true]];
     public $site_name, $site_email, $site_phone, $site_meta_keywords, $site_meta_description, $site_logo, $site_favicon, $site_address;
-    public $facebook_url, $twitter_url, $instagram_url, $youtube_url, $github_url, $linkedin_url;
+
+    public $facebook_url, $twitter_url, $instagram_url, $youtube_url;
+
 
     public function selectTab($tab)
     {
@@ -38,8 +40,6 @@ class AdminSettings extends Component
         $this->twitter_url = get_social_network()->twitter_url;
         $this->instagram_url = get_social_network()->instagram_url;
         $this->youtube_url = get_social_network()->youtube_url;
-        $this->github_url = get_social_network()->github_url;
-        $this->linkedin_url = get_social_network()->linkedin_url;
     }
 
     public function updateGeneralSettings()
@@ -68,14 +68,13 @@ class AdminSettings extends Component
 
     public function updateSocialNetworks()
     {
-        $social_network = new SocialNetwork();
+        $social_network = new SocialNetworks();
         $social_network = $social_network->first();
         $social_network->facebook_url = $this->facebook_url;
         $social_network->twitter_url = $this->twitter_url;
         $social_network->instagram_url = $this->instagram_url;
         $social_network->youtube_url = $this->youtube_url;
-        $social_network->github_url = $this->github_url;
-        $social_network->linkedin_url = $this->linkedin_url;
+
         $update = $social_network->save();
 
         if ($update) {

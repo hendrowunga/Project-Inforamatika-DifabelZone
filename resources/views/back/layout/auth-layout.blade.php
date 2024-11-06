@@ -30,8 +30,10 @@
     <div class="login-header box-shadow">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <div class="brand-logo">
+                {{-- login.html --}}
                 <a href="{{ route('admin.login') }}">
-                    <img src="/images/site/{{ get_settings()->site_logo }}" alt="" />
+                    {{-- /images/site/{{ get_settings()site_logo }} --}}
+                    <img src="/back/vendors/images/deskapp-logo.svg" alt="" />
                 </a>
             </div>
             <div class="login-menu">

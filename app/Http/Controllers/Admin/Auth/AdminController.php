@@ -232,7 +232,8 @@ class AdminController extends Controller
     {
         $path = 'images/site/';
         $file = $request->file('site_logo');
-        $settings = new GeneralSetting();
+        $settings = new GeneralSettings();
+
         $old_logo = $settings->first()->site_logo;
         $file_path = $path . $old_logo;
         $filename = 'LOGO_' . uniqid() . '.' . $file->getClientOriginalExtension();

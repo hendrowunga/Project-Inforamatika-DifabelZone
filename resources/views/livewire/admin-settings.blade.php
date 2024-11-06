@@ -93,6 +93,7 @@
                     </form>
                 </div>
             </div>
+
             <div class="tab-pane fade {{ $tab == 'logo_favicon' ? 'active show' : '' }}" id="logo_favicon"
                 role="tabpanel">
                 <div class="pd-20">
@@ -150,6 +151,18 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for=""><b>Twitter URL</b></label>
+                                    <input type="text" class="form-control" wire:model='twitter_url'
+                                        placeholder="Enter twitter URL">
+                                    @error('twitter_url')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for=""><b>Instagram URL</b></label>
@@ -161,6 +174,21 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for=""><b>YouTube URL</b></label>
+                                    <input type="text" class="form-control" wire:model='youtube_url'
+                                        placeholder="Enter YouTube URL">
+                                    @error('youtube_url')
+                                        {{ $message }}
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>

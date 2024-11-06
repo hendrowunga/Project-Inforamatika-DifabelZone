@@ -24,6 +24,7 @@ class AdminSellerHeaderProfileInfo extends Component
         //     $this->seller = Seller::findOrFail(auth()->id());
         // }
     }
+
     public function render()
     {
         return view('livewire.admin-seller-header-profile-info');
