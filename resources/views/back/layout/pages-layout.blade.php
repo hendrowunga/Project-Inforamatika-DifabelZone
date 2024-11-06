@@ -7,48 +7,49 @@
     <title>@yield('pageTitle')</title>
 
     <!-- Site favicon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
+    <<<<<<< HEAD=======>>>>>>> 54-hotfixes
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
 
-    <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
-    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
-    <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet" />
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
+        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
+        <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
 
 
-    <script>
-        (function(w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({
-                "gtm.start": new Date().getTime(),
-                event: "gtm.js"
-            });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != "dataLayer" ? "&l=" + l : "";
-            j.async = true;
-            j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-    </script>
-    <!-- End Google Tag Manager -->
-    <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
-    <link rel="stylesheet" href="/extra-assets/ijaboCropTool/ijaboCropTool.min.css">
-    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.min.css">
-    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
-    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
-    <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
-    <style>
-        .swal2-popup {
-            font-size: 0.78em;
-        }
-    </style>
-    @livewireStyles() @stack('stylesheets')
+        <script>
+            (function(w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    "gtm.start": new Date().getTime(),
+                    event: "gtm.js"
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != "dataLayer" ? "&l=" + l : "";
+                j.async = true;
+                j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+        </script>
+        <!-- End Google Tag Manager -->
+        <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
+        <link rel="stylesheet" href="/extra-assets/ijaboCropTool/ijaboCropTool.min.css">
+        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.min.css">
+        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
+        <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
+        <style>
+            .swal2-popup {
+                font-size: 0.78em;
+            }
+        </style>
+        @livewireStyles() @stack('stylesheets')
 </head>
 
 <body>{{-- <div class="pre-loader">
@@ -220,61 +221,78 @@
         </div>
     </div>
     <div class="left-side-bar">
-        <div class="brand-logo"><a href="{{ route('admin.home') }}"><img
+        <<<<<<< HEAD <div class="brand-logo"><a href="{{ route('admin.home') }}"><img
                     src="/images/site/{{ get_settings()->site_logo }}" alt="" class="dark-logo" /><img
                     src="/images/site/{{ get_settings()->site_logo }}" alt="" class="light-logo" /></a>
             <div class="close-sidebar" data-toggle="left-sidebar-close"><i class="ion-close-round"></i></div>
-        </div>
-        <div class="menu-block customscroll">
-            <div class="sidebar-menu">
-                <ul id="accordion-menu">
-                    @if (Route::is('admin.*'))
-                        <li><a href="{{ route('admin.home') }}"
-                                class="dropdown-toggle no-arrow {{ Route::is('admin.home') ? 'active' : '' }}"><span
-                                    class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
-
-
-                        <li><a href="{{ route('admin.manage-categories.cats-subcats-list') }}"
-                                class="dropdown-toggle no-arrow {{ Route::is('admin.manage-categories.*') ? 'active' : '' }}"><span
-                                    class="micon dw dw-align-left3"></span><span class="mtext">Manage
-                                    Categories</span></a></li>
-
-
-
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span></a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <div class="sidebar-small-cap">Setting</div>
-                        </li>
-                        <li><a href="{{ route('admin.profile') }}"
-                                class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }} "><span
-                                    class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
-                        <li><a href="{{ route('admin.settings') }}"
-                                class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}"><span
-                                    class="micon icon-copy fi-widget"></span><span class="mtext">Settings </span></a>
-                        </li>
-                    @else
-                        <li><a href="calendar.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span></a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <div class="sidebar-small-cap">Setting</div>
-                        </li>
-                        <li><a href="" target="_blank" class="dropdown-toggle no-arrow"><span
-                                    class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
-                    @endif
-                </ul>
+            =======
+            <div class="brand-logo">
+                {{-- index.html --}}
+                {{-- {{ route('admin.home') }} --}}
+                <a href="/">
+                    {{-- /images/site/{{ get_settings()site_logo }} --}}
+                    <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+                    {{-- /images/site/{{ get_settings()site_logo }} --}}
+                    <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
+                </a>
+                <div class="close-sidebar" data-toggle="left-sidebar-close">
+                    <i class="ion-close-round"></i>
+                </div>
+                >>>>>>> 54-hotfixes
             </div>
-        </div>
+            <div class="menu-block customscroll">
+                <div class="sidebar-menu">
+                    <ul id="accordion-menu">
+                        @if (Route::is('admin.*'))
+                            <li><a href="{{ route('admin.home') }}"
+                                    class="dropdown-toggle no-arrow {{ Route::is('admin.home') ? 'active' : '' }}"><span
+                                        class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
+
+
+                            <li><a href="{{ route('admin.manage-categories.cats-subcats-list') }}"
+                                    class="dropdown-toggle no-arrow {{ Route::is('admin.manage-categories.*') ? 'active' : '' }}"><span
+                                        class="micon dw dw-align-left3"></span><span class="mtext">Manage
+                                        Categories</span></a></li>
+
+
+
+                            <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
+                                        class="micon bi bi-receipt-cutoff"></span><span
+                                        class="mtext">Invoice</span></a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-small-cap">Setting</div>
+                            </li>
+                            <li><a href="{{ route('admin.profile') }}"
+                                    class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }} "><span
+                                        class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
+                            <li><a href="{{ route('admin.settings') }}"
+                                    class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}"><span
+                                        class="micon icon-copy fi-widget"></span><span class="mtext">Settings
+                                    </span></a>
+                            </li>
+                        @else
+                            <li><a href="calendar.html" class="dropdown-toggle no-arrow"><span
+                                        class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
+                            <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
+                                        class="micon bi bi-receipt-cutoff"></span><span
+                                        class="mtext">Invoice</span></a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider"></div>
+                            </li>
+                            <li>
+                                <div class="sidebar-small-cap">Setting</div>
+                            </li>
+                            <li><a href="" target="_blank" class="dropdown-toggle no-arrow"><span
+                                        class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
     </div>
     <div class="mobile-menu-overlay"></div>
     <div class="main-container">

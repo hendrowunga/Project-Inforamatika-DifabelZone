@@ -11,12 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('deskripsi');
-            $table->timestamps();
-        });
+
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
@@ -25,7 +20,7 @@ return new class extends Migration
             $table->string('image');
             $table->decimal('price', 6, 3);
             $table->foreignId('seller_id')->constrained('users', 'id')->onDelete('cascade'); // Relasi ke users
-            $table->foreignId('category_id')->constrained('category', 'id')->onDelete('cascade'); // Relasi ke category
+
             $table->timestamps();
         });
 
@@ -54,7 +49,7 @@ return new class extends Migration
         Schema::dropIfExists('review');
         Schema::dropIfExists('cart_of_product');
         Schema::dropIfExists('products');
-        Schema::dropIfExists('category');
+
         Schema::dropIfExists('cart');
     }
 };

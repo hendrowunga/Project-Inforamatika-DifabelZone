@@ -75,7 +75,10 @@
             }
         });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54-hotfixes
         $('input[type="file"][name="site_favicon"][id="site_favicon"]').ijaboViewer({
             preview: '#site_favicon_image_preview',
             imageShape: 'square',
@@ -89,7 +92,10 @@
             onSuccess: function(message, element) {}
         });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 54-hotfixes
         $('#change_site_favicon_form').on('submit', function(e) {
             e.preventDefault();
             var form = this;
