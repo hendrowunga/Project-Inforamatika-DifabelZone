@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\Auth\ForgotPasswordController;
 use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontEndController;
 
 
 /*
@@ -37,11 +38,6 @@ Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetFo
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
 
 
-//Admin Page
-// Route::get('/admin', function () {
-//     return view('admin.adminPage');
-// });
-
 //ADMIN
 Route::get('/admin', [ProductController::class, 'index']);
 
@@ -61,3 +57,4 @@ Route::get('/admin/products/reload', [ProductController::class, 'reloadProducts'
 // Admin
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
+Route::view('example-frontend', 'example-frontend');

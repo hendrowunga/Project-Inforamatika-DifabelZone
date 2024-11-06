@@ -3,7 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\Models\GeneralSettings;
-use App\Models\SocialNetwork;
+use App\Models\SocialNetworks;
 
 
 
@@ -66,7 +66,7 @@ if (!function_exists('get_social_network')) {
     function get_social_network()
     {
         $results = null;
-        $social_network = new SocialNetwork();
+        $social_network = new SocialNetworks();
         $social_network_data = $social_network->first();
 
         if ($social_network_data) {
@@ -74,7 +74,9 @@ if (!function_exists('get_social_network')) {
         } else {
             $social_network->insert([
                 'facebook_url' => null,
+                'twitter_url' => null,
                 'instagram_url' => null,
+                'youtube_url' => null
             ]);
             $new_social_network_data = $social_network->first();
             $results = $new_social_network_data;
