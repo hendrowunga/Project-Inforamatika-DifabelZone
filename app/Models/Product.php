@@ -21,22 +21,18 @@ class Product extends Model
     ];
 
     public function cartOfProducts()
-    {//relasi one product to many cartOfProducts
-        return $this->hasMany(cart_of_product::class, 'product_id','id');
+    { //relasi one product to many cartOfProducts
+        return $this->hasMany(cart_of_product::class, 'product_id', 'id');
     }
 
     public function review()
-    {//relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id','id');
+    { //relasi one product to many cartOfProducts
+        return $this->hasMany(review::class, 'product_id', 'id');
     }
 
-    public function category()
-    {//relasi many product to one category
-        return $this->belongsTo(category::class, 'category_id','id');
-    }
 
-    public function admin() 
-    {//relasi many product to one user
-        return $this->belongsTo(User::class, 'admin_id','id');
+    public function admin()
+    { //relasi many product to one user
+        return $this->belongsTo(User::class, 'admin_id', 'id');
     }
 }
