@@ -44,11 +44,20 @@
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ijabo@1.1.0/dist/css/ijabo.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ijabo-crop-tool@1.0.1/dist/css/ijaboCropTool.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
+
     <style>
         .swal2-popup {
             font-size: 0.78em;
         }
     </style>
+    @kropifyStyles
     @livewireStyles() @stack('stylesheets')
 </head>
 
@@ -243,6 +252,14 @@
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.home') ? 'active' : '' }}"><span
                                     class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
 
+                        <li>
+                            <a href="{{ route('admin.manage-categories.cats-subcats-list') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.manage-categories.*') ? 'active' : '' }}">
+                                <span class="micon dw dw-align-left3"></span><span class="mtext">Manage
+                                    Categories</span>
+                            </a>
+                        </li>
+
                         <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
                                     class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span></a>
                         </li>
@@ -306,6 +323,13 @@
                 });
             }
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ijabo@1.1.0/dist/js/ijabo.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ijabo-crop-tool@1.0.1/dist/js/ijaboCropTool.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ijabo-viewer@1.0.0/dist/js/jquery.ijaboViewer.min.js"></script>
+
         <script src="/extra-assets/ijabo/ijabo.min.js"></script>
         <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
         <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
