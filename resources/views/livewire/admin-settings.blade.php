@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label for=""><b>Site name</b></label>
                                     <input type="text" class="form-control" placeholder="Enter site name"
-                                        wire:model='site_name'>
+                                        wire:model.live='site_name'>
                                     @error('site_name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for=""><b>Site email</b></label>
                                     <input type="text" class="form-control" placeholder="Enter site email"
-                                        wire:model='site_email'>
+                                        wire:model.live='site_email'>
                                     @error('site_email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label for=""><b>Site phone</b></label>
                                     <input type="text" class="form-control" placeholder="Enter site phone"
-                                        wire:model='site_phone'>
+                                        wire:model.live='site_phone'>
                                     @error('site_phone')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -66,7 +66,7 @@
                                     <label for=""><b>Site meta keywords</b><small> Separated by comma
                                             (a,b,c)</small></label>
                                     <input type="text" class="form-control" placeholder="Enter site meta keywords"
-                                        wire:model='site_meta_keywords'>
+                                        wire:model.live='site_meta_keywords'>
                                     @error('site_meta_keywords')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -76,7 +76,7 @@
                         <div class="form-group">
                             <label for="">Site Address</label>
                             <input type="text" class="form-control" placeholder="Enter site address"
-                                wire:model="site_address">
+                                wire:model.live="site_address">
                             @error('site_address')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -84,7 +84,7 @@
                         <div class="form-group">
                             <label for="">Site meta description</label>
                             <textarea cols="4" rows="4" placeholder="Site meta desc...." class="form-control"
-                                wire:model='site_meta_description'></textarea>
+                                wire:model.live='site_meta_description'></textarea>
                             @error('site_meta_description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -144,7 +144,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for=""><b>Facebook URL</b></label>
-                                    <input type="text" class="form-control" wire:model='facebook_url'
+                                    <input type="text" class="form-control" wire:model.live='facebook_url'
                                         placeholder="Enter facebook URL">
                                     @error('facebook_url')
                                         {{ $message }}
@@ -155,7 +155,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for=""><b>Twitter URL</b></label>
-                                    <input type="text" class="form-control" wire:model='twitter_url'
+                                    <input type="text" class="form-control" wire:model.live='twitter_url'
                                         placeholder="Enter twitter URL">
                                     @error('twitter_url')
                                         {{ $message }}
@@ -166,7 +166,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for=""><b>Instagram URL</b></label>
-                                    <input type="text" class="form-control" wire:model='instagram_url'
+                                    <input type="text" class="form-control" wire:model.live='instagram_url'
                                         placeholder="Enter instagram URL">
                                     @error('instagram_url')
                                         {{ $message }}
@@ -179,7 +179,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for=""><b>YouTube URL</b></label>
-                                    <input type="text" class="form-control" wire:model='youtube_url'
+                                    <input type="text" class="form-control" wire:model.live='youtube_url'
                                         placeholder="Enter YouTube URL">
                                     @error('youtube_url')
                                         {{ $message }}

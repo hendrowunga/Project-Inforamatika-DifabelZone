@@ -66,7 +66,7 @@
                                     <div class="form-group">
                                         <label for="">Current password</label>
                                         <input type="password" placeholder="Enter current password"
-                                            wire:model='current_password' class="form-control">
+                                            wire:model.live='current_password' class="form-control">
                                         @error('current_password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -76,7 +76,7 @@
                                     <div class="form-group">
                                         <label for="">New password</label>
                                         <input type="password" placeholder="Enter new password"
-                                            wire:model='new_password' class="form-control">
+                                            wire:model.live='new_password' class="form-control">
                                         @error('new_password')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -86,7 +86,7 @@
                                     <div class="form-group">
                                         <label for="">Confirm new password</label>
                                         <input type="password" placeholder="Retype new password"
-                                            wire:model='new_password_confirmation' class="form-control">
+                                            wire:model.live='new_password_confirmation' class="form-control">
                                         @error('new_password_confirmation')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror

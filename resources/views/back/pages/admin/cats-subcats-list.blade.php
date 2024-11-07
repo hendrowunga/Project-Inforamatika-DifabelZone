@@ -4,48 +4,137 @@
     @livewire('admin-categories-subcategories-list')
 @endsection
 
+
 @push('scripts')
     <script>
         // Make the categories sortable
-        $(document).ready(function() {
-            $('table tbody#sortable_categories').sortable({
-                cursor: "move",
-                update: function(event, ui) {
-                    $(this).children().each(function(index) {
-                        if ($(this).attr("data-ordering") != (index + 1)) {
-                            $(this).attr("data-ordering", (index + 1)).addClass("updated");
-                        }
-                    });
-                    var positions = [];
-                    $(".updated").each(function() {
-                        positions.push([$(this).attr("data-index"), $(this).attr(
-                            "data-ordering")]);
-                        $(this).removeClass("updated");
-                    });
-                    // Call the Livewire event to update the ordering
-                    Livewire.emit("updateCategoriesOrdering", positions);
+        $('table tbody#sortable_categories').sortable({
+            cursor: "move",
+            update: function(event, ui) {
+                $(this).children().each(function(index) {
+                    if ($(this).attr("data-ordering") != (index + 1)) {
+                        $(this).attr("data-ordering", (index + 1)).addClass("updated");
+                    }
+                });
+                var positions = [];
+                $(".updated").each(function() {
+                    positions.push([$(this).attr("data-index"), $(this).attr("data-ordering")]);
+                    $(this).removeClass("updated");
+                });
+                // alert(positions);
+                Livewire.dispatch("updateCategoriesOrdering", [positions]);
+                // window.livewire.emit("updateCategoriesOrdering", positions);
+            }
+        });
+
+        // $(document).on('click', '.deleteCategoryBtn', function(e) {
+        //     e.preventDefault();
+        //     var category_id = $(this).data('id');
+        //     // alert(category_id);
+
+        //     swal.fire({
+        //         title: 'Are you sure?',
+        //         html: 'You want to delete this category',
+        //         showCloseButton: true,
+        //         showCancelButton: true,
+        //         cancelButtonText: 'Cancel',
+        //         confirmButtonText: 'Yes, Delete',
+        //         cancelButtonColor: '#d33',
+        //         confirmButtonColor: '#3085d6',
+        //         width: 300,
+        //         allowOutsideClick: false
+        //     }).then(function(result) {
+        //         if (result.value) {
+        //             // alert('Yes,Delete category');
+
+        //             Livewire.dispatch('deleteCategory', [category_id]);
+        //             // window.livewire.emit('deleteCategory', category_id);
+
+        //         }
+        //     });
+        // });
+        $(document).on('click', '.deleteCategoryBtn', function(e) {
+            e.preventDefault();
+            var category_id = $(this).data('id');
+
+            swal.fire({
+                title: 'Are you sure?',
+                html: 'You want to delete this category',
+                showCloseButton: true,
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Yes, Delete',
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+                width: 300,
+                allowOutsideClick: false
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Trigger event deleteCategory setelah konfirmasi "Yes, Delete"
+                    Livewire.emit('deleteCategory', category_id);
                 }
             });
         });
 
-        // Delete category with confirmation
-        $(document).on('click', '.deleteCategoryBtn', function(e) {
+
+        $('table tbody#sortable_subcategories').sortable({
+            cursor: "move",
+            update: function(event, ui) {
+                $(this).children().each(function(index) {
+                    if ($(this).attr("data-ordering") != (index + 1)) {
+                        $(this).attr("data-ordering", (index + 1)).addClass("updated");
+                    }
+                });
+                var positions = [];
+                $(".updated").each(function() {
+                    positions.push([$(this).attr("data-index"), $(this).attr("data-ordering")]);
+                    $(this).removeClass("updated");
+                });
+                // Livewire.dispatch("updateSubCategoriesOrdering", [positions]);
+                window.livewire.emit('updateSubCategoriesOrdering', positions);
+
+
+            }
+        });
+
+        $('ul#sortable_child_subcategories').sortable({
+            cursor: "move",
+            update: function(event, ui) {
+                $(this).children().each(function(index) {
+                    if ($(this).attr("data-ordering") != (index + 1)) {
+                        $(this).attr("data-ordering", (index + 1)).addClass("updated");
+                    }
+                });
+                var positions = [];
+                $(".updated").each(function() {
+                    positions.push([$(this).attr("data-index"), $(this).attr("data-ordering")]);
+                    $(this).removeClass("updated");
+                });
+                Livewire.dispatch("updateChildSubCategoriesOrdering", [positions]);
+                // window.livewire.emit('updateChildSubCategoriesOrdering', positions);
+            }
+        });
+
+        $(document).on('click', '.deleteSubCategoryBtn, .deleteChildSubCategoryBtn', function(e) {
             e.preventDefault();
-            var category_id = $(this).data('id');
-            console.log(category_id); // Pastikan ID kategori tercetak di konsol
-            Swal.fire({
+            var subcategory_id = $(this).data('id');
+            var title = $(this).data('title');
+
+            swal.fire({
                 title: 'Are you sure?',
-                text: 'You want to delete this category',
-                icon: 'warning',
+                html: 'You want to delete this <b>' + title + '</b>',
+                showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Yes, Delete',
                 cancelButtonText: 'Cancel',
+                confirmButtonText: 'Yes, Delete',
+                cancelButtonColor: '#d33',
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33'
-            }).then((result) => {
+                width: 300,
+                allowOutsideClick: false
+            }).then(function(result) {
                 if (result.isConfirmed) {
-                    // Trigger Livewire event to delete the category
-                    Livewire.emit('deleteCategory', category_id);
+                    // Trigger event deleteSubCategory setelah konfirmasi "Yes, Delete"
+                    Livewire.emit('deleteSubCategory', subcategory_id);
                 }
             });
         });
