@@ -57,7 +57,6 @@
             font-size: 0.78em;
         }
     </style>
-    @kropifyStyles
     @livewireStyles() @stack('stylesheets')
 </head>
 
@@ -310,49 +309,49 @@
             </div>
         </div>
     </div>
-    < !-- js -->
-        <script src="/back/vendors/scripts/core.js"></script>
-        <script src="/back/vendors/scripts/script.min.js"></script>
-        <script src="/back/vendors/scripts/process.js"></script>
-        <script src="/back/vendors/scripts/layout-settings.js"></script>
-        <script>
-            if (navigator.userAgent.indexOf("Firefox") != -1) {
-                history.pushState(null, null, document.URL);
-                window.addEventListener('popstate', function() {
-                    history.pushState(null, null, document.URL);
-                });
-            }
-        </script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/ijabo@1.1.0/dist/js/ijabo.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/ijabo-crop-tool@1.0.1/dist/js/ijaboCropTool.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://cdn.jsdelivr.net/npm/ijabo-viewer@1.0.0/dist/js/jquery.ijaboViewer.min.js"></script>
 
-        <script src="/extra-assets/ijabo/ijabo.min.js"></script>
-        <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
-        <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
-        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.min.css">
-        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
-        <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
-        <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
-        <script>
-            window.addEventListener('showToastr', function(event) {
-                toastr.remove();
-                if (event.detail[0].type === 'info') {
-                    toastr.info(event.detail[0].message);
-                } else if (event.detail[0].type === 'success') {
-                    toastr.success(event.detail[0].message);
-                } else if (event.detail[0].type === 'error') {
-                    toastr.error(event.detail[0].message);
-                } else if (event.detail[0].type === 'warning') {
-                    toastr.warning(event.detail[0].message);
-                } else {
-                    return false;
-                }
+    <script src="/back/vendors/scripts/core.js"></script>
+    <script src="/back/vendors/scripts/script.min.js"></script>
+    <script src="/back/vendors/scripts/process.js"></script>
+    <script src="/back/vendors/scripts/layout-settings.js"></script>
+    <script>
+        if (navigator.userAgent.indexOf("Firefox") != -1) {
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', function() {
+                history.pushState(null, null, document.URL);
             });
-        </script>@livewireScripts() @stack('scripts')
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ijabo@1.1.0/dist/js/ijabo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ijabo-crop-tool@1.0.1/dist/js/ijaboCropTool.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ijabo-viewer@1.0.0/dist/js/jquery.ijaboViewer.min.js"></script>
+
+    <script src="/extra-assets/ijabo/ijabo.min.js"></script>
+    <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
+    <script src="/extra-assets/ijaboCropTool/ijaboCropTool.min.js"></script>
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.min.css">
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
+    <script>
+        window.addEventListener('showToastr', function(event) {
+            toastr.remove();
+            if (event.detail[0].type === 'info') {
+                toastr.info(event.detail[0].message);
+            } else if (event.detail[0].type === 'success') {
+                toastr.success(event.detail[0].message);
+            } else if (event.detail[0].type === 'error') {
+                toastr.error(event.detail[0].message);
+            } else if (event.detail[0].type === 'warning') {
+                toastr.warning(event.detail[0].message);
+            } else {
+                return false;
+            }
+        });
+    </script>@livewireScripts() @stack('scripts')
 </body>
 
 </html>

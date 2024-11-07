@@ -75,19 +75,36 @@
     <script src="/extra-assets/ijabo/ijabo.min.js"></script>
     <script src="/extra-assets/ijabo/jquery.ijaboViewer.min.js"></script>
     <script>
-        window.addEventListener('showToastr', function(event) {
-            toastr.remove();
-            if (event.detail[0].type === 'info') {
-                toastr.info(event.detail[0].message);
-            } else if (event.detail[0].type === 'success') {
-                toastr.success(event.detail[0].message);
-            } else if (event.detail[0].type === 'error') {
-                toastr.error(event.detail[0].message);
-            } else if (event.detail[0].type === 'warning') {
-                toastr.warning(event.detail[0].message);
-            } else {
-                return false;
-            }
+        // window.addEventListener('showToastr', function(event) {
+        //     toastr.remove();
+        //     if (event.detail[0].type === 'info') {
+        //         toastr.info(event.detail[0].message);
+        //     } else if (event.detail[0].type === 'success') {
+        //         toastr.success(event.detail[0].message);
+        //     } else if (event.detail[0].type === 'error') {
+        //         toastr.error(event.detail[0].message);
+        //     } else if (event.detail[0].type === 'warning') {
+        //         toastr.warning(event.detail[0].message);
+        //     } else {
+        //         return false;
+        //     }
+        // });
+
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('showToastr', (event) => {
+                toastr.remove();
+                if (event[0].type === 'info') {
+                    toastr.info(event[0].message);
+                } else if (event[0].type === 'success') {
+                    toastr.success(event[0].message);
+                } else if (event[0].type === 'error') {
+                    toastr.error(event[0].message);
+                } else if (event[0].type === 'warning') {
+                    toastr.warning(event[0].message);
+                } else {
+                    return false;
+                }
+            });
         });
     </script>
 

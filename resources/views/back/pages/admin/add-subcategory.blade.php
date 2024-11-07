@@ -6,7 +6,7 @@
             <div class="pd-20 card-box mb-30">
                 <div class="clearfix">
                     <div class="pull-left">
-                        <h4 class="text-dark">Add Category</h4>
+                        <h4 class="text-dark">Add Sub Category</h4>
                     </div>
                     <div class="pull-right">
                         <a href="{{ route('admin.manage-categories.cats-subcats-list') }}" class="btn btn-primary btn-sm">
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <hr>
-                <form action="{{ route('admin.manage-categories.store-category') }}" method="POST"
+                <form action="{{ route('admin.manage-categories.store-subcategory') }}" method="POST"
                     enctype="multipart/form-data" class="mt-3">
                     @csrf
                     @if (Session::get('success'))
@@ -39,10 +39,16 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group">
-                                <label for="">Category name</label>
-                                <input type="text" class="form-control" name="category_name"
-                                    placeholder="Enter category name" value="{{ old('category_name') }}">
-                                @error('category_name')
+                                <label for="">Parent category</label>
+                                <select name="parent_category" id="" class="form-control">
+                                    <option value="">Not Set</option>
+                                    @foreach ($categories as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('parent_category') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->category_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('parent_category')
                                     <span class="text-danger ml-2">
                                         {{ $message }}
                                     </span>
@@ -51,19 +57,34 @@
                         </div>
                         <div class="col-md-7">
                             <div class="form-group">
-                                <label for="">Category image</label>
-                                <input type="file" name="category_image" id="category_image" class="form-control"
-                                    accept="image/*" onchange="previewImage(this);">
-                                @error('category_image')
+                                <label for="">Sub Category name</label>
+                                <input type="text" class="form-control" name="subcategory_name"
+                                    placeholder="Enter sub category name" value="{{ old('subcategory_name') }}">
+                                @error('subcategory_name')
                                     <span class="text-danger ml-2">
                                         {{ $message }}
                                     </span>
                                 @enderror
                             </div>
-                            <div class="avatar mb-3">
-                                <img src="" alt="Preview" id="preview_img"
-                                    style="max-width: 200px; max-height: 200px; display: none;">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label for="">Is Child Of</label>
+                                <select name="is_child_of" id="" class="form-control">
+                                    <option value="0">-- Independent --</option>
+                                    @foreach ($subcategories as $item)
+                                        <option value="{{ $item->id }}"
+                                            {{ old('is_child_of') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->subcategory_name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('is_child_of')
+                                    <span class="text-danger ml-2">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
+
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">CREATE</button>
@@ -72,8 +93,10 @@
         </div>
     </div>
 @endsection
-
 @push('scripts')
+@endpush
+
+{{-- @push('scripts')
     <script>
         function previewImage(input) {
             const preview = document.getElementById('preview_img');
@@ -105,4 +128,4 @@
             }
         });
     </script>
-@endpush
+@endpush --}}
