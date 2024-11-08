@@ -73,38 +73,9 @@
 			</div>
 		</div> --}} <div class="header">
         <div class="header-left">
-            <div class="menu-icon bi bi-list"></div>
-            <div class="search-toggle-icon bi bi-search" data-toggle="header_search"></div>
-            <div class="header-search">
-                <form>
-                    <div class="form-group mb-0"><i class="dw dw-search2 search-icon"></i><input type="text"
-                            class="form-control search-input" placeholder="Search Here" />
-                        <div class="dropdown"><a class="dropdown-toggle no-arrow" href="#" role="button"
-                                data-toggle="dropdown"><i class="ion-arrow-down-c"></i></a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="form-group row"><label
-                                        class="col-sm-12 col-md-2 col-form-label">From</label>
-                                    <div class="col-sm-12 col-md-10"><input
-                                            class="form-control form-control-sm form-control-line" type="text" />
-                                    </div>
-                                </div>
-                                <div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">To</label>
-                                    <div class="col-sm-12 col-md-10"><input
-                                            class="form-control form-control-sm form-control-line" type="text" />
-                                    </div>
-                                </div>
-                                <div class="form-group row"><label
-                                        class="col-sm-12 col-md-2 col-form-label">Subject</label>
-                                    <div class="col-sm-12 col-md-10"><input
-                                            class="form-control form-control-sm form-control-line" type="text" />
-                                    </div>
-                                </div>
-                                <div class="text-right"><button class="btn btn-primary">Search</button></div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <div class=""></div>
+
+
         </div>
         <div class="header-right">{{-- <div class="dashboard-setting user-notification">
                 <div class="dropdown">
@@ -119,24 +90,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
                             <ul>
-                                <li><a href="#"><img src="/back/vendors/images/img.jpg" alt="" />
-                                        <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
-                                    </a></li>
-                                <li><a href="#"><img src="/back/vendors/images/photo1.jpg" alt="" />
-                                        <h3>Lea R. Frith</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
-                                    </a></li>
-                                <li><a href="#"><img src="/back/vendors/images/photo2.jpg" alt="" />
-                                        <h3>Erik L. Richards</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
-                                    </a></li>
+
                                 <li><a href="#"><img src="/back/vendors/images/photo3.jpg" alt="" />
                                         <h3>John Doe</h3>
                                         <p>Lorem ipsum dolor sit amet,
@@ -171,7 +125,7 @@
             <div class="close-sidebar" data-toggle="right-sidebar-close"><i class="icon-copy ion-close-round"></i>
             </div>
         </div>
-        <div class="right-sidebar-body customscroll">
+        {{-- <div class="right-sidebar-body customscroll">
             <div class="right-sidebar-body-content">
                 <h4 class="weight-600 font-18 pb-10">Header Background</h4>
                 <div class="sidebar-btn-group pb-30 mb-10"><a href="javascript:void(0);"
@@ -226,7 +180,7 @@
                 <div class="reset-options pt-30 text-center"><button class="btn btn-danger" id="reset-settings">Reset
                         Settings </button></div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="left-side-bar">
         <div class="brand-logo">
@@ -249,18 +203,25 @@
                     @if (Route::is('admin.*'))
                         <li><a href="{{ route('admin.home') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.home') ? 'active' : '' }}"><span
-                                    class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
+                                    class="micon fa fa-home"></span><span class="mtext">Dashboard</span></a></li>
 
+                        <li>
+                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
+                                    class="micon bi bi-cart"></span><span class="mtext">Product</span></a>
+                        </li>
                         <li>
                             <a href="{{ route('admin.manage-categories.cats-subcats-list') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.manage-categories.*') ? 'active' : '' }}">
-                                <span class="micon dw dw-align-left3"></span><span class="mtext">Manage
-                                    Categories</span>
+                                <span class="micon bi bi-tags"></span><span class="mtext">Category</span>
                             </a>
                         </li>
+                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
+                                    class="micon bi bi-people"></span><span class="mtext">User</span></a>
+                        </li>
+
 
                         <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span></a>
+                                    class="micon bi bi-receipt"></span><span class="mtext">Order</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
