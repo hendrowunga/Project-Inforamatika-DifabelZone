@@ -58,3 +58,7 @@ Route::get('/admin/products/reload', [ProductController::class, 'reloadProducts'
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
 Route::view('example-frontend', 'example-frontend');
+
+
+//login user
+Route::view('/login-user', 'user.login-user')->name('login');
