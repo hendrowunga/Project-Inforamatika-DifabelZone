@@ -1,6 +1,10 @@
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use App\Models\GeneralSettings;
+use App\Models\SocialNetworks;
+
 
 
 /** SEND EMAIL FUNCTION USING PHPMAILER LIBRARY */
@@ -30,5 +34,53 @@ if (!function_exists('sendEmail')) {
         } else {
             return false;
         }
+    }
+}
+
+
+/** GET GENERAL SETTINGS */
+if (!function_exists('get_settings')) {
+    function get_settings()
+    {
+        $results = null;
+        $settings = new GeneralSettings();
+        $settings_data = $settings->first();
+
+        if ($settings_data) {
+            $results = $settings_data;
+        } else {
+            $settings->insert([
+                'site_name' => 'DifabelZone',
+                'site_email' => 'difabelzone@gmail.com'
+            ]);
+            $new_settings_data = $settings->first();
+            $results = $new_settings_data;
+        }
+        return $results;
+    }
+}
+
+
+/** GET SOCIAL NETWORKS */
+if (!function_exists('get_social_network')) {
+    function get_social_network()
+    {
+        $results = null;
+        $social_network = new SocialNetworks();
+        $social_network_data = $social_network->first();
+
+        if ($social_network_data) {
+            $results = $social_network_data;
+        } else {
+            $social_network->insert([
+                'facebook_url' => null,
+                'twitter_url' => null,
+                'instagram_url' => null,
+                'youtube_url' => null
+            ]);
+            $new_social_network_data = $social_network->first();
+            $results = $new_social_network_data;
+        }
+        return $results;
     }
 }

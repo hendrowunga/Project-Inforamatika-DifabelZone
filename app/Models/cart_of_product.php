@@ -14,8 +14,13 @@ class cart_of_product extends Model
     // protected $keyType = 'int'; // Tipe kunci adalah integer
 
     protected $fillable = [
-        'name',
-        'deskripsi'
+        'quantity_product',
+        'price_product'
+    ];
+
+    protected $attributes = [
+        'total_quantity' => 0,
+        'total_price' => 0.000,
     ];
 
     public function product()
