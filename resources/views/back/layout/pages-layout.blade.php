@@ -170,7 +170,8 @@
 
                         <li>
                         <li>
-                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-products.product_list') }}"
+                                class="dropdown-toggle no-arrow  {{ Route::is('admin.manage-products.*') ? 'active' : '' }}">
                                 <span class="micon bi bi-box-seam"></span><span class="mtext">Product</span>
                             </a>
                         </li>

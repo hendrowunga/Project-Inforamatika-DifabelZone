@@ -2,6 +2,7 @@
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\Auth\AdminController;
 use App\Http\Controllers\Admin\CategoriesController;
 
@@ -27,8 +28,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/change-logo', [AdminController::class, 'changeLogo'])->name('change-logo');
         Route::post('/change-favicon', [AdminController::class, 'changeFavicon'])->name('change-favicon');
 
-        //CATEGORIES AND SUB CATEGORIES MANAGEMENT
-        // Categories and Subcategories Management
+        //CATEGORIES
         Route::prefix('manage-categories')->name('manage-categories.')->group(function () {
             Route::controller(CategoriesController::class)->group(function () {
                 Route::get('/', 'catSubcatList')->name('cats-subcats-list');
@@ -38,6 +38,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/update/{id}', 'update')->name('update');
                 Route::get('/show/{id}', 'show')->name('show');
                 Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+        // admin.manage-categories.cats-subcats-list
+        // admin.manage-products.product_list
+        // PRODUCTS
+        Route::prefix('manage-products')->name('manage-products.')->group(function () {
+            Route::controller(ProductsController::class)->group(function () {
+                Route::get('/', 'productsList')->name('product_list');
+                Route::get('/createProduct', 'createProduct')->name('product_create');
+                Route::post('/store', 'storeProduct')->name('product_store');
+                // Route::get('/edit/{id}', 'edit')->name('edit');
+                // Route::post('/update/{id}', 'update')->name('update');
+                // Route::get('/show/{id}', 'show')->name('show');
+                // Route::delete('/destroy/{id}', 'destroy')->name('destroy');
             });
         });
     });
