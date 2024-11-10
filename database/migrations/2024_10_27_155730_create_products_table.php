@@ -15,28 +15,16 @@ return new class extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->integer('stock')->default(0);
-            $table->string('image');
-            $table->decimal('price', 6, 3);
-            $table->foreignId('seller_id')->constrained('users', 'id')->onDelete('cascade'); // Relasi ke users
-
-            $table->timestamps();
-        });
-
-        Schema::create('cart', function (Blueprint $table) {
-            $table->id();
-            $table->integer('total_quantity');
-            $table->decimal('total_price', 6, 3);
-            $table->foreignId('customer_id')->constrained('users', 'id')->onDelete('cascade'); // Relasi ke user
-            $table->timestamps();
-        });
-
-        Schema::create('cart_of_product', function (Blueprint $table) {
-            $table->foreignId('product_id')->constrained('products', 'id')->onDelete('cascade'); // Relasi ke product
-            $table->foreignId('cart_id')->constrained('cart', 'id')->onDelete('cascade'); // Relasi ke cart
-            $table->integer('quantity_product');
-            $table->decimal('price_product', 6, 3);
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->json('images')->nullable();
+            $table->longText('description')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('in_stock')->default(true);
+            $table->boolean('on_sale')->default(false);
             $table->timestamps();
         });
     }
@@ -46,10 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('review');
-        Schema::dropIfExists('cart_of_product');
         Schema::dropIfExists('products');
-
-        Schema::dropIfExists('cart');
     }
 };

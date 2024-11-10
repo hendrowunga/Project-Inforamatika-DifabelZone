@@ -5,37 +5,32 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class order extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id'; // Menggunakan ID sebagai primary key
-    public $incrementing = true; // ID adalah auto-incrementing
-    protected $keyType = 'int'; // Tipe kunci adalah integer
-
     protected $fillable = [
-        'order_Status',
-        'order_date',
-        'order_amount'
+        'user_id',
+        'grandtotal',
+        'payment_method',
+        'payment_status',
+        'status',
+        'currency',
+        'shipping_amount',
+        'shipping_method',
+        'notes'
     ];
 
-    public function CartOfOrder()
-    {//relasi one product to many cartOfProducts
-        return $this->hasMany(cart_of_order::class, 'order_id','id');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
-
-    public function customer()
-    {//relasi many product to one category
-        return $this->belongsTo(User::class, 'customer_id','id');
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
-
-    public function address() 
-    {//relasi many product to one user
-        return $this->belongsTo(Address::class, 'address_id','id');
-    }
-
-    public function payment()
-    {//relasi many product to one category
-        return $this->belongsTo(payment::class, 'payment_id','id');
-    }
+    // public function address()
+    // {
+    //     return $this->hasOne(Address::class);
+    // }
 }

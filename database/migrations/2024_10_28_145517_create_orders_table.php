@@ -11,30 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payment', function (Blueprint $table) {
-            $table->id();
-            $table->dateTime('date_of_payment');
-            $table->time('time_of_payment');
-            $table->enum('PaymentMode',['Cash','Bank Transfer'])->default('Cash');
-            $table->timestamps();
-        });
+
 
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->enum('order_status', ['pending', 'cancel','success'])->default('pending');
-            $table->dateTime('order_date');
-            $table->decimal('order_amount',6, 3);
-            $table->foreignId('customer_id')->constrained('users','id')->onDelete('cascade'); // Relasi ke users
-            $table->foreignId('address_id')->constrained('addresses','id')->onDelete('cascade'); // Relasi ke alamat users
-            $table->foreignId('payment_id')->constrained('payment','id')->onDelete('cascade'); // Relasi ke transaksi users
-            $table->timestamps();
-        });
-
-        Schema::create('cart_of_order', function (Blueprint $table) {
-            $table->foreignId('cart_id')->constrained('cart','id')->onDelete('cascade'); // Relasi ke cart
-            $table->foreignId('order_id')->constrained('order','id')->onDelete('cascade'); // Relasi ke users
-            $table->integer('quantity_product')->default(1);;
-            $table->decimal('price_product',6, 3);
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->decimal('grand_total', 10, 2)->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'canceled'])->default('new');
+            $table->string('currency')->nullable();
+            $table->decimal('shipping_amount', 10, 2)->nullable();
+            $table->string('shipping_method')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -44,8 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cart_of_order');
         Schema::dropIfExists('order');
-        Schema::dropIfExists('payment');
     }
 };
