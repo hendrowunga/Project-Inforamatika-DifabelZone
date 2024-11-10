@@ -7,8 +7,9 @@
     <title>@yield('pageTitle')</title>
 
     <!-- Site favicon -->
-
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/site/{{ get_settings()->site_favicon }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/back/vendors/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/back/vendors/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/back/vendors/images/favicon-16x16.png" />
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -19,9 +20,11 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/core.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/icon-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="src/plugins/jvectormap/jquery-jvectormap-2.0.3.css" />
     <link rel="stylesheet" type="text/css" href="/back/vendors/styles/style.css" />
 
 
+    <!-- Google Tag Manager -->
     <script>
         (function(w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -38,6 +41,7 @@
         })(window, document, "script", "dataLayer", "GTM-NXZMQSS");
     </script>
     <!-- End Google Tag Manager -->
+
     <link rel="stylesheet" href="/extra-assets/ijabo/ijabo.min.css">
     <link rel="stylesheet" href="/extra-assets/ijaboCropTool/ijaboCropTool.min.css">
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.min.css">
@@ -52,150 +56,109 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
 
-    <style>
-        .swal2-popup {
-            font-size: 0.78em;
-        }
-    </style>
-    @livewireStyles() @stack('stylesheets')
+
+    @stack('stylesheet')
 </head>
 
-<body>{{-- <div class="pre-loader">
-			<div class="pre-loader-box">
-				<div class="loader-logo">
-					<img src="/back/vendors/images/deskapp-logo.svg" alt="" />
-				</div>
-				<div class="loader-progress" id="progress_div">
-					<div class="bar" id="bar1"></div>
-				</div>
-				<div class="percent" id="percent1">0%</div>
-				<div class="loading-text">Loading...</div>
-			</div>
-		</div> --}} <div class="header">
+<body>
+
+
+    <div class="header">
         <div class="header-left">
-            <div class=""></div>
-
-
+            <div class="menu-icon bi bi-list"></div>
         </div>
-        <div class="header-right">{{-- <div class="dashboard-setting user-notification">
+        <div class="header-right">
+
+            <div class="user-notification">
                 <div class="dropdown">
-                    <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
-                        <i class="dw dw-settings2"></i>
+                    <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                        <i class="icon-copy dw dw-notification"></i>
+                        <span class="badge notification-active"></span>
                     </a>
-                </div>
-            </div> --}} <div class="user-notification">
-                <div class="dropdown"><a class="dropdown-toggle no-arrow" href="#" role="button"
-                        data-toggle="dropdown"><i class="icon-copy dw dw-notification"></i><span
-                            class="badge notification-active"></span></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <div class="notification-list mx-h-350 customscroll">
                             <ul>
-
-                                <li><a href="#"><img src="/back/vendors/images/photo3.jpg" alt="" />
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/img.jpg" alt="" />
                                         <h3>John Doe</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
-                                    </a></li>
-                                <li><a href="#"><img src="/back/vendors/images/photo4.jpg" alt="" />
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/photo1.jpg" alt="" />
+                                        <h3>Lea R. Frith</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/photo2.jpg" alt="" />
+                                        <h3>Erik L. Richards</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/photo3.jpg" alt="" />
+                                        <h3>John Doe</h3>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/photo4.jpg" alt="" />
                                         <h3>Renee I. Hansen</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
-                                    </a></li>
-                                <li><a href="#"><img src="/back/vendors/images/img.jpg" alt="" />
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="/back/vendors/images/img.jpg" alt="" />
                                         <h3>Vicki M. Coleman</h3>
-                                        <p>Lorem ipsum dolor sit amet,
-                                            consectetur adipisicing elit,
-                                            sed... </p>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit, sed...
+                                        </p>
                                     </a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>{{-- <livewire:admin-seller-header-profile-info> --}}
+            </div>
+
             @livewire('admin-seller-header-profile-info')
         </div>
     </div>
-    <div class="right-sidebar">
-        <div class="sidebar-title">
-            <h3 class="weight-600 font-16 text-blue">Layout Settings <span
-                    class="btn-block font-weight-400 font-12">User Interface Settings</span></h3>
-            <div class="close-sidebar" data-toggle="right-sidebar-close"><i class="icon-copy ion-close-round"></i>
-            </div>
-        </div>
-        {{-- <div class="right-sidebar-body customscroll">
-            <div class="right-sidebar-body-content">
-                <h4 class="weight-600 font-18 pb-10">Header Background</h4>
-                <div class="sidebar-btn-group pb-30 mb-10"><a href="javascript:void(0);"
-                        class="btn btn-outline-primary header-white active">White</a><a href="javascript:void(0);"
-                        class="btn btn-outline-primary header-dark">Dark</a></div>
-                <h4 class="weight-600 font-18 pb-10">Sidebar Background</h4>
-                <div class="sidebar-btn-group pb-30 mb-10"><a href="javascript:void(0);"
-                        class="btn btn-outline-primary sidebar-light">White</a><a href="javascript:void(0);"
-                        class="btn btn-outline-primary sidebar-dark active">Dark</a></div>
-                <h4 class="weight-600 font-18 pb-10">Menu Dropdown Icon</h4>
-                <div class="sidebar-radio-group pb-10 mb-10">
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebaricon-1" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-1" checked="" /><label class="custom-control-label"
-                            for="sidebaricon-1"><i class="fa fa-angle-down"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebaricon-2" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-2" /><label class="custom-control-label" for="sidebaricon-2"><i
-                                class="ion-plus-round"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebaricon-3" name="menu-dropdown-icon" class="custom-control-input"
-                            value="icon-style-3" /><label class="custom-control-label" for="sidebaricon-3"><i
-                                class="fa fa-angle-double-right"></i></label></div>
-                </div>
-                <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
-                <div class="sidebar-radio-group pb-30 mb-10">
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-1" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-1" checked="" /><label class="custom-control-label"
-                            for="sidebariconlist-1"><i class="ion-minus-round"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-2" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-2" /><label class="custom-control-label"
-                            for="sidebariconlist-2"><i class="fa fa-circle-o" aria-hidden="true"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-3" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-3" /><label class="custom-control-label"
-                            for="sidebariconlist-3"><i class="dw dw-check"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-4" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-4" checked="" /><label class="custom-control-label"
-                            for="sidebariconlist-4"><i class="icon-copy dw dw-next-2"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-5" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-5" /><label class="custom-control-label"
-                            for="sidebariconlist-5"><i class="dw dw-fast-forward-1"></i></label></div>
-                    <div class="custom-control custom-radio custom-control-inline"><input type="radio"
-                            id="sidebariconlist-6" name="menu-list-icon" class="custom-control-input"
-                            value="icon-list-style-6" /><label class="custom-control-label"
-                            for="sidebariconlist-6"><i class="dw dw-next"></i></label></div>
-                </div>
-                <div class="reset-options pt-30 text-center"><button class="btn btn-danger" id="reset-settings">Reset
-                        Settings </button></div>
-            </div>
-        </div> --}}
-    </div>
+
+
+
     <div class="left-side-bar">
         <div class="brand-logo">
-            {{-- index.html --}}
-            {{-- {{ route('admin.home') }} --}}
-            <a href="/">
-                {{-- /images/site/{{ get_settings()site_logo }} --}}
+            <a href="index.html">
                 <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
-                {{-- /images/site/{{ get_settings()site_logo }} --}}
                 <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
             </a>
             <div class="close-sidebar" data-toggle="left-sidebar-close">
                 <i class="ion-close-round"></i>
             </div>
-
         </div>
         <div class="menu-block customscroll">
             <div class="sidebar-menu">
@@ -206,8 +169,10 @@
                                     class="micon fa fa-home"></span><span class="mtext">Dashboard</span></a></li>
 
                         <li>
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-cart"></span><span class="mtext">Product</span></a>
+                        <li>
+                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-box-seam"></span><span class="mtext">Product</span>
+                            </a>
                         </li>
                         <li>
                             <a href="{{ route('admin.manage-categories.cats-subcats-list') }}"
@@ -215,42 +180,42 @@
                                 <span class="micon bi bi-tags"></span><span class="mtext">Category</span>
                             </a>
                         </li>
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-people"></span><span class="mtext">User</span></a>
+
+                        <li>
+                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-person"></span><span class="mtext">User</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-bag"></span><span class="mtext">Order</span>
+                            </a>
                         </li>
 
-
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-receipt"></span><span class="mtext">Order</span></a>
-                        </li>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li>
-                            <div class="sidebar-small-cap">Setting</div>
-                        </li>
+
                         <li><a href="{{ route('admin.profile') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.profile') ? 'active' : '' }} "><span
-                                    class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
+                                    class="micon bi bi-person-circle"></span><span class="mtext">Profile</span></a>
+                        </li>
                         <li><a href="{{ route('admin.settings') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.settings') ? 'active' : '' }}"><span
                                     class="micon icon-copy fi-widget"></span><span class="mtext">Settings
                                 </span></a>
                         </li>
                     @else
-                        <li><a href="calendar.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon fa fa-home"></span><span class="mtext">Home</span></a></li>
-                        <li><a href="invoice.html" class="dropdown-toggle no-arrow"><span
-                                    class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span></a>
+                        <li>
+                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Invoice</span>
+                            </a>
                         </li>
                         <li>
-                            <div class="dropdown-divider"></div>
+                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                                <span class="micon bi bi-receipt-cutoff"></span><span class="mtext">Profile</span>
+                            </a>
                         </li>
-                        <li>
-                            <div class="sidebar-small-cap">Setting</div>
-                        </li>
-                        <li><a href="" target="_blank" class="dropdown-toggle no-arrow"><span
-                                    class="micon fa fa-user"></span><span class="mtext">Profile</span></a></li>
                     @endif
                 </ul>
             </div>
@@ -271,10 +236,13 @@
         </div>
     </div>
 
+    <!-- js -->
     <script src="/back/vendors/scripts/core.js"></script>
     <script src="/back/vendors/scripts/script.min.js"></script>
     <script src="/back/vendors/scripts/process.js"></script>
     <script src="/back/vendors/scripts/layout-settings.js"></script>
+    <script src="/back/vendors/scripts/dashboard2.js"></script>
+
     <script>
         if (navigator.userAgent.indexOf("Firefox") != -1) {
             history.pushState(null, null, document.URL);
@@ -283,6 +251,7 @@
             });
         }
     </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ijabo@1.1.0/dist/js/ijabo.min.js"></script>
@@ -297,22 +266,9 @@
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
-    <script>
-        window.addEventListener('showToastr', function(event) {
-            toastr.remove();
-            if (event.detail[0].type === 'info') {
-                toastr.info(event.detail[0].message);
-            } else if (event.detail[0].type === 'success') {
-                toastr.success(event.detail[0].message);
-            } else if (event.detail[0].type === 'error') {
-                toastr.error(event.detail[0].message);
-            } else if (event.detail[0].type === 'warning') {
-                toastr.warning(event.detail[0].message);
-            } else {
-                return false;
-            }
-        });
-    </script>@livewireScripts() @stack('scripts')
+
+
+    @stack('scripts')
 </body>
 
 </html>
