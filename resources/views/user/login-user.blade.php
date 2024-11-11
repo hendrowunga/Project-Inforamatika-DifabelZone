@@ -10,10 +10,21 @@
 
 <body class="font-sans" style="background-color: #E8EAE1;">
     <!-- <div
-        class="absolute top-0 right-0 w-32 h-32 bg-[url('{{ asset('images/background/backroundBatik.svg') }}')] bg-no-repeat bg-auto"><p>atas</p>
+        class="background-repeat-y bg-[url('{{ asset('images/background/backroundBatik.svg') }}')]"><p>atas</p>
     </div> -->
-    <img class="absolute top-0 right-0" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
-    <img class="absolute bottom-0 left-0" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+    <div class="m-4 absolute top-0 right-0 flex flex-col justify-center items-center space-y-4">
+        <img class="sm:w-full" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-4/5" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-2/3" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-1/2" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+    </div>
+
+    <div class="m-4 absolute bottom-0 left-0 flex flex-col justify-center items-center space-y-4">
+        <img class="sm:w-1/2" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-2/3" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-4/5" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+        <img class="sm:w-full" src="{{ asset('images/background/backroundBatik.svg') }}" alt="">
+    </div>
 
 
     <div class="container mx-auto px-4 py-8">
