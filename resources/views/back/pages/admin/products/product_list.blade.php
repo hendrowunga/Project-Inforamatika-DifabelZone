@@ -81,15 +81,43 @@
                                             </a>
 
                                             <!-- Delete Action -->
-                                            <button class="dropdown-item" data-toggle="modal">
+                                            <button class="dropdown-item" data-toggle="modal"
+                                                data-target="#deleteModal{{ $product->id }}">
                                                 <i class="bi bi-trash"></i> Delete
                                             </button>
                                         </div>
                                     </div>
                                 </td>
-
-
                             </tr>
+
+                            <!-- Modal for Delete Confirmation -->
+                            <div class="modal fade" id="deleteModal{{ $product->id }}" tabindex="-1"
+                                aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this Product? This action cannot be undone.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <form
+                                                action="{{ route('admin.manage-products.product_destroy', $product->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         @empty
                             <tr>
                                 <td colspan="10" class="text-center">No products found</td>

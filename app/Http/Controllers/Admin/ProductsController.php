@@ -172,4 +172,16 @@ class ProductsController extends Controller
             'products' => $product
         ]);
     }
+    public function destroyProduct($id)
+    {
+        $product = Product::findOrFail($id);
+
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect()->route('admin.manage-products.product_list')->with('success', 'Category deleted successfully.');
+    }
 }
