@@ -24,28 +24,28 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Category</th>
-                        <th>Name</th>
-                        <th>Slug</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th class="text-center">No</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Slug</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($categories as $index => $category)
                         <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td><img src="{{ Storage::url($category->image) }}" width="70" height="70"
-                                    alt="category image"></td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
-                            <td>
-                                <span class="badge {{ $category->is_active ? 'badge-success' : 'badge-secondary' }}">
+                            <td class="text-center">{{ $index + 1 }}</td>
+                            <td class="text-center"><img src="{{ Storage::url($category->image) }}" width="70"
+                                    height="70" alt="category image"></td>
+                            <td class="text-center">{{ $category->name }}</td>
+                            <td class="text-center">{{ $category->slug }}</td>
+                            <td class="text-center">
+                                <span class="badge {{ $category->is_active ? 'badge-success' : 'badge-danger' }}">
                                     <i class="bi {{ $category->is_active ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                 </span>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-link" type="button" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">

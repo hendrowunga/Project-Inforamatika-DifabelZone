@@ -120,7 +120,7 @@ class CategoriesController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->slug),
             'image' => $imagePath,
-            'is_active' => $request->is_active
+            'is_active' => $request->is_active ?? 0
         ]);
 
         return redirect()->route('admin.manage-categories.cats-subcats-list')->with('success', 'Category updated successfully.');

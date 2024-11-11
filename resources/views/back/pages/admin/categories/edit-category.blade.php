@@ -6,12 +6,6 @@
 
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h2 class="card-title">{{ $pageTitle }}</h2>
-            <a href="{{ route('admin.manage-categories.cats-subcats-list') }}" class="btn btn-secondary">
-                <i class="bi bi-arrow-left-circle"></i> Back to Categories
-            </a>
-        </div>
         <div class="card-body">
             <form action="{{ route('admin.manage-categories.update', $category->id) }}" method="POST"
                 enctype="multipart/form-data">
@@ -59,6 +53,7 @@
                 </div>
         </div>
 
+        <input type="hidden" name="is_active" value="0">
         <div class="form-group mb-3">
             <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" value="1"
@@ -67,7 +62,8 @@
             </div>
         </div>
 
-        <div class="form-group d-flex justify-content-end gap-2">
+
+        <div class="form-group mt-4">
             <button type="submit" class="btn btn-primary">
                 <i class="bi bi-save"></i> Update Category
             </button>

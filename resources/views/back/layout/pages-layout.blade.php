@@ -267,6 +267,14 @@
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
+    <!-- Tambahkan WYSIHTML5 CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.min.css" />
+
+    <!-- Tambahkan WYSIHTML5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.all.min.js">
+    </script>
+
 
 
     @stack('scripts')

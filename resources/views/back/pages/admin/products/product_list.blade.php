@@ -24,61 +24,71 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Category</th>
-                            <th>Name</th>
-                            <th>Price</th>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Price</th>
                             <th class="text-center">Featured</th>
                             <th class="text-center">Sale</th>
                             <th class="text-center">Stock</th>
                             <th class="text-center">Active</th>
-                            <th>Action</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($products as $index => $product)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>${{ number_format($product->price, 2) }}</td>
+                                <td class="text-center">{{ $product->category->name }}</td>
+                                <td class="text-center">{{ $product->name }}</td>
+                                <td class="text-center">Rp {{ number_format($product->price, 2) }}</td>
                                 <td class="text-center">
-                                    <span class="status-dot {{ $product->is_featured ? 'active' : 'inactive' }}">
-                                        <i class="fas {{ $product->is_featured ? 'fa-check' : 'fa-times' }}"></i>
+                                    <span class="badge {{ $product->is_featured ? 'badge-success' : 'badge-danger' }}">
+                                        <i class="bi {{ $product->is_featured ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="status-dot {{ $product->on_sale ? 'active' : 'inactive' }}">
-                                        <i class="fas {{ $product->on_sale ? 'fa-check' : 'fa-times' }}"></i>
+                                    <span class="badge {{ $product->on_sale ? 'badge-success' : 'badge-danger' }}">
+                                        <i class="bi {{ $product->on_sale ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="status-dot {{ $product->in_stock ? 'active' : 'inactive' }}">
-                                        <i class="fas {{ $product->in_stock ? 'fa-check' : 'fa-times' }}"></i>
+                                    <span class="badge {{ $product->in_stock ? 'badge-success' : 'badge-danger' }}">
+                                        <i class="bi {{ $product->in_stock ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="status-dot {{ $product->is_active ? 'active' : 'inactive' }}">
-                                        <i class="fas {{ $product->is_active ? 'fa-check' : 'fa-times' }}"></i>
+                                    <span class="badge {{ $product->is_active ? 'badge-success' : 'badge-danger' }}">
+                                        <i class="bi {{ $product->is_active ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                     </span>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <div class="dropdown">
-                                        <button class="btn btn-link p-0" data-toggle="dropdown">
-                                            <i class="fas fa-ellipsis-v"></i>
+                                        <button class="btn btn-link" type="button" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="bi bi-three-dots-vertical"></i>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-eye"></i> View
+                                        <div class="dropdown-menu">
+                                            <!-- View Action -->
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.manage-products.view_product', $product->id) }}">
+                                                <i class="bi bi-eye"></i> View
                                             </a>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="fas fa-edit"></i> Edit
+
+                                            <!-- Edit Action -->
+                                            <a class="dropdown-item"
+                                                href="{{ route('admin.manage-products.product_edit', $product->id) }}">
+                                                <i class="bi bi-pencil-square"></i> Edit
                                             </a>
-                                            <a class="dropdown-item text-danger" href="#">
-                                                <i class="fas fa-trash"></i> Delete
-                                            </a>
+
+                                            <!-- Delete Action -->
+                                            <button class="dropdown-item" data-toggle="modal">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
                                         </div>
                                     </div>
                                 </td>
+
+
                             </tr>
                         @empty
                             <tr>
@@ -86,33 +96,9 @@
                             </tr>
                         @endforelse
                     </tbody>
+
                 </table>
             </div>
         </div>
     </div>
-
-    <style>
-        .status-dot {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-        }
-
-        .status-dot.active {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .status-dot.inactive {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .status-dot i {
-            font-size: 12px;
-        }
-    </style>
 @endsection

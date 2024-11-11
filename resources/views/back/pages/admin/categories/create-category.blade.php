@@ -6,12 +6,7 @@
 
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h2 class="card-title">{{ $pageTitle }}</h2>
-            <a href="{{ route('admin.manage-categories.cats-subcats-list') }}" class="btn btn-secondary">
-                <i class="bi bi-arrow-left-circle"></i> Back to Categories
-            </a>
-        </div>
+
         <div class="card-body">
             <form action="{{ route('admin.manage-categories.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -64,10 +59,13 @@
             </div>
         </div>
 
-        <div class="form-group d-flex justify-content-end gap-2">
+        <div class="form-group mt-4">
             <button type="submit" class="btn btn-primary">
-                <i class="bi bi-save"></i> Create Category
+                <i class="bi bi-save"></i> Create Product
             </button>
+            <a href="{{ route('admin.manage-categories.cats-subcats-list') }}" class="btn btn-secondary">
+                Cancel
+            </a>
         </div>
         </form>
     </div>
@@ -79,10 +77,10 @@
             function createSlug() {
                 let name = document.getElementById('name').value;
                 let slug = name.toLowerCase()
-                    .replace(/[^\w\s-]/g, '') // Remove special characters
-                    .replace(/\s+/g, '-') // Replace spaces with -
-                    .replace(/--+/g, '-') // Replace multiple - with single -
-                    .trim(); // Trim - from start and end
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/\s+/g, '-')
+                    .replace(/--+/g, '-')
+                    .trim();
                 document.getElementById('slug').value = slug;
             }
 

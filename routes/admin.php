@@ -40,18 +40,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::delete('/destroy/{id}', 'destroy')->name('destroy');
             });
         });
-        // admin.manage-categories.cats-subcats-list
-        // admin.manage-products.product_list
+
         // PRODUCTS
         Route::prefix('manage-products')->name('manage-products.')->group(function () {
             Route::controller(ProductsController::class)->group(function () {
                 Route::get('/', 'productsList')->name('product_list');
                 Route::get('/createProduct', 'createProduct')->name('product_create');
                 Route::post('/store', 'storeProduct')->name('product_store');
-                // Route::get('/edit/{id}', 'edit')->name('edit');
-                // Route::post('/update/{id}', 'update')->name('update');
-                // Route::get('/show/{id}', 'show')->name('show');
-                // Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+                Route::get('/edit/{id}', 'editProduct')->name('product_edit');
+                Route::post('/update/{id}', 'updateProduct')->name('product_update');
+                Route::get('/show/{id}', 'showProduct')->name('view_product');
+                Route::delete('/destroy/{id}', 'destroyProduct')->name('product_destroy');
             });
         });
     });
