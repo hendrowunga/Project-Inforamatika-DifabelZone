@@ -183,7 +183,7 @@
                         </li>
 
                         <li>
-                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-users.user_list') }}" class="dropdown-toggle no-arrow">
                                 <span class="micon bi bi-person"></span><span class="mtext">User</span>
                             </a>
                         </li>

@@ -17,20 +17,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    const ROLE_USER = 'user';
-    const ROLE_ADMIN = 'admin';
 
-    protected $primaryKey = 'id'; // Menggunakan ID sebagai primary key
-    public $incrementing = true; // ID adalah auto-incrementing
-    protected $keyType = 'int'; // Tipe kunci adalah integer
 
     protected $fillable = [
         'firstname',
         'lastname',
         'username',
         'email',
-        'password',
-        'role'
+        'email_verified_at',
+        'password'
     ];
 
     /**
@@ -69,39 +64,8 @@ class User extends Authenticatable
     }
 
     public function review()
-    {//relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id','id');
-    }
-
-    /**
-     * Check if the user has a specific role.
-     *
-     * @param string $role
-     * @return bool
-     */
-    public function hasRole(string $role): bool
-    {
-        return $this->role === $role;
-    }
-
-    /**
-     * Check if the user is an admin.
-     *
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->role === self::ROLE_ADMIN;
-    }
-
-    /**
-     * Check if the user is a regular user.
-     *
-     * @return bool
-     */
-    public function isUser(): bool
-    {
-        return $this->role === self::ROLE_USER;
+    { //relasi one product to many cartOfProducts
+        return $this->hasMany(review::class, 'product_id', 'id');
     }
 
     /**

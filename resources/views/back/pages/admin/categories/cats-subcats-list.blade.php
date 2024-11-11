@@ -33,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $index => $category)
+                    @forelse ($categories as $index => $category)
                         <tr>
                             <td class="text-center">{{ $index + 1 }}</td>
                             <td class="text-center"><img src="{{ Storage::url($category->image) }}" width="70"
@@ -41,7 +41,7 @@
                             <td class="text-center">{{ $category->name }}</td>
                             <td class="text-center">{{ $category->slug }}</td>
                             <td class="text-center">
-                                <span class="badge {{ $category->is_active ? 'badge-success' : 'badge-danger' }}">
+                                <span class="badge {{ $category->is_active ? 'badge-success' : 'badge-secondary' }}">
                                     <i class="bi {{ $category->is_active ? 'bi-check-circle' : 'bi-x-circle' }}"></i>
                                 </span>
                             </td>
@@ -101,7 +101,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="10" class="text-center">No category found</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
