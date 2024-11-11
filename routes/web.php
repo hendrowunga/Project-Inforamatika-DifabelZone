@@ -62,3 +62,6 @@ Route::view('example-frontend', 'example-frontend');
 
 //login user
 Route::view('/login-user', 'user.login-user')->name('login');
+
+//Dashboatd user
+Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
