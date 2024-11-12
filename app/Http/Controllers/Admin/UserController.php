@@ -9,9 +9,32 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function listUser()
+    public function listUser(Request $request)
     {
-        $users = User::all();
+        $query = User::query();
+
+        // Searching
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('username', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('firstname', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('lastname', 'LIKE', "%{$searchTerm}%")
+                    ->orWhere('email', 'LIKE', "%{$searchTerm}%");
+            });
+        }
+
+        // Show Entries
+        $perPage = $request->input('length', 10); // Default 10 entries
+        $users = $query->paginate($perPage);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'data' => $users->items(),
+                'recordsTotal' => $users->total(),
+                'recordsFiltered' => $users->total(),
+            ]);
+        }
 
         return view('back.pages.admin.users.list_user', [
             'pageTitle' => 'User',
@@ -164,19 +187,3 @@ class UserController extends Controller
         return redirect()->route('admin.manage-users.user_list')->with('success', 'User deleted successfully.');
     }
 }
-
-
-
-
-    // User
-    // Route::prefix('manage-users')->name('manage-users.')->group(function () {
-    //     Route::controller(UserController::class)->group(function () {
-    //         Route::get('/', 'listUser')->name('user_list');
-    //         Route::get('/create', 'createUser')->name('user_create');
-    //         Route::post('/store', 'storeUser')->name('user_store');
-    //         Route::get('/edit/{id}', 'editUser')->name('user_edit');
-    //         Route::post('/update/{id}', 'updateUser')->name('user_update');
-    //         Route::get('/show/{id}', 'showUser')->name('user_show');
-    //         Route::delete('/destroy/{id}', 'destroyUser')->name('user_destroy');
-    //     });
-    // });

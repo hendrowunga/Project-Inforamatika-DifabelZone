@@ -65,7 +65,7 @@
 
     <div class="header">
         <div class="header-left">
-            <div class="menu-icon bi bi-list"></div>
+            {{-- <div class="menu-icon bi bi-list" id="open-menu"></div> --}}
         </div>
         <div class="header-right">
 
@@ -150,13 +150,14 @@
 
 
 
-    <div class="left-side-bar">
+    <!-- Left side bar -->
+    <div class="left-side-bar" id="left-sidebar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
                 <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
             </a>
-            <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <div class="close-sidebar" id="close-sidebar">
                 <i class="ion-close-round"></i>
             </div>
         </div>
@@ -276,6 +277,9 @@
     <!-- Tambahkan WYSIHTML5 JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.all.min.js">
     </script>
+
+
+
 
 
 

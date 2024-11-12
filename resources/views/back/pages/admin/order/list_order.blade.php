@@ -131,14 +131,6 @@
                                     role="grid">
                                     <thead>
                                         <tr role="row">
-                                            <th class="dt-body-center sorting_disabled" rowspan="1" colspan="1"
-                                                aria-label="">
-                                                <div class="dt-checkbox">
-                                                    <input type="checkbox" name="select_all" value="1"
-                                                        id="example-select-all">
-                                                    <span class="dt-checkbox-label"></span>
-                                                </div>
-                                            </th>
                                             <th class="text-center">User</th>
                                             <th class="text-center">Grand Total</th>
                                             <th class="text-center">Payment Method</th>
@@ -152,10 +144,6 @@
                                     <tbody>
 
                                         <tr role="row" class="even">
-                                            <td class=" dt-body-center" tabindex="0">
-                                                <div class="dt-checkbox"><input type="checkbox" name="id[]"
-                                                        value=""><span class="dt-checkbox-label"></span></div>
-                                            </td>
                                             <td class="text-center">Andrea J. Cagle</td>
                                             <td class="text-center">Rp. 30,000</td>
                                             <td class="text-center">COD</td>
