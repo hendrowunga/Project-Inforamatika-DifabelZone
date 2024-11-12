@@ -3,6 +3,25 @@
 @section('pageTitle', $pageTitle)
 
 @section('content')
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="title">
+                    <h4>Category</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.home') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Category
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h2 class="card-title">{{ $pageTitle }}</h2>

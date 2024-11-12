@@ -1,6 +1,25 @@
 @extends('back.layout.pages-layout')
 @section('pageTitle', isset($pageTitle) ? $pageTitle : 'Page title here')
 @section('content')
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="title">
+                    <h4>Category</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('admin.home') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            User
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h2 class="card-title">{{ $pageTitle }}</h2>
@@ -66,19 +85,42 @@
                                         </a>
 
                                         <!-- Delete Action -->
-                                        {{-- <form action="{{ route('admin.manage-users.user_destroy', $usr->id) }}"
-                                            method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="dropdown-item" type="submit"
-                                                onclick="return confirm('Are you sure?')">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button> --}}
+                                        <button class="dropdown-item" data-toggle="modal"
+                                            data-target="#deleteModal{{ $usr->id }}">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
                                         </form>
                                     </div>
                                 </div>
                             </td>
                         </tr>
+                        <!-- Modal for Delete Confirmation -->
+                        <div class="modal fade" id="deleteModal{{ $usr->id }}" tabindex="-1"
+                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this user? This action cannot be undone.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancel</button>
+                                        <form action="{{ route('admin.manage-users.user_destroy', $usr->id) }}"
+                                            method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @empty
                         <tr>
                             <td colspan="8" class="text-center">No users found.</td>

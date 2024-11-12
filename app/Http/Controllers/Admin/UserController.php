@@ -102,9 +102,50 @@ class UserController extends Controller
 
         return view('back.pages.admin.users.edit_user', [
             'pageTitle' => 'Edit User',
-            'category' => $users
+            'users' => $users
         ]);
     }
+
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Validasi inputan dari user
+        $request->validate([
+            'firstname' => 'required|string|min:3|max:255',
+            'lastname' => 'required|string|min:3|max:255',
+            'username' => 'required|string|min:3|max:255|unique:users,username',
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email,' . $user->id, // Mengabaikan validasi unique untuk email yang sedang diupdate
+                'regex:/^[a-zA-Z0-9._%+-]+@gmail\.com$/', // Email harus berakhiran @gmail.com
+            ],
+            'email_verified_at' => 'nullable|date',
+            'password' => 'nullable|string|min:12|confirmed',
+        ], [
+            'email.regex' => 'The email must be a valid Gmail address (e.g., example@gmail.com).',
+            'password.min' => 'Password must be at least 12 characters.',
+            'password.confirmed' => 'Password confirmation does not match.',
+        ]);
+
+        // Update user
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->email_verified_at = $request->input('email_verified_at') ? $request->input('email_verified_at') : $user->email_verified_at;
+
+        // Jika password diisi, maka update password
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.manage-users.user_list')->with('success', 'User updated successfully.');
+    }
+
 
     public function showUser($id)
     {
@@ -115,20 +156,27 @@ class UserController extends Controller
             'category' => $users
         ]);
     }
+    public function destroyUser($id)
+    {
+        $users = User::findOrFail($id);
+        $users->delete();
+
+        return redirect()->route('admin.manage-users.user_list')->with('success', 'User deleted successfully.');
+    }
 }
 
 
 
 
-// User
-// Route::prefix('manage-users')->name('manage-users.')->group(function () {
-//     Route::controller(UserController::class)->group(function () {
-//         Route::get('/', 'listUser')->name('user_list');
-//         Route::get('/create', 'createUser')->name('user_create');
-//         Route::post('/store', 'storeUser')->name('user_store');
-//         Route::get('/edit/{id}', 'editUser')->name('user_edit');
-//         Route::post('/update/{id}', 'updateUser')->name('user_update');
-//         Route::get('/show/{id}', 'showUser')->name('user_show');
-//         Route::delete('/destroy/{id}', 'destroyUser')->name('user_destroy');
-//     });
-// });
+    // User
+    // Route::prefix('manage-users')->name('manage-users.')->group(function () {
+    //     Route::controller(UserController::class)->group(function () {
+    //         Route::get('/', 'listUser')->name('user_list');
+    //         Route::get('/create', 'createUser')->name('user_create');
+    //         Route::post('/store', 'storeUser')->name('user_store');
+    //         Route::get('/edit/{id}', 'editUser')->name('user_edit');
+    //         Route::post('/update/{id}', 'updateUser')->name('user_update');
+    //         Route::get('/show/{id}', 'showUser')->name('user_show');
+    //         Route::delete('/destroy/{id}', 'destroyUser')->name('user_destroy');
+    //     });
+    // });
