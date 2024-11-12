@@ -184,12 +184,13 @@
                         <li>
                             <a href="{{ route('admin.manage-users.user_list') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.manage-users.*') ? 'active' : '' }}">
-                                <span class="micon bi bi-tags"></span><span class="mtext">User</span>
+                                <span class="micon bi bi-person"></span><span class="mtext">User</span>
                             </a>
                         </li>
 
                         <li>
-                            <a href="{{ route('admin.manage-orders.order_list') }}" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-orders.order_list') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.manage-orders.*') ? 'active' : '' }}">
                                 <span class="micon bi bi-bag"></span><span class="mtext">Order</span>
                             </a>
                         </li>
