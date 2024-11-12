@@ -38,35 +38,26 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function profile()
-    {
-        return $this->hasOne(Profile::class, 'user_id', 'id'); // Mengubah user_id sesuai dengan ID
-    }
 
     public function addresses()
     {
-        return $this->hasMany(Address::class, 'user_id', 'id'); // Mengubah user_id sesuai dengan ID
+        return $this->hasMany(Address::class);
     }
 
     public function carts()
     {
-        return $this->belongsTo(cart::class, 'customer_id');
+        return $this->hasMany(Cart::class);
     }
 
     public function order()
     {
-        return $this->hasMany(order::class, 'customer_id');
+        return $this->hasMany(Order::class);
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'admin_id');
-    }
-
-    public function review()
-    { //relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id', 'id');
-    }
+    // public function review()
+    // { //relasi one product to many cartOfProducts
+    //     return $this->hasMany(review::class, 'product_id', 'id');
+    // }
 
     /**
      * The attributes that should be cast.

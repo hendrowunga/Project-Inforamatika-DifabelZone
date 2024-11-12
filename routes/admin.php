@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\Auth\AdminController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -64,6 +65,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/update/{id}', 'updateUser')->name('user_update');
                 Route::get('/show/{id}', 'showUser')->name('user_show');
                 Route::delete('/destroy/{id}', 'destroyUser')->name('user_destroy');
+            });
+        });
+        Route::prefix('manage-orders')->name('manage-orders.')->group(function () {
+            Route::controller(OrderController::class)->group(function () {
+                Route::get('/', 'orderList')->name('order_list');           // Menampilkan semua order
+                // Route::get('/create', 'create')->name('order_create');   // Form buat order
+                // Route::post('/store', 'store')->name('order_store');     // Simpan order baru
+                // Route::get('/edit/{id}', 'edit')->name('order_edit');    // Form edit order
+                // Route::post('/update/{id}', 'update')->name('order_update'); // Update order
+                // Route::get('/show/{id}', 'show')->name('order_show');    // Tampilkan detail order
+                // Route::delete('/destroy/{id}', 'destroy')->name('order_destroy'); // Hapus order
             });
         });
     });

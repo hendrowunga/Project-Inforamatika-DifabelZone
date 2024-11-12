@@ -33,4 +33,12 @@ class Order extends Model
     {
         return $this->hasOne(Address::class);
     }
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'order_cart');
+    }
 }
