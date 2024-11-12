@@ -47,9 +47,14 @@
         </div>
     </header>
 
-    <footer class="bg-yellow-300 py-8 mt-10 text-yellow-900" style="background-color: #E6DF96; background-image: url('images/background/backroundBatik.svg'); background-repeat: repeat;">
+    <main>
+        <!-- isi konten -->
+    </main>
+
+    <footer class="bg-yellow-300 py-8 mt-10 text-yellow-900"
+        style="background-color: #E6DF96; background-image: url('images/background/backroundBatik.svg'); background-repeat: repeat;">
         <div class="mx-auto px-4 md:px-8 flex flex-col md:flex-row justify-between">
-            <!-- Left Section -->
+            <!-- bgain kiri -->
             <div class="mb-8 md:mb-0 md:w-1/5">
                 <div class="flex items-center mb-4">
                     <img class="ml-0 w-24 mx-auto" src="{{ asset('images/logo/logoDifabelZone.svg') }}" alt="Logo">
@@ -67,7 +72,7 @@
                 </div>
             </div>
 
-            <!-- Right Sections -->
+            <!-- bagian kanan -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
                 <div>
                     <h3 class="font-semibold mb-2">Product</h3>
