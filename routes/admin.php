@@ -70,7 +70,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('manage-orders')->name('manage-orders.')->group(function () {
             Route::controller(OrderController::class)->group(function () {
                 Route::get('/', 'orderList')->name('order_list');           // Menampilkan semua order
-                // Route::get('/create', 'create')->name('order_create');   // Form buat order
+                Route::get('/create', 'createOrders')->name('order_create');   // Form buat order
                 // Route::post('/store', 'store')->name('order_store');     // Simpan order baru
                 // Route::get('/edit/{id}', 'edit')->name('order_edit');    // Form edit order
                 // Route::post('/update/{id}', 'update')->name('order_update'); // Update order

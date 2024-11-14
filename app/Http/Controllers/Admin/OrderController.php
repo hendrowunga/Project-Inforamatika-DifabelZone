@@ -18,4 +18,13 @@ class OrderController extends Controller
             'orders' => $orders
         ]);
     }
+
+    public function createOrders()
+    {
+        // $orders = Order::orderBy('name')->get();
+        return view('back.pages.admin.order.create_orders', [
+            'pageTitle' => 'Add Orders',
+            // 'orders' => $orders
+        ]);
+    }
 }
