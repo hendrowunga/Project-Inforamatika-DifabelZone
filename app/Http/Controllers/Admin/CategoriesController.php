@@ -2,141 +2,152 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
 use App\Models\Category;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
+    // View category and subcategory list
     public function catSubcatList(Request $request)
     {
-        $data = [
-            'pageTitle' => 'Categories & Sub categories management'
-        ];
-        return view('back.pages.admin.cats-subcats-list', $data);
-    }
-    public function addCategory(Request $request)
-    {
-        $data = [
-            'pageTitle' => 'Add Category'
-        ];
-        return view('back.pages.admin.add-category', $data);
+        $categories = Category::all(); // Get all categories
+
+        return view('back.pages.admin.categories.cats-subcats-list', [
+            'pageTitle' => 'Categories',
+            'categories' => $categories
+        ]);
     }
 
-    public function storeCategory(Request $request)
+    // Show the form for creating a new category
+    public function create()
     {
-        //VALIDATE THE FORM
-        $request->validate([
-            'category_name' => 'required|min:3|unique:categories,category_name',
-            'category_image' => 'required|image|mimes:png,jpg,jpeg,svg',
+        return view('back.pages.admin.categories.create-category', [
+            'pageTitle' => 'Create Category'
+        ]);
+    }
+
+    // Store a newly created category
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:3|max:255|unique:categories,name',
+            'image' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
         ], [
-            'category_name.required' => ':Attribute is required',
-            'category_name.min' => ':Attribute must contains atleast 5 characters',
-            'category_name.unique' => 'This :attribute is already exists',
-            'category_image.required' => ':Attribute is required',
-            'category_image.image' => ':Attribute must be an image',
-            'category_image.mimes' => ':Attribute must be in JPG,JPEG,PNG or SVG format'
+            'name.required' => 'The category name is required.',
+            'name.min' => 'The category name must be at least 3 characters.',
+            'name.unique' => 'This category name already exists.',
+            'image.required' => 'The image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be in jpg, jpeg, png, or svg format.',
+            'image.max' => 'The image size may not exceed 2MB.'
         ]);
 
-        if ($request->hasFile('category_image')) {
-            $path = 'images/categories/';
-            $file = $request->file('category_image');
-            $filename = time() . '_' . $file->getClientOriginalName();
+        $slug = Str::slug($request->name); // Generate slug from name
 
-            if (!File::exists(public_path($path))) {
-                File::makeDirectory(public_path($path));
-            }
-
-            //Upload category image
-            $upload = $file->move(public_path($path), $filename);
-
-            if ($upload) {
-                //Save category into Database
-                $category = new Category();
-                $category->category_name = $request->category_name;
-                $category->category_image = $filename;
-                $saved = $category->save();
-
-                if ($saved) {
-                    return redirect()->route('admin.manage-categories.add-category')->with('success', '<b>' . ucfirst($request->category_name) . '</b> category has been successfully added.');
-                } else {
-                    return redirect()->route('admin.manage-categories.add-category')->with('fail', 'Something went wrong. Try again later.');
-                }
-            } else {
-                return redirect()->route('admin.manage-categories.add-category')->with('fail', 'Something went wrong while uploading category image.');
-            }
+        // Check if slug exists
+        $count = 1;
+        while (Category::where('slug', $slug)->exists()) {
+            $slug = Str::slug($request->name) . '-' . $count;
+            $count++;
         }
+
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('category_images', 'public');
+        }
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => $slug,
+            'image' => $imagePath,
+            'is_active' => $request->has('is_active')
+        ]);
+
+        return redirect()->route('admin.manage-categories.cats-subcats-list')
+            ->with('success', 'Category created successfully.');
     }
 
-    public function editCategory(Request $request)
+    // Show the form for editing the specified category
+    public function edit($id)
     {
-        $category_id = $request->id;
-        $category = Category::findOrFail($category_id);
-        $data = [
+        $category = Category::findOrFail($id);
+
+        return view('back.pages.admin.categories.edit-category', [
             'pageTitle' => 'Edit Category',
             'category' => $category
-        ];
-        return view('back.pages.admin.edit-category', $data);
+        ]);
     }
 
-    public function updateCategory(Request $request)
+    // Update the specified category
+    public function update(Request $request, $id)
     {
-        $category_id = $request->category_id;
-        $category = Category::findOrFail($category_id);
+        $category = Category::findOrFail($id);
 
-        //VALIDATE THE FORM
-        $request->validate([
-            'category_name' => 'required|min:3|unique:categories,category_name,' . $category_id,
-            'category_image' => 'nullable|image|mimes:png,jpg,jpeg,svg',
+        $validatedData = $request->validate([
+            'name' => 'required|string|min:3|max:255|unique:categories,name,' . $category->id,
+            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
+            'image' => 'required|image|mimes:jpg,jpeg,png,svg|max:2048',
         ], [
-            'category_name.required' => ':Attribute is required',
-            'category_name.min' => ':Attribute must contains atleast 5 characters',
-            'category_name.unique' => 'This :attribute is already exists',
-            'category_image.image' => ':Attribute must be an image',
-            'category_image.mimes' => ':Attribute must be in JPG,JPEG,PNG or SVG format'
+            'name.required' => 'The category name is required.',
+            'name.min' => 'The category name must be at least 3 characters.',
+            'name.unique' => 'This category name already exists.',
+            'slug.required' => 'The slug is required.',
+            'slug.unique' => 'This slug already exists.',
+            'image.required' => 'The image is required.',
+            'image.image' => 'The file must be an image.',
+            'image.mimes' => 'The image must be in jpg, jpeg, png, or svg format.',
+            'image.max' => 'The image size may not exceed 2MB.'
+        ]);
+        $slug = Str::slug($request->name);
+        $count = 1;
+        while (Category::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            $slug = Str::slug($request->name) . '-' . $count;
+            $count++;
+        }
+
+        $imagePath = $category->image;
+        if ($request->hasFile('image')) {
+            if ($imagePath) {
+                Storage::disk('public')->delete($imagePath);
+            }
+            $imagePath = $request->file('image')->store('category_images', 'public');
+        }
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->slug),
+            'image' => $imagePath,
+            'is_active' => $request->is_active ?? 0
         ]);
 
-        if ($request->hasFile('category_image')) {
-            $path = 'images/categories/';
-            $file = $request->file('category_image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $old_category_image = $category->category_image;
+        return redirect()->route('admin.manage-categories.cats-subcats-list')->with('success', 'Category updated successfully.');
+    }
 
-            //Upload new category image
-            $upload = $file->move(public_path($path), $filename);
+    // Remove the specified category
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
 
-            if ($upload) {
-                //Delete old category image
-                if (File::exists(public_path($path . $old_category_image))) {
-                    File::delete(public_path($path . $old_category_image));
-                }
-                //Update category info
-                $category->category_name = $request->category_name;
-                $category->category_image = $filename;
-                $category->category_slug = null;
-                $saved = $category->save();
-
-                if ($saved) {
-                    return redirect()->route('admin.manage-categories.edit-category', ['id' => $category_id])->with('success', '<b>' . ucfirst($request->category_name) . '</b> category has been updated.');
-                } else {
-                    return redirect()->route('admin.manage-categories.edit-category', ['id' => $category_id])->with('fail', 'Something went wrong.');
-                }
-            } else {
-                return redirect()->route('admin.manage-categories.edit-category', ['id' => $category_id])->with('fail', 'Error in uploading category image.');
-            }
-        } else {
-            //Update category Info
-            $category->category_name = $request->category_name;
-            $category->category_slug = null;
-            $saved = $category->save();
-
-            if ($saved) {
-                return redirect()->route('admin.manage-categories.edit-category', ['id' => $category_id])->with('success', '<b>' . ucfirst($request->category_name) . '</b> category has been updated.');
-            } else {
-                return redirect()->route('admin.manage-categories.edit-category', ['id' => $category_id])->with('fail', 'Something went wrong. Try again later.');
-            }
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
         }
+
+        $category->delete();
+
+        return redirect()->route('admin.manage-categories.cats-subcats-list')->with('success', 'Category deleted successfully.');
+    }
+
+    // Show the details of a category
+    public function show($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('back.pages.admin.categories.view-category', [
+            'pageTitle' => 'View Category',
+            'category' => $category
+        ]);
     }
 }

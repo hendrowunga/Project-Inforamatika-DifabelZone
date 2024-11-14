@@ -9,30 +9,35 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id'; // Menggunakan ID sebagai primary key
-    public $incrementing = true; // ID adalah auto-incrementing
-    protected $keyType = 'int'; // Tipe kunci adalah integer
-
     protected $fillable = [
+        'category_id',
+        'brand_id',
         'name',
-        'stock',
-        'image',
-        'price'
+        'slug',
+        'images',
+        'description',
+        'price',
+        'is_active',
+        'is_featured',
+        'in_stock',
+        'on_sale'
     ];
 
-    public function cartOfProducts()
-    { //relasi one product to many cartOfProducts
-        return $this->hasMany(cart_of_product::class, 'product_id', 'id');
+    protected $casts = [
+        'images' => 'array',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
-    public function review()
-    { //relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id', 'id');
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
-
-
-    public function admin()
-    { //relasi many product to one user
-        return $this->belongsTo(User::class, 'admin_id', 'id');
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_product');
     }
 }
