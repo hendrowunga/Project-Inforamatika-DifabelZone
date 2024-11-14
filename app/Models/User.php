@@ -17,20 +17,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    const ROLE_USER = 'user';
-    const ROLE_ADMIN = 'admin';
 
-    protected $primaryKey = 'id'; // Menggunakan ID sebagai primary key
-    public $incrementing = true; // ID adalah auto-incrementing
-    protected $keyType = 'int'; // Tipe kunci adalah integer
 
     protected $fillable = [
         'firstname',
         'lastname',
         'username',
         'email',
-        'password',
-        'role'
+        'email_verified_at',
+        'password'
     ];
 
     /**
@@ -43,66 +38,26 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function profile()
-    {
-        return $this->hasOne(Profile::class, 'user_id', 'id'); // Mengubah user_id sesuai dengan ID
-    }
 
     public function addresses()
     {
-        return $this->hasMany(Address::class, 'user_id', 'id'); // Mengubah user_id sesuai dengan ID
+        return $this->hasMany(Address::class);
     }
 
     public function carts()
     {
-        return $this->belongsTo(cart::class, 'customer_id');
+        return $this->hasMany(Cart::class);
     }
 
     public function order()
     {
-        return $this->hasMany(order::class, 'customer_id');
+        return $this->hasMany(Order::class);
     }
 
-    public function products()
-    {
-        return $this->hasMany(Product::class, 'admin_id');
-    }
-
-    public function review()
-    {//relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id','id');
-    }
-
-    /**
-     * Check if the user has a specific role.
-     *
-     * @param string $role
-     * @return bool
-     */
-    public function hasRole(string $role): bool
-    {
-        return $this->role === $role;
-    }
-
-    /**
-     * Check if the user is an admin.
-     *
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->role === self::ROLE_ADMIN;
-    }
-
-    /**
-     * Check if the user is a regular user.
-     *
-     * @return bool
-     */
-    public function isUser(): bool
-    {
-        return $this->role === self::ROLE_USER;
-    }
+    // public function review()
+    // { //relasi one product to many cartOfProducts
+    //     return $this->hasMany(review::class, 'product_id', 'id');
+    // }
 
     /**
      * The attributes that should be cast.

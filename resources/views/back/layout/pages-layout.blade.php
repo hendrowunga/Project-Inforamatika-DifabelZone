@@ -65,7 +65,7 @@
 
     <div class="header">
         <div class="header-left">
-            <div class="menu-icon bi bi-list"></div>
+            {{-- <div class="menu-icon bi bi-list" id="open-menu"></div> --}}
         </div>
         <div class="header-right">
 
@@ -150,13 +150,14 @@
 
 
 
-    <div class="left-side-bar">
+    <!-- Left side bar -->
+    <div class="left-side-bar" id="left-sidebar">
         <div class="brand-logo">
-            <a href="index.html">
+            <a href="{{ route('admin.home') }}">
                 <img src="/back/vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
                 <img src="/back/vendors/images/deskapp-logo-white.svg" alt="" class="light-logo" />
             </a>
-            <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <div class="close-sidebar" id="close-sidebar">
                 <i class="ion-close-round"></i>
             </div>
         </div>
@@ -170,7 +171,8 @@
 
                         <li>
                         <li>
-                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-products.product_list') }}"
+                                class="dropdown-toggle no-arrow  {{ Route::is('admin.manage-products.*') ? 'active' : '' }}">
                                 <span class="micon bi bi-box-seam"></span><span class="mtext">Product</span>
                             </a>
                         </li>
@@ -180,14 +182,16 @@
                                 <span class="micon bi bi-tags"></span><span class="mtext">Category</span>
                             </a>
                         </li>
-
                         <li>
-                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-users.user_list') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.manage-users.*') ? 'active' : '' }}">
                                 <span class="micon bi bi-person"></span><span class="mtext">User</span>
                             </a>
                         </li>
+
                         <li>
-                            <a href="invoice.html" class="dropdown-toggle no-arrow">
+                            <a href="{{ route('admin.manage-orders.order_list') }}"
+                                class="dropdown-toggle no-arrow {{ Route::is('admin.manage-orders.*') ? 'active' : '' }}">
                                 <span class="micon bi bi-bag"></span><span class="mtext">Order</span>
                             </a>
                         </li>
@@ -266,6 +270,17 @@
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.structure.min.css">
     <link rel="stylesheet" href="/extra-assets/jquery-ui-1.13.2/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="/extra-assets/summernote/summernote-bs4.min.css">
+    <!-- Tambahkan WYSIHTML5 CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.min.css" />
+
+    <!-- Tambahkan WYSIHTML5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-wysihtml5-bower/0.3.3/bootstrap3-wysihtml5.all.min.js">
+    </script>
+
+
+
+
 
 
     @stack('scripts')

@@ -2,8 +2,11 @@
 
 use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\Auth\AdminController;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -27,8 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/change-logo', [AdminController::class, 'changeLogo'])->name('change-logo');
         Route::post('/change-favicon', [AdminController::class, 'changeFavicon'])->name('change-favicon');
 
-        //CATEGORIES AND SUB CATEGORIES MANAGEMENT
-        // Categories and Subcategories Management
+        //CATEGORIES
         Route::prefix('manage-categories')->name('manage-categories.')->group(function () {
             Route::controller(CategoriesController::class)->group(function () {
                 Route::get('/', 'catSubcatList')->name('cats-subcats-list');
@@ -38,6 +40,42 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::post('/update/{id}', 'update')->name('update');
                 Route::get('/show/{id}', 'show')->name('show');
                 Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+            });
+        });
+
+        // PRODUCTS
+        Route::prefix('manage-products')->name('manage-products.')->group(function () {
+            Route::controller(ProductsController::class)->group(function () {
+                Route::get('/', 'productsList')->name('product_list');
+                Route::get('/createProduct', 'createProduct')->name('product_create');
+                Route::post('/store', 'storeProduct')->name('product_store');
+                Route::get('/edit/{id}', 'editProduct')->name('product_edit');
+                Route::post('/update/{id}', 'updateProduct')->name('product_update');
+                Route::get('/show/{id}', 'showProduct')->name('view_product');
+                Route::delete('/destroy/{id}', 'destroyProduct')->name('product_destroy');
+            });
+        });
+        // User
+        Route::prefix('manage-users')->name('manage-users.')->group(function () {
+            Route::controller(UserController::class)->group(function () {
+                Route::get('/', 'listUser')->name('user_list');
+                Route::get('/create', 'createUser')->name('user_create');
+                Route::post('/store', 'storeUser')->name('user_store');
+                Route::get('/edit/{id}', 'editUser')->name('user_edit');
+                Route::post('/update/{id}', 'updateUser')->name('user_update');
+                Route::get('/show/{id}', 'showUser')->name('user_show');
+                Route::delete('/destroy/{id}', 'destroyUser')->name('user_destroy');
+            });
+        });
+        Route::prefix('manage-orders')->name('manage-orders.')->group(function () {
+            Route::controller(OrderController::class)->group(function () {
+                Route::get('/', 'orderList')->name('order_list');           // Menampilkan semua order
+                // Route::get('/create', 'create')->name('order_create');   // Form buat order
+                // Route::post('/store', 'store')->name('order_store');     // Simpan order baru
+                // Route::get('/edit/{id}', 'edit')->name('order_edit');    // Form edit order
+                // Route::post('/update/{id}', 'update')->name('order_update'); // Update order
+                // Route::get('/show/{id}', 'show')->name('order_show');    // Tampilkan detail order
+                // Route::delete('/destroy/{id}', 'destroy')->name('order_destroy'); // Hapus order
             });
         });
     });

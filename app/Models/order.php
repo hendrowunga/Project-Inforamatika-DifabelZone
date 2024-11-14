@@ -29,8 +29,16 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    // public function address()
-    // {
-    //     return $this->hasOne(Address::class);
-    // }
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
+    public function payment()
+    {
+        return $this->hasOne(Payments::class);
+    }
+    public function carts()
+    {
+        return $this->belongsToMany(Carts::class, 'order_cart');
+    }
 }
