@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('address_id')->nullable()->constrained('addresses')->cascadeOnDelete();
             $table->decimal('grand_total', 10, 2)->nullable();
             $table->string('payment_method')->nullable();
-            $table->string('payment_status')->nullable();
+
             $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'canceled'])->default('new');
             $table->string('currency')->nullable();
             $table->decimal('shipping_amount', 10, 2)->nullable();

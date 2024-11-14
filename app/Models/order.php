@@ -35,10 +35,10 @@ class Order extends Model
     }
     public function payment()
     {
-        return $this->hasOne(Payment::class);
+        return $this->hasOne(Payments::class);
     }
     public function carts()
     {
-        return $this->belongsToMany(Cart::class, 'order_cart');
+        return $this->belongsToMany(Carts::class, 'order_cart');
     }
 }
