@@ -27,8 +27,7 @@ class RegisterController extends Controller
                 'lastname' => $request->lastname,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => User::ROLE_USER
+                'password' => Hash::make($request->password)
             ]);
 
             $token = $user->createToken('user-token')->plainTextToken;
