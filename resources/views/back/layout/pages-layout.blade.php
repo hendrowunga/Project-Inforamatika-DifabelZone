@@ -187,7 +187,7 @@
                         <li>
                             <a href="{{ route('admin.manage-users.user_list') }}"
                                 class="dropdown-toggle no-arrow {{ Route::is('admin.manage-users.*') ? 'active' : '' }}">
-                                <span class="micon bi bi-person"></span><span class="mtext">User</span>
+                                <span class="micon bi bi-person"></span><span class="mtext">Customer</span>
                             </a>
                         </li>
 

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="title">
-                    <h4>Create New User</h4>
+                    <h4>Create New Customer</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -13,10 +13,10 @@
                             <a href="{{ route('admin.home') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('admin.manage-users.user_list') }}">Users</a>
+                            <a href="{{ route('admin.manage-users.user_list') }}">Customer</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Create New User
+                            Create New Customer
                         </li>
                     </ol>
                 </nav>
