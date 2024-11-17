@@ -3,46 +3,49 @@
 namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\Auth\UserLoginRequest;
-use App\Http\Requests\User\Auth\UserRegisterRequest;
 use App\Models\User;
-use App\Http\Responses\ApiResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    public function register(UserRegisterRequest $request)
+
+    public function __invoke(Request $request)
     {
-        try {
-            $userId = (string) Str::uuid(); // Generate UUID
-            Log::info('Generated User ID: ' . $userId);
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
 
-            $user = User::create([
-                'user_id' => $userId,
-                'firstname' => $request->firstname,
-                'lastname' => $request->lastname,
-                'username' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
-
-            $token = $user->createToken('user-token')->plainTextToken;
-
-            return ApiResponse::success([
-                'user' => $user,
-                'token' => $token,
-                'token_type' => 'Bearer'
-            ], 'Registration successful', 201);
-        } catch (\Exception $e) {
-            Log::error('Registration failed: ' . $e->getMessage());
-            return ApiResponse::error(
-                'Registration failed: ' . $e->getMessage(),
-                500
-            );
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Validation Error',
+                'errors' => $validator->errors()
+            ], 422);
         }
+
+        $user = User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User registered successfully',
+            'data' => [
+                'user' => $user,
+                'token' => $token
+            ]
+        ], 201);
     }
 }
