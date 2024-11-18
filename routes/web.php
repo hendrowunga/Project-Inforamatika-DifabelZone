@@ -31,14 +31,4 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
 require __DIR__ . '/auth.php';
-
-// Admin
-Route::view('/example-page', 'example-page');
-Route::view('/example-auth', 'example-auth');
-Route::view('example-frontend', 'example-frontend');
-// Route::prefix('admin')->name('admin.')->group(function () {
-//     Route::resource('category', CategoriesController::class);
-// });
