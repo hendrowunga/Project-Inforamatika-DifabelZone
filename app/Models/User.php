@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -54,10 +55,10 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    // public function review()
-    // { //relasi one product to many cartOfProducts
-    //     return $this->hasMany(review::class, 'product_id', 'id');
-    // }
+    public function review()
+    { //relasi one product to many cartOfProducts
+        return $this->hasMany(review::class, 'product_id', 'id');
+    }
 
     /**
      * The attributes that should be cast.

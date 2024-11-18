@@ -36,6 +36,27 @@ class ProfileController extends Controller
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
+    // public function update(ProfileUpdateRequest $request): RedirectResponse
+    // {
+    //     $user = $request->user();
+
+    //     // Update avatar jika ada file yang di-upload
+    //     if ($request->hasFile('avatar')) {
+    //         $avatarPath = $request->file('avatar')->store('avatars', 'public');
+    //         $user->avatar = $avatarPath; // Simpan path avatar
+    //     }
+
+    //     $user->fill($request->validated());
+
+    //     if ($user->isDirty('email')) {
+    //         $user->email_verified_at = null;
+    //     }
+
+    //     $user->save();
+
+    //     return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    // }
+
 
     /**
      * Delete the user's account.
