@@ -39,6 +39,3 @@ require __DIR__ . '/auth.php';
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
 Route::view('example-frontend', 'example-frontend');
-// Route::prefix('admin')->name('admin.')->group(function () {
-//     Route::resource('category', CategoriesController::class);
-// });
