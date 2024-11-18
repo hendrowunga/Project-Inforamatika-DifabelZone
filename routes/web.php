@@ -1,12 +1,9 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\ForgotPasswordController;
-use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\FrontEndController;
-use App\Http\Controllers\Admin\CategoriesController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,26 +16,22 @@ use App\Http\Controllers\Admin\CategoriesController;
 |
 */
 
-// Home route
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// // View for requesting a password reset
-// Route::get('/forgot-password', function () {
-//     return view('auth.forgot-password');
-// })->name('password.request');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// // Handle the email submission for password reset
-// Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword'])->name('password.email');
-
-// // View for displaying the reset password form (with token)
-// // Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
-
-// // Handle the actual password reset process
-// Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
+<<<<<<< HEAD
 //ADMIN
 // Route::get('/admin', [ProductController::class, 'index']);
 
@@ -71,3 +64,6 @@ route ::View('/donation-user','user.donation-user')->name ('donation');
 
 //about us user
 Route ::view('/about-user','user.about-user')->name ('about');
+=======
+require __DIR__ . '/auth.php';
+>>>>>>> 33-devlop-backend

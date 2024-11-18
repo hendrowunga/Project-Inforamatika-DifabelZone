@@ -93,7 +93,8 @@
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="dropdown">
-                            <a class="btn btn-primary" href="#" role="button">
+                            <a class="btn btn-primary" href="{{ route('admin.manage-orders.order_create') }}"
+                                role="button">
                                 New Order
                             </a>
                         </div>
