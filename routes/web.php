@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
+require __DIR__ . '/auth.php';
 
 // Admin
 Route::view('/example-page', 'example-page');
