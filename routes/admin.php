@@ -70,12 +70,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::prefix('manage-orders')->name('manage-orders.')->group(function () {
             Route::controller(OrderController::class)->group(function () {
                 Route::get('/', 'orderList')->name('order_list');           // Menampilkan semua order
-                // Route::get('/create', 'create')->name('order_create');   // Form buat order
-                // Route::post('/store', 'store')->name('order_store');     // Simpan order baru
-                // Route::get('/edit/{id}', 'edit')->name('order_edit');    // Form edit order
-                // Route::post('/update/{id}', 'update')->name('order_update'); // Update order
-                // Route::get('/show/{id}', 'show')->name('order_show');    // Tampilkan detail order
-                // Route::delete('/destroy/{id}', 'destroy')->name('order_destroy'); // Hapus order
+                Route::get('/create', 'createOrders')->name('order_create');   // Form buat order
+                Route::post('/store', 'storeOrder')->name('order_store');
+                Route::get('/edit/{id}', 'editOrder')->name('order_edit');
+                Route::post('/update/{id}', 'updateOrder')->name('order_update');
+                Route::get('/show/{id}', 'showOrder')->name('order_show');
+                Route::delete('/destroy/{id}', 'destroyOrder')->name('order_destroy');
+                Route::get('/filter', 'filterOrders')->name('order_filter');
             });
         });
     });
