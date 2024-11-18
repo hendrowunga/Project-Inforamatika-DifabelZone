@@ -1,12 +1,9 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\ForgotPasswordController;
-use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\FrontEndController;
-use App\Http\Controllers\Admin\CategoriesController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,46 +16,19 @@ use App\Http\Controllers\Admin\CategoriesController;
 |
 */
 
-// Home route
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-// // View for requesting a password reset
-// Route::get('/forgot-password', function () {
-//     return view('auth.forgot-password');
-// })->name('password.request');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// // Handle the email submission for password reset
-// Route::post('/password/email', [ForgotPasswordController::class, 'forgotPassword'])->name('password.email');
-
-// // View for displaying the reset password form (with token)
-// // Route::get('/password/reset-form', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
-
-// // Handle the actual password reset process
-// Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword'])->name('password.reset.process');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 
-//ADMIN
-// Route::get('/admin', [ProductController::class, 'index']);
-
-// Route::post('/admin/product', [ProductController::class, 'store'])->name('admin.product.store');
-
-// Route::get('/admin/product/{id}/edit', [ProductController::class, 'edit'])->name('admin.product.edit');
-
-// Route::put('/admin/product/{id}', [ProductController::class, 'store'])->name('admin.product.update');
-
-// Route::delete('/admin/product/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy');
-
-// Route::get('/admin/products/reload', [ProductController::class, 'reloadProducts'])->name('admin.products.reload');
-
-
-
-
-// Admin
-Route::view('/example-page', 'example-page');
-Route::view('/example-auth', 'example-auth');
-Route::view('example-frontend', 'example-frontend');
-// Route::prefix('admin')->name('admin.')->group(function () {
-//     Route::resource('category', CategoriesController::class);
-// });
+require __DIR__ . '/auth.php';
