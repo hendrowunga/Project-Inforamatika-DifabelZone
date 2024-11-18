@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="title">
-                    <h4>User</h4>
+                    <h4>Customer</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -13,7 +13,7 @@
                             <a href="{{ route('admin.home') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            User
+                            Customer
                         </li>
                     </ol>
                 </nav>
@@ -29,14 +29,14 @@
                 <div class="row mt-4">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>User</h4>
+                            <h4>Customer</h4>
                         </div>
 
                     </div>
                     <div class="col-md-6 col-sm-12 text-right">
                         <div class="dropdown">
                             <a class="btn btn-primary" href="{{ route('admin.manage-users.user_create') }}" role="button">
-                                New User
+                                New Customer
                             </a>
                         </div>
                     </div>

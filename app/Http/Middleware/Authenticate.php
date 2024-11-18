@@ -22,6 +22,8 @@ class Authenticate extends Middleware
             }
 
             // seller
+            return route('login');
         }
+        return null;
     }
 }

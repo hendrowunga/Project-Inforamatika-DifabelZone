@@ -1,12 +1,9 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\Auth\ForgotPasswordController;
-use App\Http\Controllers\User\Auth\ResetPasswordController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\FrontEndController;
-use App\Http\Controllers\Admin\CategoriesController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +15,67 @@ use App\Http\Controllers\Admin\CategoriesController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Home route
 // Route::get('/', function () {
@@ -59,15 +117,6 @@ use App\Http\Controllers\Admin\CategoriesController;
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
 Route::view('example-frontend', 'example-frontend');
-
-//login user
-Route::view('/login-user', 'user.login-user')->name('login');
-
-//Dashboatd user
-Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
-
-//donation user
-route ::View('/donation-user','user.donation-user')->name ('donation');
-
-//about us user
-Route ::view('/about-user','user.about-user')->name ('about');
+// Route::prefix('admin')->name('admin.')->group(function () {
+//     Route::resource('category', CategoriesController::class);
+// });
