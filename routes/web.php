@@ -43,3 +43,15 @@ Route::middleware('splade')->group(function () {
 
     require __DIR__.'/auth.php';
 });
+
+//login user
+Route::view('/login-user', 'user.login-user')->name('login');
+
+//Dashboatd user
+Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
+
+//donation user
+route ::View('/donation-user','user.donation-user')->name ('donation');
+
+//about us user
+Route ::view('/about-user','user.about-user')->name ('about');
