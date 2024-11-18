@@ -63,17 +63,6 @@
                         </button>
                     </div>
                 </form>
-
-                <div class="text-center mt-4 ">
-                    <p class="text-gray-600">Or sign in with</p>
-                    <button
-                        class="mt-2 border border-gray-300 rounded py-2 px-4 flex items-center justify-center mx-auto w-full">
-                        <img class="mr-2 h-4 w-4"
-                            src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
-                            alt="google-logo">
-                        Sign in with Google
-                    </button>
-                </div>
                 <div class="text-center text-sm mt-6">
                     Don't have an account? <a href="#" class="text-blue-600 hover:underline">Sign Up</a>
                 </div>

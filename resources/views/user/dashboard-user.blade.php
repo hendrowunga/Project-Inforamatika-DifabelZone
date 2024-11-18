@@ -17,5 +17,5 @@
 
     @livewire('footer')
 </body>
-
+`
 </html>
