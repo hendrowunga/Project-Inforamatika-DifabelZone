@@ -14,13 +14,18 @@ return new class extends Migration
         // User
         Schema::create('users', function (Blueprint $table) {
             $table->id(); // Auto-incrementing ID
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('username')->unique();
+            // $table->string('lastname')->default('')->change();
+            // $table->string('username')->default('')->change();
+            // $table->string('email')->unique();
+            // $table->timestamp('email_verified_at')->nullable();
+            // $table->rememberToken();
+            // $table->string('password');
+            // $table->timestamps();
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 
