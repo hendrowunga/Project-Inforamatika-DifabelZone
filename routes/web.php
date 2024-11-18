@@ -59,6 +59,15 @@ use App\Http\Controllers\Admin\CategoriesController;
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
 Route::view('example-frontend', 'example-frontend');
-// Route::prefix('admin')->name('admin.')->group(function () {
-//     Route::resource('category', CategoriesController::class);
-// });
+
+//login user
+Route::view('/login-user', 'user.login-user')->name('login');
+
+//Dashboatd user
+Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
+
+//donation user
+route ::View('/donation-user','user.donation-user')->name ('donation');
+
+//about us user
+Route ::view('/about-user','user.about-user')->name ('about');
