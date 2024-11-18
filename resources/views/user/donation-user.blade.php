@@ -7,7 +7,7 @@
     <title>donation</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen" style="background-image: url('{{ asset('images/background/backroundBatik.svg') }}'); background-repeat: repeat;">
+<body class="flex items-center justify-center min-h-screen" style="background-color: #E6DF96; background-image: url('{{ asset('images/background/backroundBatik.svg') }}'); background-repeat: repeat;">
     <div class="bg-white shadow-lg rounded-lg p-8 max-w-md text-center">
         <h1 class="text-3xl font-bold mb-4 text-gray-800">Mari Bersama Wujudkan Perubahan</h1>
         <p class="text-gray-600 mb-6">

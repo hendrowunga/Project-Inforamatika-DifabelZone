@@ -18,7 +18,7 @@
             <nav class="hidden md:flex space-x-4">
                 <a href="#" class="hover:text-gray-700">Home</a>
                 <a href="donation-user" class="hover:text-gray-700">Donasi</a>
-                <a href="#" class="hover:text-gray-700">Tentang Kami</a>
+                <a href="about-user" class="hover:text-gray-700">Tentang Kami</a>
             </nav>
 
             <!-- icon -->
