@@ -32,11 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 require __DIR__ . '/auth.php';
-<<<<<<< HEAD
+
 
 // Admin
 Route::view('/example-page', 'example-page');
 Route::view('/example-auth', 'example-auth');
 Route::view('example-frontend', 'example-frontend');
-=======
->>>>>>> 0ea23e764e60a2386bfa2e13af4ddfb539d4bcca
