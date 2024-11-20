@@ -21,9 +21,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     protected $fillable = [
-        // 'firstname',
-        // 'lastname',
-        // 'username',
         'name',
         'email',
         'email_verified_at',
@@ -39,28 +36,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-
-
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }
-
-    public function carts()
-    {
-        return $this->hasMany(Carts::class);
-    }
-
-    public function order()
-    {
-        return $this->hasMany(Order::class);
-    }
-
-    public function review()
-    { //relasi one product to many cartOfProducts
-        return $this->hasMany(review::class, 'product_id', 'id');
-    }
-
     /**
      * The attributes that should be cast.
      *

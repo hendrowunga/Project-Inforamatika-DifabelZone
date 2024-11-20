@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'user_id',
         'grandtotal',
         'payment_method',
+        // 'payment_id',
         'payment_status',
         'status',
         'currency',
@@ -21,9 +21,9 @@ class Order extends Model
         'notes'
     ];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
     public function items()
     {
@@ -35,10 +35,10 @@ class Order extends Model
     }
     public function payment()
     {
-        return $this->hasOne(Payments::class);
+        return $this->hasOne(Payment::class);
     }
     public function carts()
     {
-        return $this->belongsToMany(Carts::class, 'order_cart');
+        return $this->belongsToMany(Carts::class);
     }
 }

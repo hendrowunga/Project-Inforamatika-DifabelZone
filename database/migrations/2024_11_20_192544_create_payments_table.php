@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->cascadeOnDelete();
             // $table->decimal('amount', 10, 2); // kolom baru untuk jumlah pembayaran
-            $table->string('method');
+            // $table->string('method');
             // $table->string('status');
             $table->dateTime('transaction_date'); // kolom baru untuk tanggal transaksi
             $table->timestamps();

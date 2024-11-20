@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'category_id',
         'name',
@@ -19,7 +18,7 @@ class Product extends Model
         'is_active',
         'is_featured',
         'in_stock',
-        'on_sale'
+        // 'on_sale'
     ];
 
     protected $casts = [
@@ -28,7 +27,7 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Categories::class);
     }
 
     public function orderItems()

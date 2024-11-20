@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use Filament\Forms;
-use App\Models\User;
+use App\Models\Customer;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
@@ -15,7 +15,7 @@ use Filament\Resources\Pages\Page;
 
 class UserResource extends Resource
 {
-    protected static ?string $model = User::class;
+    protected static ?string $model = Customer::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
@@ -23,7 +23,13 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                // Forms\Components\TextInput::make('name')
+                //     ->required(),
+                Forms\Components\TextInput::make('firstname')
+                    ->required(),
+                Forms\Components\TextInput::make('lastname')
+                    ->required(),
+                Forms\Components\TextInput::make('username')
                     ->required(),
                 Forms\Components\TextInput::make('email')
                     ->label('Email Address')
@@ -45,7 +51,13 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                // Tables\Columns\TextColumn::make('name')
+                //     ->searchable(),
+                Tables\Columns\TextColumn::make('firstname')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('lastname')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('username')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),

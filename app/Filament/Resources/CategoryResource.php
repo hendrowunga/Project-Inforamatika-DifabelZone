@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Categories;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -20,7 +21,7 @@ use Illuminate\Support\Str; // Correct import for Str
 
 class CategoryResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Categories::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
@@ -41,7 +42,7 @@ class CategoryResource extends Resource
                                 ->disabled()
                                 ->required()
                                 ->dehydrated()
-                                ->unique(Category::class, 'slug', ignoreRecord: true),
+                                ->unique(Categories::class, 'slug', ignoreRecord: true),
 
                         ]),
                     FileUpload::make('image')

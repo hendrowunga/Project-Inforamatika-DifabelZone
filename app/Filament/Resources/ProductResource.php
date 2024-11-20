@@ -97,8 +97,8 @@ class ProductResource extends Resource
                             ->default(true),
                         Toggle::make('is_featured')
                             ->required(),
-                        Toggle::make('on_sale')
-                            ->required(),
+                        // Toggle::make('on_sale')
+                        //     ->required(),
                     ]),
                 ])->columnSpan(1) //
             ])
@@ -119,8 +119,8 @@ class ProductResource extends Resource
                     ->sortable(),
                 IconColumn::make('is_featured')
                     ->boolean(),
-                IconColumn::make('on_sale')
-                    ->boolean(),
+                // IconColumn::make('on_sale')
+                //     ->boolean(),
                 IconColumn::make('in_stock')
                     ->boolean(),
                 IconColumn::make('is_active')

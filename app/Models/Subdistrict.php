@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Subdistrict extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'name',
         'district_id',

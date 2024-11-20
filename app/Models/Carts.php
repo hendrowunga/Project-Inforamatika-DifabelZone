@@ -13,9 +13,9 @@ class Carts extends Model
         'status',
     ];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function products()
@@ -25,6 +25,6 @@ class Carts extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class, 'order_cart');
+        return $this->belongsToMany(Order::class);
     }
 }

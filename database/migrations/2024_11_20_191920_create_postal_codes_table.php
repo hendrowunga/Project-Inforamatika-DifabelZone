@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('general_settings', function (Blueprint $table) {
-            $table->string('site_address')->nullable()->after('site_phone');
+        Schema::create('postal_codes', function (Blueprint $table) {
+            $table->id();
+            $table->string('code');
+            $table->foreignId('village_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('general_settings', function (Blueprint $table) {
-            $table->dropColumn(['site_address']);
-        });
+        Schema::dropIfExists('postal_codes');
     }
 };
