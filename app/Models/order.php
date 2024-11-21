@@ -9,13 +9,13 @@ class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'grandtotal',
+        'customer_id',
+        'grand_total',
         'payment_method',
         // 'payment_id',
         'payment_status',
         'status',
-        'currency',
+        // 'currency',
         'shipping_amount',
         'shipping_method',
         'notes'
@@ -23,7 +23,7 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
     public function items()
     {

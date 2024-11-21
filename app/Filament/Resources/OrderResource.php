@@ -6,21 +6,26 @@ use Filament\Forms;
 use Filament\Tables;
 use App\Models\Order;
 use App\Models\Product;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Support\Number;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Set;
-use Filament\Forms\Get;
+use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\ToggleButtons;
 use App\Filament\Resources\OrderResource\Pages;
-use Filament\Forms\Components\Placeholder;
-use Filament\Forms\Components\Hidden;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\SelectColumn;
+
+
 
 
 
@@ -112,8 +117,12 @@ class OrderResource extends Resource
                                         ->disableOptionsWhenSelectedInSiblingRepeaterItems()
                                         ->columnSpan(4)
                                         ->reactive()
-                                        ->afterStateUpdated(fn($state, Set $set) => $set('unit_amount', Product::find($state)?->price ?? 0))
-                                        ->afterStateUpdated(fn($state, Set $set) => $set('total_amount', Product::find($state)?->price ?? 0)),
+                                        //
+                                        ->afterStateUpdated(function ($state, Set $set) {
+                                            $product = Product::find($state);
+                                            $set('unit_amount', $product?->price ?? 0);
+                                            $set('total_amount', ($product?->price ?? 0) * $set('quantity', 1)); // Set default quantity to 1
+                                        }),
 
                                     TextInput::make('quantity')
                                         ->numeric()
@@ -121,7 +130,10 @@ class OrderResource extends Resource
                                         ->default(1)
                                         ->minValue(1)
                                         ->reactive()
-                                        ->afterStateUpdated(fn($state, Set $set, Get $get) => $set('total_amount', $state * $get('unit_amount')))
+                                        ->afterStateUpdated(function ($state, Set $set, Get $get) {
+                                            $unitPrice = $get('unit_amount');
+                                            $set('total_amount', $state * $unitPrice);
+                                        })
                                         ->columnSpan(2),
 
                                     TextInput::make('unit_amount')
@@ -137,21 +149,26 @@ class OrderResource extends Resource
                                         ->columnSpan(3),
 
                                 ])->columns(12),
-
                             Placeholder::make('grand_total_placeholder')
                                 ->label('Grand Total')
                                 ->content(function (Get $get, Set $set) {
                                     $total = 0;
-                                    $items = $get('items') ?? [];
-                                    foreach ($items as $item) {
-                                        $total += $item['total_amount'] ?? 0;
+                                    if (!$items = $get('items')) {
+                                        return $total;
                                     }
-                                    $set('grand_total', $total);
-                                    return 'IDR ' . number_format($total, 2, ',', '.');
+
+                                    foreach ($items as $key => $item) {
+                                        $total += $get("items.{$key}.total_amount");
+                                    }
+
+                                    $set('grand_total', $total); // Update hidden field
+                                    return 'IDR ' . number_format($total, 0, ',', '.');
                                 }),
 
-                            Hidden::make('grand_total')->default(0),
-                        ])
+                            Hidden::make('grand_total')
+                                ->default(0)
+                                ->dehydrated(),
+                        ]),
                 ])->columnSpanFull()
             ]);
     }
@@ -161,14 +178,57 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('customer.username')
+                    ->label('Customer')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('grand_total')
+                    ->numeric()
+                    ->sortable()
+                    ->money('IDR'),
+
+                TextColumn::make('payment_method')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('payment_status')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('shipping_method')
+                    ->sortable()
+                    ->searchable(),
+
+                SelectColumn::make('status')
+                    ->options([
+                        'new' => 'New',
+                        'processing' => 'Processing',
+                        'shipped' => 'Shipped',
+                        'delivered' => 'Delivered',
+                        'cancelled' => 'Cancelled',
+                    ])
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('update_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+
+
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                    Tables\Actions\ViewAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -182,6 +242,14 @@ class OrderResource extends Resource
         return [
             //
         ];
+    }
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+    public static function getNavigationColor(): string|array|null
+    {
+        return static::getModel()::count() > 10 ? 'success' : 'danger';
     }
 
     public static function getPages(): array
