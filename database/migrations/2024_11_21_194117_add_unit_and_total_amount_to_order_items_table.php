@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('order_items', function (Blueprint $table) {
-            $table->decimal('unit_amount', 10, 2)->nullable()->after('product_id'); // Sesuaikan posisi dengan 'after'
-            $table->decimal('total_amount', 10, 2)->nullable()->after('unit_amount');
-        });
+        // Schema::table('order_items', function (Blueprint $table) {
+        //     $table->decimal('unit_amount', 10, 2)->nullable()->after('product_id'); // Sesuaikan posisi dengan 'after'
+        //     $table->decimal('total_amount', 10, 2)->nullable()->after('unit_amount');
+        // });
     }
 
     /**
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('order_items', function (Blueprint $table) {
-            $table->dropColumn(['unit_amount', 'total_amount']);
+            // $table->dropColumn(['unit_amount', 'total_amount']);
         });
     }
 };

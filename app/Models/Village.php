@@ -8,18 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Village extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'subdistrict_id',
-    ];
 
-    public function subdistrict()
+    protected $fillable = ['district_id', 'name'];
+
+    public function district()
     {
-        return $this->belongsTo(Subdistrict::class, 'subdistrict_id', 'id');
+        return $this->belongsTo(District::class);
     }
 
-    public function postalCodes()
+    public function addresses()
     {
-        return $this->hasMany(PostalCode::class, 'village_id', 'id');
+        return $this->hasMany(Address::class);
     }
 }

@@ -18,7 +18,7 @@ class Order extends Model
         // 'currency',
         'shipping_amount',
         'shipping_method',
-        'notes'
+        'notes',
     ];
 
     public function customer()
@@ -29,7 +29,7 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
-    public function address()
+    public function addresses()
     {
         return $this->hasOne(Address::class);
     }

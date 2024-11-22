@@ -24,6 +24,7 @@ use Filament\Forms\Components\ToggleButtons;
 use App\Filament\Resources\OrderResource\Pages;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\SelectColumn;
+use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 
 
 
@@ -240,7 +241,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressRelationManager::class,
         ];
     }
     public static function getNavigationBadge(): ?string

@@ -9,21 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('regencies', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('province_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('regencies');
     }
 };
