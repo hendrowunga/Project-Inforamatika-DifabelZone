@@ -9,7 +9,7 @@ class Regency extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['province_id', 'name'];
+    protected $fillable = ['name', 'province_id'];
 
     public function province()
     {

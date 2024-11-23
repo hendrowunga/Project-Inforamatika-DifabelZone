@@ -9,7 +9,7 @@ class Village extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['district_id', 'name'];
+    protected $fillable = ['name', 'district_id'];
 
     public function district()
     {

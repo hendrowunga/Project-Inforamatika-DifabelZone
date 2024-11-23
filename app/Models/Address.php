@@ -10,40 +10,40 @@ class Address extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'order_id',
         'customer_id',
         'province_id',
         'regency_id',
         'district_id',
         'village_id',
-        'street',
+        'street'
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class); // Assuming there's a Customer model
+    }
 
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_id');
+        return $this->belongsTo(Province::class);
     }
 
     public function regency()
     {
-        return $this->belongsTo(Regency::class, 'regency_id');
+        return $this->belongsTo(Regency::class);
     }
 
     public function district()
     {
-        return $this->belongsTo(District::class, 'district_id');
+        return $this->belongsTo(District::class);
     }
 
     public function village()
     {
-        return $this->belongsTo(Village::class, 'village_id');
+        return $this->belongsTo(Village::class);
     }
     public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
-    }
-    public function customer(): BelongsTo
-    {
-        return $this->belongsTo(Customer::class);
     }
 }

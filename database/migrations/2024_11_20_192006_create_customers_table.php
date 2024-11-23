@@ -25,11 +25,11 @@ return new class extends Migration
         });
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
-            $table->string('province_id');
-            $table->string('regency_id');
-            $table->string('district_id');
-            $table->string('village_id');
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('province_id')->constrained('provinces')->cascadeOnDelete();
+            $table->foreignId('regency_id')->constrained('regencies')->cascadeOnDelete();
+            $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete();
+            $table->foreignId('village_id')->constrained('villages')->cascadeOnDelete();
             $table->string('street');
             $table->timestamps();
         });

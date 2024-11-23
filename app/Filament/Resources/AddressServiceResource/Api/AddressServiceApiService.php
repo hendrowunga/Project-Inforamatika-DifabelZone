@@ -15,27 +15,47 @@ class AddressServiceApiService
 
     public function getProvinces()
     {
-        $response = $this->client->get('https://kanglerian.github.io/api-wilayah-indonesia/api/provinces.json');
-        return json_decode($response->getBody()->getContents(), true);
+        $response = $this->client->get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        $provinces = json_decode($response->getBody()->getContents(), true);
+
+        // Kembalikan hanya ID dan Nama Provinsi
+        return collect($provinces)->pluck('name', 'id')->toArray();
     }
+
 
     public function getRegencies($provinceId)
     {
-        $response = $this->client->get("https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/{$provinceId}.json");
-        return json_decode($response->getBody()->getContents(), true);
+        if (!$provinceId) {
+            return []; // Kembalikan array kosong jika Province ID tidak ada
+        }
+
+        $response = $this->client->get("https://www.emsifa.com/api-wilayah-indonesia/api/regencies/{$provinceId}.json");
+        $regencies = json_decode($response->getBody()->getContents(), true);
+
+        return collect($regencies)->pluck('name', 'id')->toArray();
     }
-
-
 
     public function getDistricts($regencyId)
     {
-        $response = $this->client->get("https://kanglerian.github.io/api-wilayah-indonesia/api/districts/{$regencyId}.json");
-        return json_decode($response->getBody()->getContents(), true);
+        if (!$regencyId) {
+            return []; // Kembalikan array kosong jika Regency ID tidak ada
+        }
+
+        $response = $this->client->get("https://www.emsifa.com/api-wilayah-indonesia/api/districts/{$regencyId}.json");
+        $districts = json_decode($response->getBody()->getContents(), true);
+
+        return collect($districts)->pluck('name', 'id')->toArray();
     }
 
     public function getVillages($districtId)
     {
-        $response = $this->client->get("https://kanglerian.github.io/api-wilayah-indonesia/api/villages/{$districtId}.json");
-        return json_decode($response->getBody()->getContents(), true);
+        if (!$districtId) {
+            return []; // Kembalikan array kosong jika District ID tidak ada
+        }
+
+        $response = $this->client->get("https://www.emsifa.com/api-wilayah-indonesia/api/villages/{$districtId}.json");
+        $villages = json_decode($response->getBody()->getContents(), true);
+
+        return collect($villages)->pluck('name', 'id')->toArray();
     }
 }

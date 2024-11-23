@@ -9,14 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('addresses', function (Blueprint $table) {
-            $table->foreignId('order_id')->nullable()->constrained('orders')->cascadeOnDelete();
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('addresses', function (Blueprint $table) {
             $table->dropForeign(['order_id']);
