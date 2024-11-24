@@ -82,21 +82,21 @@ class OrderResource extends Resource
                                 'processing' => 'Processing',
                                 'shipped' => 'Shipped',
                                 'delivered' => 'Delivered',
-                                'cancelled' => 'Cancelled',
+                                'canceled' => 'Cancelled',
                             ])
                             ->colors([
                                 'new' => 'info',
                                 'processing' => 'warning',
                                 'shipped' => 'success',
                                 'delivered' => 'success',
-                                'cancelled' => 'danger',
+                                'canceled' => 'danger',
                             ])
                             ->icons([
                                 'new' => 'heroicon-m-sparkles',
                                 'processing' => 'heroicon-m-arrow-path',
                                 'shipped' => 'heroicon-m-truck',
                                 'delivered' => 'heroicon-m-check-badge',
-                                'cancelled' => 'heroicon-m-x-circle',
+                                'canceled' => 'heroicon-m-x-circle',
                             ]),
 
                         Select::make('shipping_method')
@@ -243,7 +243,7 @@ class OrderResource extends Resource
                         'processing' => 'Processing',
                         'shipped' => 'Shipped',
                         'delivered' => 'Delivered',
-                        'cancelled' => 'Cancelled',
+                        'canceled' => 'Cancelled',
                     ])
                     ->searchable()
                     ->sortable(),
