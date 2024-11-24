@@ -15,6 +15,7 @@ class Address extends Model
         'regency_id',
         'district_id',
         'village_id',
+        'postal_code',
         'street'
     ];
 

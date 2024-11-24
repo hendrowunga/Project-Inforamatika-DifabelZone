@@ -12,6 +12,7 @@ class Order extends Model
         'customer_id',
         'grand_total',
         'payment_method',
+        'address_id', // Tambahkan address_id
         // 'payment_id',
         'payment_status',
         'status',
@@ -31,7 +32,7 @@ class Order extends Model
     }
     public function addresses()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasOne(Address::class);
     }
     public function payment()
     {

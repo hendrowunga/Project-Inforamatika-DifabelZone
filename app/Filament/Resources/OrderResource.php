@@ -45,20 +45,24 @@ class OrderResource extends Resource
             ->schema([
                 Group::make()->schema([
                     Section::make('Order Information')->schema([
+
                         Select::make('customer_id')
                             ->label('Customer')
-                            ->relationship('customer', 'username')
+                            ->relationship('customer', 'username')  // Menampilkan username
                             ->searchable()
                             ->preload()
-                            ->required(),
-
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function ($state, Set $set) {
+                                // Ketika customer dipilih, otomatis update alamat
+                                $set('address_id', null);  // Reset pilihan alamat
+                            }),
 
                         Select::make('payment_method')
                             ->options([
                                 'stripe' => 'Stripe',
                                 'cod' => 'Cash on Delivery',
                             ])->required(),
-
 
                         Select::make('payment_status')
                             ->options([
@@ -94,6 +98,7 @@ class OrderResource extends Resource
                                 'delivered' => 'heroicon-m-check-badge',
                                 'cancelled' => 'heroicon-m-x-circle',
                             ]),
+
                         Select::make('shipping_method')
                             ->options([
                                 'jne' => 'JNE',
@@ -101,8 +106,33 @@ class OrderResource extends Resource
                                 'tiki' => 'Tiki',
                             ]),
 
+                        // Address selection field with reactive functionality
+                        Select::make('address_id')
+                            ->label('Address')
+                            ->options(function ($get) {
+                                $customerId = $get('customer_id');
+                                // Mendapatkan alamat customer atau opsi untuk membuat alamat baru
+                                return $customerId ? self::getCustomerAddresses($customerId) + ['new' => 'Create New Address'] : [];
+                            })
+                            ->searchable()
+                            ->preload()
+                            ->required()
+                            ->reactive()
+                            ->disabled(function ($get) {
+                                $customerId = $get('customer_id');
+                                $customer = \App\Models\Customer::find($customerId);
+                                return $customer && $customer->addresses->isEmpty();
+                            })
+                            ->afterStateUpdated(function ($state, $set) {
+                                // Jika memilih "Create New Address", set flag untuk membuat alamat baru
+                                if ($state == 'new') {
+                                    $set('create_address', true); // Flag untuk membuat alamat baru
+                                }
+                            }),
+
                         Textarea::make('notes')
                             ->columnSpanFull(),
+
                     ])->columns(2),
 
                     Section::make('Order Item')
@@ -119,7 +149,6 @@ class OrderResource extends Resource
                                         ->disableOptionsWhenSelectedInSiblingRepeaterItems()
                                         ->columnSpan(4)
                                         ->reactive()
-                                        //
                                         ->afterStateUpdated(function ($state, Set $set) {
                                             $product = Product::find($state);
                                             $set('unit_amount', $product?->price ?? 0);
@@ -144,6 +173,7 @@ class OrderResource extends Resource
                                         ->disabled()
                                         ->dehydrated()
                                         ->columnSpan(3),
+
                                     TextInput::make('total_amount')
                                         ->numeric()
                                         ->required()
@@ -175,7 +205,6 @@ class OrderResource extends Resource
             ]);
     }
 
-
     public static function table(Table $table): Table
     {
         return $table
@@ -184,6 +213,13 @@ class OrderResource extends Resource
                     ->label('Customer')
                     ->sortable()
                     ->searchable(),
+
+                // Menampilkan alamat pada tabel Order
+                TextColumn::make('addresses.street')
+                    ->label('Alamat')
+                    ->sortable()
+                    ->searchable(),
+
                 TextColumn::make('grand_total')
                     ->numeric()
                     ->sortable()
@@ -192,9 +228,11 @@ class OrderResource extends Resource
                 TextColumn::make('payment_method')
                     ->sortable()
                     ->searchable(),
+
                 TextColumn::make('payment_status')
                     ->sortable()
                     ->searchable(),
+
                 TextColumn::make('shipping_method')
                     ->sortable()
                     ->searchable(),
@@ -209,20 +247,16 @@ class OrderResource extends Resource
                     ])
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('created_at')
+
+                Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('update_at')
+                Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
-
-
-
-            ])
-            ->filters([
+            ])->filters([
                 //
             ])
             ->actions([
@@ -239,11 +273,17 @@ class OrderResource extends Resource
             ]);
     }
 
+
     public static function getRelations(): array
     {
         return [
             AddressRelationManager::class,
         ];
+    }
+    public static function getCustomerAddresses($customerId)
+    {
+        $customer = \App\Models\Customer::find($customerId);
+        return $customer ? $customer->addresses->pluck('street', 'id')->toArray() : [];
     }
     public static function getNavigationBadge(): ?string
     {
