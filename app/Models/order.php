@@ -8,37 +8,38 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'user_id',
-        'grandtotal',
+        'customer_id',
+        'grand_total',
         'payment_method',
+        'address_id', // Tambahkan address_id
+        // 'payment_id',
         'payment_status',
         'status',
-        'currency',
+        // 'currency',
         'shipping_amount',
         'shipping_method',
-        'notes'
+        'notes',
     ];
 
-    public function user()
+    public function customer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
-    public function address()
+    public function addresses()
     {
         return $this->hasOne(Address::class);
     }
     public function payment()
     {
-        return $this->hasOne(Payments::class);
+        return $this->hasOne(Payment::class);
     }
     public function carts()
     {
-        return $this->belongsToMany(Carts::class, 'order_cart');
+        return $this->belongsToMany(Carts::class);
     }
 }
