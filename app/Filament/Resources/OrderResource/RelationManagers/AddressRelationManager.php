@@ -150,8 +150,10 @@ class AddressRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make()->hidden(fn() => $order->address !== null),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ]);
     }
 }
