@@ -9,7 +9,7 @@
         </p>
     </header>
 
-<<<<<<< HEAD
+
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('put')
@@ -34,24 +34,23 @@
                 class="mt-1 block w-full" autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
         </div>
-=======
-    <x-splade-form method="put" :action="route('password.update')" class="mt-6 space-y-6" preserve-scroll>
-        <x-splade-input id="current_password" name="current_password" type="password" :label="__('Current Password')" autocomplete="current-password" />
-        <x-splade-input id="password" name="password" type="password" :label="__('New Password')" autocomplete="new-password" />
-        <x-splade-input id="password_confirmation" name="password_confirmation" type="password" :label="__('Confirm Password')" autocomplete="new-password" />
->>>>>>> aaef57a2b34cbccb6487ba81ce70214bd2356637
+        <x-splade-form method="put" :action="route('password.update')" class="mt-6 space-y-6" preserve-scroll>
+            <x-splade-input id="current_password" name="current_password" type="password" :label="__('Current Password')"
+                autocomplete="current-password" />
+            <x-splade-input id="password" name="password" type="password" :label="__('New Password')"
+                autocomplete="new-password" />
+            <x-splade-input id="password_confirmation" name="password_confirmation" type="password" :label="__('Confirm Password')"
+                autocomplete="new-password" />
 
-        <div class="flex items-center gap-4">
-            <x-splade-submit :label="__('Save')" />
+            <div class="flex items-center gap-4">
+                <x-splade-submit :label="__('Save')" />
 
-            @if (session('status') === 'password-updated')
-<<<<<<< HEAD
-                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600">{{ __('Saved.') }}</p>
-=======
-                <p class="text-sm text-gray-600">{{ __('Saved.') }}</p>
->>>>>>> aaef57a2b34cbccb6487ba81ce70214bd2356637
-            @endif
-        </div>
-    </x-splade-form>
+                @if (session('status') === 'password-updated')
+                    <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                        class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+
+                    <p class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                @endif
+            </div>
+        </x-splade-form>
 </section>
