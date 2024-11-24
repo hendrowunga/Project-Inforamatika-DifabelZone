@@ -9,6 +9,7 @@
         </p>
     </header>
 
+<<<<<<< HEAD
     <x-danger-button x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">{{ __('Delete Account') }}</x-danger-button>
 
@@ -45,4 +46,16 @@
             </div>
         </form>
     </x-modal>
+=======
+     <x-splade-form
+        method="delete"
+        :action="route('profile.destroy')"
+        :confirm="__('Are you sure you want to delete your account?')"
+        :confirm-text="__('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.')"
+        :confirm-button="__('Delete Account')"
+        require-password
+    >
+        <x-splade-submit danger :label="__('Delete Account')" />
+    </x-splade-form>
+>>>>>>> aaef57a2b34cbccb6487ba81ce70214bd2356637
 </section>
