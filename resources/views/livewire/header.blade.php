@@ -11,7 +11,7 @@
             <!-- serach -->
             <div class="flex-grow mx-4">
                 <input type="text" placeholder="Cari barang yang kamu sukai..."
-                    class=" text-black w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600">
+                    class=" text-black w-2/3 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-600">
             </div>
 
             <!-- navigation -->

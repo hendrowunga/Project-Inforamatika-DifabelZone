@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use ProtoneMedia\Splade\SpladeCore;
 use Throwable;
 
 class Handler extends ExceptionHandler

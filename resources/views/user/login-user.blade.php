@@ -28,7 +28,7 @@
 
 
     <div class="container mx-auto px-4 py-8">
-        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="max-w-lg mx-auto rounded-lg shadow-md overflow-hidden" style="background-color: #E6DF96;">
             <div class="p-6">
                 <div class="text-center">
                     <img src="{{ asset('images/logo\logoDifabelZone.svg') }}" alt="Logo"
@@ -57,14 +57,14 @@
                     </div>
                     <div class="flex items-center justify-between">
                         <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto w-full"
+                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto w-full"
                             type="submit">
                             Login
                         </button>
                     </div>
                 </form>
                 <div class="text-center text-sm mt-6">
-                    Don't have an account? <a href="#" class="text-blue-600 hover:underline">Sign Up</a>
+                    Don't have an account? <a href="/register-user" class="text-blue-600 hover:underline">Sign Up</a>
                 </div>
             </div>
         </div>
