@@ -17,6 +17,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
+
         "protonemedia/laravel-splade": "1.4.18",
         "protonemedia/laravel-splade-breeze": "2.5",
         "yajra/laravel-datatables-oracle": "^10.11"
