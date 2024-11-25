@@ -11,7 +11,7 @@ class cartRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->check(); // Pastikan hanya pengguna yang terautentikasi yang dapat membuat keranjang
     }
 
     /**
@@ -22,21 +22,11 @@ class cartRequest extends FormRequest
     public function rules()
     {
         return [
-            'total_quantity' => 'required|integer',
-            'total_price' => 'required|numeric',
-            'customer_id' => 'required|integer',
+            'customer_id' => 'required|exists:users,id', // Memastikan customer_id ada di users
+            'product_id' => 'required|exists:products,id', // Memastikan product_id ada di products
+            'status' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'in_stock' => 'required|exists:products,in_stock', // Memastikan product_id ada di products
         ];
-    }
-
-    // public function messages()
-    // {
-    //     return [
-    //         'total_quantity.required' => 'Total quantity is required',
-    //         'total_quantity.integer' => 'Total quantity must be an integer',
-    //         'total_price.required' => 'Total price is required',
-    //         'total_price.numeric' => 'Total price must be a number',
-    //         'customer_id.required' => 'Customer ID is required',
-    //         'customer_id.integer' => 'Customer ID must be an integer',
-    //     ];
-    // }
+    }    
 }

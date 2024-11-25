@@ -24,8 +24,8 @@ class cart_of_productRequest extends FormRequest
         return [
             'customer_id' => 'required|integer',
             'product_id' => 'required|integer',
-            'quantity_product' => 'required|integer',
-            'price_product' => 'required|numeric',
+            'status' => 'required|string',
+            'quantity' => 'required|integer',
         ];
     }
 }
