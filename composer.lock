@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "c4133c5ec5d71403e1853f4d272b6c80",
+    "content-hash": "e753ee36b2dee28a101070e45747f534",
     "packages": [
         {
             "name": "brick/math",
@@ -6397,7 +6396,6 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
-
             "name": "laravel/dusk",
             "version": "v8.2.11",
             "source": {
