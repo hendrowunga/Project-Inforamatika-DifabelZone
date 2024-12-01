@@ -31,17 +31,21 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'token',
             'provider' => 'users',
+            'hash' => false,
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',  // Guard untuk admin
-        ],
+
         'customer' => [
             'driver' => 'session',
-            'provider' => 'customers',  // Guard untuk customer
+            'provider' => 'customers',
+        ],
+
+        'customer-api' => [
+            'driver' => 'sanctum',
+            'provider' => 'customers', // Pastikan ini ada
         ],
     ],
 
@@ -60,13 +64,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-        // 'admins' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\Admin::class,  // Pastikan model Admin sesuai
-        // ],
+
         'customers' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Customer::class,  // Pastikan model customer sesuai
+            'model' => App\Models\Customer::class,
         ],
     ],
 
