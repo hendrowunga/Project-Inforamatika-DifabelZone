@@ -39,9 +39,13 @@ class AddressSeeder extends Seeder
         // Fetch and seed villages
         $districts = DB::table('districts')->get();
         foreach ($districts as $district) {
-            $villages = json_decode($client->get("https://www.emsifa.com/api-wilayah-indonesia/api/villages/{$district->id}.json")->getBody(), true);
-            foreach ($villages as $village) {
-                DB::table('villages')->updateOrInsert(['id' => $village['id']], ['name' => $village['name'], 'district_id' => $district->id]);
+            try {
+                $villages = json_decode($client->get("https://www.emsifa.com/api-wilayah-indonesia/api/villages/{$district->id}.json")->getBody(), true);
+                foreach ($villages as $village) {
+                    DB::table('villages')->updateOrInsert(['id' => $village['id']], ['name' => $village['name'], 'district_id' => $district->id]);
+                }
+            } catch (\Exception $e) {
+                $this->command->error("Failed to fetch villages for district {$district->id}: " . $e->getMessage());
             }
         }
     }
