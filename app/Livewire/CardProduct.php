@@ -10,17 +10,17 @@ class CardProduct extends Component
         [
             'productName' => 'Lorem Ipsum 1',
             'productPrice' => 75000,
-            'productImage' => 'images/categories/1730892104_bag-batic.png',
+            'productImage' => 'images/barang/pouch1.png',
         ],
         [
             'productName' => 'Lorem Ipsum 2',
             'productPrice' => 85000,
-            'productImage' => 'images/categories/1730892104_bag-batic.png',
+            'productImage' => 'images/barang/pouch2.png',
         ],
         [
             'productName' => 'Lorem Ipsum 3',
             'productPrice' => 95000,
-            'productImage' => 'images/categories/1730892104_bag-batic.png',
+            'productImage' => 'images/barang/pouch5.jpg',
         ],
         [
             'productName' => 'Lorem Ipsum 4',
