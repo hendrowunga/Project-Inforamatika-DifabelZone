@@ -23,22 +23,24 @@
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
             <!-- Jika user telah Login -->
             <nav class="hidden md:flex space-x-4">
-                    <a href="#" class="hover:text-gray-700">Home</a>
-                    <a href="donation-user" class="hover:text-gray-700">Donasi</a>
-                    <a href="about-user" class="hover:text-gray-700">Tentang Kami</a>
-                </nav>
+                <a href="dashboard-user" class="hover:text-gray-700">Home</a>
+                <a href="donation-user" class="hover:text-gray-700">Donasi</a>
+                <a href="about-user" class="hover:text-gray-700">Tentang Kami</a>
+            </nav>
 
-                <div class="flex items-center space-x-4">
-                    <button class="text-black hover:text-gray-600">
-                        <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
-                    </button>
-                    <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+            <div class="flex items-center space-x-4">
+                <button class="text-black hover:text-gray-600">
+                    <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
+                </button>
+                <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+                    <a href="cart-user">
                         <span>Keranjang</span>
-                    </button>
-                    <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
-                        <img src="https://via.placeholder.com/32" alt="User" class="w-full h-full">
-                    </div>
+                    </a>
+                </button>
+                <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
+                    <img src="https://via.placeholder.com/32" alt="User" class="w-full h-full">
                 </div>
+            </div>
 
             <!-- Jika User Belum Login -->
             <!-- <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">

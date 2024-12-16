@@ -59,3 +59,6 @@ Route::get('/login-user', [LoginController::class, 'showLoginForm'])->name('logi
 
 // Proses login
 Route::post('/login-user', [LoginController::class, 'login'])->name('login.submit');
+
+//keranjang
+Route ::view('/cart-user','user.cart-user')->name ('keranjang');
