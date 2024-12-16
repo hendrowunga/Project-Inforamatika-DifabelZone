@@ -14,47 +14,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('splade')->group(function () {
-    // Registers routes to support the interactive components...
-    Route::spladeWithVueBridge();
+// require __DIR__ . '/auth.php';
 
-    // Registers routes to support password confirmation in Form and Link components...
-    Route::spladePasswordConfirmation();
+// Route::middleware('splade')->group(function () {
+//     // Registers routes to support the interactive components...
+//     Route::spladeWithVueBridge();
 
-    // Registers routes to support Table Bulk Actions and Exports...
-    Route::spladeTable();
+//     // Registers routes to support password confirmation in Form and Link components...
+//     Route::spladePasswordConfirmation();
 
-    // Registers routes to support async File Uploads with Filepond...
-    Route::spladeUploads();
+//     // Registers routes to support Table Bulk Actions and Exports...
+//     Route::spladeTable();
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+//     // Registers routes to support async File Uploads with Filepond...
+//     Route::spladeUploads();
 
-    Route::middleware('auth')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->middleware(['verified'])->name('dashboard');
+//     Route::get('/', function () {
+//         return view('welcome');
+//     });
 
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
+//     Route::middleware('auth')->group(function () {
+//         Route::get('/dashboard', function () {
+//             return view('dashboard');
+//         })->middleware(['verified'])->name('dashboard');
 
-    require __DIR__.'/auth.php';
-});
+//         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//     });
+
+//     // require __DIR__ . '/auth.php';
+// });
 
 //login user
-Route::view('/login-user', 'user.login-user')->name('login');
+// Route::view('/login-user', 'user.login-user')->name('login');
 
-//Dashboatd user
-Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
+// //Dashboatd user
+// Route::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
 
-//donation user
-route ::View('/donation-user','user.donation-user')->name ('donation');
+// //donation user
+// route::View('/donation-user', 'user.donation-user')->name('donation');
 
-//about us user
-Route ::view('/about-user','user.about-user')->name ('about');
+// //about us user
+// Route::view('/about-user', 'user.about-user')->name('about');
 
-//register user
-Route ::view('/register-user','user.register-user')->name ('register');
+// //register user
+// Route::view('/register-user', 'user.register-user')->name('register');
