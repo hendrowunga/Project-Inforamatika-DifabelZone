@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\RegisterController;
+use App\Http\Controllers\User\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ Route::middleware(['splade'])->group(function () {
 });
 
 //login user
-Route::view('/login-user', 'user.login-user')->name('login');
+// Route::view('/login-user', 'user.login-user')->name('login');
 
 //Dashboatd user
 Route ::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
@@ -48,4 +50,12 @@ route ::View('/donation-user','user.donation-user')->name ('donation');
 Route ::view('/about-user','user.about-user')->name ('about');
 
 //register user
-Route ::view('/register-user','user.register-user')->name ('register');
+// Route ::view('/register-user','user.register-user')->name ('register');
+Route::get('/register-user', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('/register-user', [RegisterController::class, 'register']);
+
+// Halaman login
+Route::get('/login-user', [LoginController::class, 'showLoginForm'])->name('login');
+
+// Proses login
+Route::post('/login-user', [LoginController::class, 'login'])->name('login.submit');
