@@ -13,25 +13,8 @@
 
     <main>
         @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
-        @livewire('product-cart')
 
     </main>
-
     @livewire('footer')
 </body>
 
