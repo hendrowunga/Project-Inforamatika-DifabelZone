@@ -33,38 +33,52 @@
                     <p class="text-gray-600 mt-2">Masukkan Email dan Kata Sandi anda.</p>
                 </div>
 
+                <!-- Pesan Status -->
+                @if (session('status'))
+                    <div class="alert alert-success bg-green-500 text-white text-center p-2 rounded mb-4">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
                 <!-- Form login -->
                 <form method="POST" action="{{ route('login') }}">
                     @csrf <!-- CSRF Token untuk keamanan -->
 
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                            Alamat Email
+                            Email
                         </label>
-                        <input type="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                               id="email" placeholder="Masukkan Email Anda" value="{{ old('email') }}" required>
-                        @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                        <input type="email" name="email"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="email" placeholder="Masukkan Email Anda" value="{{ old('email') }}" required>
+                        @error('email')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                             Kata Sandi
                         </label>
-                        <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                               id="password" placeholder="*******" required>
-                        @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                        <a href="#" class="text-sm text-blue-600 hover:underline">Lupa Password?</a>
+                        <input type="password" name="password"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="password" placeholder="*******" required>
+                        @error('password')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="flex items-center justify-between">
-                        <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto w-full">
+                        <button type="submit"
+                            class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-auto w-full">
                             Masuk
                         </button>
                     </div>
                 </form>
 
                 <div class="text-center text-sm mt-6">
-                    Tidak memiliki akun? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Daftar</a>
+                    Tidak memiliki akun? <a href="{{ route('register') }}"
+                        class="text-blue-600 hover:underline">Daftar</a>
                 </div>
             </div>
         </div>
