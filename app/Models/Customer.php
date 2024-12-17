@@ -19,7 +19,6 @@ class Customer extends Authenticatable
         'lastname',
         'username',
         'email',
-        'email_verified_at',
         'password'
     ];
 

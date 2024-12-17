@@ -51,7 +51,7 @@ class CategoryResource extends Resource
                         ]),
                     FileUpload::make('image')
                         ->image()
-                        ->directory('categories',),
+                        ->directory('categories'),
 
                     Toggle::make('is_active')
                         ->required()

@@ -1,8 +1,4 @@
-@php
-    session(['user_id' => 1]);
-    //session()->forget('user_id');
-@endphp
-
+<!-- resources/views/layouts/header.blade.php -->
 <header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
@@ -21,11 +17,12 @@
 
         <!-- Kanan -->
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
-            <!-- Jika user telah Login -->
-                <nav class="hidden md:flex space-x-4">
-                    <a href="#" class="hover:text-gray-700">Home</a>
-                    <a href="donation-user" class="hover:text-gray-700">Donasi</a>
-                    <a href="about-user" class="hover:text-gray-700">Tentang Kami</a>
+            @auth
+                <!-- Tampilan untuk user yang sudah login -->
+                <nav class="flex space-x-4">
+                    <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
+                    {{-- <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a> --}}
+                    {{-- <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a> --}}
                 </nav>
 
                 <div class="flex items-center space-x-4">
@@ -36,14 +33,19 @@
                         <span>Keranjang</span>
                     </button>
                     <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
-                        <img src="https://via.placeholder.com/32" alt="User" class="w-full h-full">
+                        <img src="{{ Auth::user()->avatar_url }}" alt="User" class="w-full h-full">
                     </div>
+                    <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
                 </div>
+            @endauth
 
-                <!-- Jika User Belum Login -->
-                <!-- <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
-                    <a href="{{ route('login') }}">Login</a>
-                </button> -->
+            @guest
+                <!-- Tampilan untuk user yang belum login -->
+                <div class="flex space-x-4">
+                    <a href="{{ route('login') }}" class="text-black hover:text-gray-600">Login</a>
+                    <a href="{{ route('register') }}" class="text-black hover:text-gray-600">Daftar</a>
+                </div>
+            @endguest
         </div>
     </div>
 </header>
