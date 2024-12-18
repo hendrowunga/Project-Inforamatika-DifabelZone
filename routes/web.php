@@ -62,3 +62,6 @@ Route::post('/login-user', [LoginController::class, 'login'])->name('login.submi
 
 //keranjang
 Route ::view('/cart-user','user.cart-user')->name ('keranjang');
+
+//profile
+Route ::view('/profile-user','user.profile-user')->name ('profile');
