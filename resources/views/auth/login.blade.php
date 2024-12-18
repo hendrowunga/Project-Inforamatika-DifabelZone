@@ -85,15 +85,6 @@
 
                     <!-- Forgot Password and Submit Button -->
                     <div class="flex items-center justify-between mt-4">
-                        <div class="text-sm">
-                            @if (Route::has('password.request'))
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    href="{{ route('password.request') }}">
-                                    Forgot your password?
-                                </a>
-                            @endif
-                        </div>
-
                         <button type="submit"
                             class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-3 sm:mt-0">
                             Log in

@@ -28,4 +28,13 @@ Route::middleware('auth:customer')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//Dashboatd user
+Route::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
+
+//donation user
+route::View('/donation-user', 'user.donation-user')->name('donation');
+
+//about us user
+Route::view('/about-user', 'user.about-user')->name('about');
+
 require __DIR__ . '/auth.php';

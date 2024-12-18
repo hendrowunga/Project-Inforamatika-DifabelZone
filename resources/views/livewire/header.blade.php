@@ -4,8 +4,10 @@
         <!-- Kiri -->
         <div class="flex items-center w-1/2 space-x-5 ml-10" id="kiri">
             <!-- Logo -->
-            <div class="text-xl font-bold flex items-center space-x-2">
-                <img class="w-28" src="{{ asset('images/logo/logoDifabelZone.svg') }}" alt="Logo">
+            <div class="shrink-0 flex items-left">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo/logoDifabelZone.svg') }}" alt="Logo" class="h-9">
+                </a>
             </div>
 
             <!-- Search -->
@@ -17,35 +19,46 @@
 
         <!-- Kanan -->
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
-            @auth
-                <!-- Tampilan untuk user yang sudah login -->
-                <nav class="flex space-x-4">
-                    {{-- <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a> --}}
-                    {{-- <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a> --}}
-                    {{-- <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a> --}}
-                </nav>
+            @if (Route::has('login'))
+                @auth
+                    <!-- Tampilan untuk user yang sudah login -->
+                    <nav class="flex space-x-4">
+                        {{-- Contoh menu tambahan jika diperlukan --}}
+                        <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
+                        <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
+                        <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
+                    </nav>
 
-                <div class="flex items-center space-x-4">
-                    <button class="text-black hover:text-gray-600">
-                        <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
-                    </button>
-                    <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
-                        <span>Keranjang</span>
-                    </button>
-                    <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
-                        <img src="{{ Auth::user()->avatar_url }}" alt="User" class="w-full h-full">
+                    <div class="flex items-center space-x-4">
+                        <button class="text-black hover:text-gray-600">
+                            <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
+                        </button>
+                        <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+                            <span>Keranjang</span>
+                        </button>
+                        <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
+                            {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
+                        </div>
+
+                        <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
                     </div>
-                    <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
-                </div>
-            @endauth
+                @else
+                    <!-- Tampilan untuk user yang belum login -->
+                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex space-x-4">
+                        <a href="{{ route('login') }}"
+                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                            Log in
+                        </a>
 
-            @guest
-                <!-- Tampilan untuk user yang belum login -->
-                <div class="flex space-x-4">
-                    <a href="{{ route('login') }}" class="text-black hover:text-gray-600">Login</a>
-                    <a href="{{ route('register') }}" class="text-black hover:text-gray-600">Daftar</a>
-                </div>
-            @endguest
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                Register
+                            </a>
+                        @endif
+                    </div>
+                @endauth
+            @endif
         </div>
     </div>
 </header>
