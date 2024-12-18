@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Address;
-// use App\Models\
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -27,13 +27,50 @@ class ProfileController extends Controller
      * Show user profile with addresses.
      */
     public function showProfile($id)
-{
-    $customer = Customer::findOrFail($id);
-    $addresses = $customer->addresses;
+    {
+        $customer = Customer::findOrFail($id);
 
-    return view('user.profile-user', compact('customer', 'addresses'));
-}
+        // Data dummy untuk alamat
+        $addresses = $this->getDummyAddresses($customer);
 
+        return view('user.profile-user', compact('customer', 'addresses'));
+    }
+
+    /**
+     * Get dummy addresses for a customer.
+     *
+     * @param \App\Models\Customer $customer
+     * @return array
+     */
+    private function getDummyAddresses($customer)
+    {
+        return [
+            [
+                'customer_id' => $customer->id,
+                'province_id' => 12,
+                'regency_id' => 34,
+                'district_id' => 56,
+                'village_id' => 78,
+                'street' => 'Jl. Merdeka No. 1',
+                'postal_code' => '12345',
+                'order_id' => 101,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'customer_id' => $customer->id,
+                'province_id' => 14,
+                'regency_id' => 35,
+                'district_id' => 57,
+                'village_id' => 79,
+                'street' => 'Jl. Raya No. 2',
+                'postal_code' => '23456',
+                'order_id' => 102,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ];
+    }
 
     /**
      * Add a new address for the user.

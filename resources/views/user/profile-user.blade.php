@@ -45,17 +45,26 @@
             <!-- Daftar Alamat -->
             <div class="p-6 bg-gray-50">
                 <h3 class="text-xl font-semibold mb-4 border-b pb-2">Daftar Alamat</h3>
-                @if ($customer->addresses->count() > 0)
-                    @foreach ($customer->addresses as $address)
-                        <div class="bg-white p-4 rounded-lg shadow-sm mb-4 border">
-                            <p class="text-gray-600"><strong>Jalan:</strong> {{ $address->street }}</p>
-                            <p class="text-gray-600"><strong>Kode Pos:</strong> {{ $address->postal_code }}</p>
-                        </div>
+                @if (count($addresses) > 0)
+                    @foreach ($addresses as $address)
+                    <div class="bg-white p-4 rounded-lg shadow-sm mb-4 border">
+                        <p class="text-gray-600">
+                            <strong>Alamat:</strong> 
+                            {{ $address['street'] }}, 
+                            {{ $address['village_id'] }}, 
+                            {{ $address['district_id'] }}, 
+                            {{ $address['regency_id'] }}, 
+                            {{ $address['province_id'] }} 
+                            {{ $address['postal_code'] }}
+                        </p>
+                    </div>
+
                     @endforeach
                 @else
                     <p class="text-gray-500">Belum ada alamat yang ditambahkan.</p>
                 @endif
             </div>
+
 
             <!-- Tambah Alamat Baru -->
             <div class="p-6">
