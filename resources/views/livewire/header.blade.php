@@ -36,11 +36,10 @@
                     <img src="https://via.placeholder.com/32" alt="User" class="w-full h-full">
                 </div>
             </div>
-
             <!-- Jika User Belum Login -->
             <!-- <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
-                <a href="{{ route('login') }}">Login</a>
-            </button> -->
+                    <a href="{{ route('login') }}">Login</a>
+                </button> -->
         </div>
     </div>
 </header>
