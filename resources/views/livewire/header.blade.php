@@ -38,7 +38,12 @@
                     {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
                 </div>
 
-                <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
+                <!-- Tombol Logout -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Logout</button>
+                </form>
+
             </div>
         </div>
     </div>

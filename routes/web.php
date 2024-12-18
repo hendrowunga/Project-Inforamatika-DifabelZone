@@ -32,7 +32,7 @@ Route::middleware('auth:customer')->group(function () {
 });
 
 //Dashboatd user
-Route::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
+// Route::view('/dashboard-user', 'user.dashboard-user')->name('dashboard');
 
 //donation user
 route::View('/donation-user', 'user.donation-user')->name('donation');
