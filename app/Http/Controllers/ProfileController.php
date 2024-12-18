@@ -1,22 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-<<<<<<< HEAD
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-=======
-use App\Models\Customer;
-use App\Models\Address;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Carbon\Carbon;
->>>>>>> dcada9a6d00b9e5020f765cad16f3cfb75300d77
 
 class ProfileController extends Controller
 {

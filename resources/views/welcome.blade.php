@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-100">
-    @livewire('header')
+    @livewire('header1')
 
     <main>
         <div class="text-center py-24 px-4 mt-10 text-yellow-900"
