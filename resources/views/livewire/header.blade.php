@@ -1,8 +1,3 @@
-@php
-    session(['user_id' => 1]);
-    //session()->forget('user_id');
-@endphp
-
 <header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->

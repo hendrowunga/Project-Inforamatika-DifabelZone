@@ -13,7 +13,6 @@
 
     <main>
         @livewire('product-cart')
-
     </main>
     @livewire('footer')
 </body>

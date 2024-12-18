@@ -8,7 +8,7 @@ class CardProduct extends Component
 {
     public $products = [
         [
-            'productName' => 'Lorem Ipsum 1',
+            'productName' => 'Pouch Natural Batik',
             'productPrice' => 75000,
             'productImage' => 'images/barang/pouch1.png',
         ],
