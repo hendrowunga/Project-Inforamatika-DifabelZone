@@ -53,6 +53,5 @@
     <br>
     <br>
     <br>
-    @livewire('Checkouts')
 </body>
 </html>
