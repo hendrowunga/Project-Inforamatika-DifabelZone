@@ -1,6 +1,5 @@
 <!-- resources/views/layouts/header.blade.php -->
-<header class="shadow-md py-4 text-yellow-900"
-    style="background-color: #E6DF96; position: fixed; top: 0; width: 100%; z-index: 1000;">
+<header class="shadow-md py-4 text-yellow-900 sticky top-0 z-50" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
         <div class="flex items-center w-1/2 space-x-5 ml-10" id="kiri">
