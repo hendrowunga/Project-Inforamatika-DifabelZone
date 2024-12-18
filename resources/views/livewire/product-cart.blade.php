@@ -52,30 +52,22 @@
     @endforeach
 
     <!-- Tombol Checkout dan Informasi Total -->
-    <div class="mt-6 flex justify-end items-center space-x-4 border-t pt-4 mr-4 bg-gray-200">
-        <!-- Check List Semua -->
-        <div class="text-left text-sm">
-            <input type="checkbox"
-                class="mr-4 w-5 h-5 text-blue-600 border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500"
-                wire:click="toggleSelectAll" {{ $selectAll ? 'checked' : '' }}>
-
-            <span class="text-gray-600">Pilih Semua</span>
-        </div>
-        <!-- Total Harga -->
-        <div class="">
+    <div class="mt-6 flex justify-between items-center border-t p-4 px-10 bg-gray-200">
+        <!-- Total Harga (di kiri) -->
+        <div>
             <div class="text-yellow-600 text-sm">
                 Total (<span class="font-semibold">{{ $this->getSelectedProductCount() }} produk</span>):
             </div>
-
             <div class="text-red-600 text-xl font-semibold">
                 Rp{{ number_format($this->getTotalSelectedPrice(), 0, ',', '.') }}
             </div>
         </div>
 
-        <!-- Tombol Checkout -->
+        <!-- Tombol Checkout (di kanan) -->
         <button class="bg-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-900 
-               transition-colors duration-300 focus:outline-none">
+           transition-colors duration-300 focus:outline-none">
             Checkout
         </button>
     </div>
+
 </div>

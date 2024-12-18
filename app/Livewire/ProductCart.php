@@ -21,7 +21,6 @@ class ProductCart extends Component
 
     public $quantities = [];  // Jumlah produk
     public $selected = [];    // Status checkbox produk
-    public $selectAll = false; // Status "Pilih Semua"
 
     // Inisialisasi data
     public function mount()
@@ -32,49 +31,25 @@ class ProductCart extends Component
         }
     }
 
-    /**
-     * Toggle checkbox produk individu.
-     * Jika semua produk dicentang, "Pilih Semua" akan aktif.
-     */
+    //Toggle checkbox produk individu.
     public function toggleSelection($index)
     {
-        // Toggle checkbox individu
         $this->selected[$index] = !$this->selected[$index];
-
-        // Perbarui status "Pilih Semua"
-        $this->selectAll = collect($this->selected)->every(fn($isSelected) => $isSelected);
     }
-
-    /**
-     * Toggle "Pilih Semua".
-     * Semua checkbox produk akan mengikuti status "Pilih Semua".
-     */
-    public function toggleSelectAll()
-    {
-        $this->selectAll = !$this->selectAll;
-
-        // Atur semua checkbox sesuai status "Pilih Semua"
-        foreach ($this->products as $index => $product) {
-            $this->selected[$index] = $this->selectAll;
-        }
-    }
-
-    /**
-     * Menghitung total produk yang diceklis.
-     */
+    
+    //  * Menghitung total produk yang diceklis.
     public function getSelectedProductCount()
     {
         return collect($this->selected)->filter()->count();
     }
 
-    /**
-     * Menghitung total harga produk yang diceklis.
-     */
+    //Menghitung total harga produk yang diceklis.
     public function getTotalSelectedPrice()
     {
         $total = 0;
 
         foreach ($this->products as $index => $product) {
+            // Hanya hitung produk yang tercentang
             if ($this->selected[$index]) {
                 $total += $product['productPrice'] * $this->quantities[$index];
             }
@@ -82,6 +57,7 @@ class ProductCart extends Component
 
         return $total;
     }
+
 
     // Menghitung harga total per produk
     public function getTotalPrice($index)
@@ -105,11 +81,23 @@ class ProductCart extends Component
         }
     }
 
+    protected $listeners = ['refreshComponent'];
+
+
+    // fungsi ini, hanya untuk memicu render ulang
+    public function refreshComponent()
+    {
+        $this->emit('refreshTotalPrice');
+    }
+
+
     public function render()
     {
+        // Perbarui total harga jika ada perubahan pada produk yang terpilih
         return view('livewire.product-cart', [
             'products' => $this->products,
             'totalPrice' => $this->getTotalSelectedPrice(),
         ]);
     }
+
 }
