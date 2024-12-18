@@ -21,14 +21,17 @@
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
             <!-- Tampilan untuk user yang belum login -->
             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex space-x-4">
-                <a href="{{ route('login') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Log in
-                </a>
-                <a href="{{ route('register') }}"
-                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Register
-                </a>
+                <!-- Login -->
+                <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
+                    <a href="{{ route('login') }}">Log in</a>
+                </button>
+
+                <!-- Register -->
+                <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
+                    <a href="{{ route('register') }}">
+                        Register
+                    </a>
+                </button>
             </div>
         </div>
     </div>

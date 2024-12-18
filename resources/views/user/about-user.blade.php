@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Difabel Zone</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Tentang Kami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-[#F4F5E6] text-gray-800">
+    @livewire('header')
+    <div class="container mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row items-center">
+            <!-- Bagian Teks -->
+            <div class="md:w-1/2 text-left mb-8 md:mb-0">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Tentang Kami</h1>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    Difabel Zone adalah komunitas yang berdiri sejak tahun 2015 di Yogyakarta, Indonesia. 
+                    Kami terdiri dari individu-individu berbakat yang memiliki keterbatasan fisik 
+                    namun penuh semangat dan dedikasi dalam menciptakan karya seni batik tulis.
+                </p>
+            </div>
 
-<body class="text-yellow-900"
-    style="background-color: #E6DF96; background-image: url('images/background/backroundBatik.svg'); background-repeat: repeat;">
+            <div class="md:w-1/2 flex justify-center relative">
+                <img src="{{ asset('images/difableZone/foto1.jpg') }}" alt="Tentang Kami" 
+                     class="relative z-10 w-[500px] h-[350px] object-cover rounded-lg shadow-lg">
+            </div>
+        </div>
 
-    <div class="mt-4 max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg text-yellow-900">
-        <h1 class="text-4xl font-bold text-center text-gray-900 mb-6">Tentang Kami</h1>
-        <h3 class="text-lg text-justify mb-6 leading-relaxed">
-            Difabel Zone adalah komunitas yang berdedikasi untuk memberdayakan teman-teman difabel melalui pelatihan
-            keterampilan dan menyediakan wadah untuk berkarya.
-            Difabel Zone memfasilitasi teman-teman difabel untuk berpartisipasi dalam berbagai kegiatan yang
-            diselenggarakan oleh komunitas, seperti pelatihan, workshop, dan event-event lainnya. Kami percaya bahwa
-            dengan berbagi pengetahuan dan pengalaman, kami dapat memberikan kontribusi yang lebih baik untuk
-            masyarakat.
-        </h3>
-        <h3 class="text-lg text-justify mb-6 leading-relaxed">
-            Kami percaya bahwa setiap individu, tanpa terkecuali, memiliki potensi dan hak untuk berkontribusi di
-            masyarakat. Melalui pelatihan pembuatan batik tulis dan berbagai keterampilan lainnya, kami membantu
-            teman-teman difabel untuk memperoleh keahlian baru dan memperluas kesempatan kerja. Produk-produk yang
-            dihasilkan oleh
-            komunitas kami memiliki nilai seni dan kualitas yang tinggi, serta didedikasikan untuk mempromosikan
-            budaya lokal.
-        </h3>
+        <br>
+        <br>
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 flex justify-center relative">
+                <img src="{{ asset('images/difableZone/picture1.jpg') }}" alt="Tentang Kami" 
+                     class="relative z-10 w-[500px] h-[350px] object-cover rounded-lg shadow-lg">
+            </div>
+
+            <div class="md:w-1/2 text-left mb-8 md:mb-0">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">WorkShop</h1>
+                <p class="text-gray-600 leading-relaxed mb-6">
+                Kami memiliki workshop di daerah Bantul. Workshop ini adalah tempat bagi para 
+                teman teman disabilitas membantik
+                </p>
+                <a href="https://www.google.com/maps/place/Difabelzone/@-7.9088032,110.3019938,17z/data=!3m1!4b1!4m6!3m5!1s0x2e7aff012c3096e1:0x8a79f61ae4316bec!8m2!3d-7.9088032!4d110.3019938!16s%2Fg%2F11q1v__0wv?hl=en-ID&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+                     <button class="bg-yellow-600 hover:bg-purple-600 text-white font-semibold py-2 px-6 rounded-full shadow-md">
+                        Lihat Maps 
+                     </button>
+                </a>
+
+            </div>
+        </div>
     </div>
-
+    @livewire('footer')
+    <br>
+    <br>
+    <br>
 </body>
-
 </html>
-

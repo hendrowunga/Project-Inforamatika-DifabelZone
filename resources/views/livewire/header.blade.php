@@ -1,4 +1,5 @@
 <!-- resources/views/layouts/header.blade.php -->
+
 <header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
@@ -19,46 +20,26 @@
 
         <!-- Kanan -->
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
-            @if (Route::has('login'))
-                @auth
-                    <!-- Tampilan untuk user yang sudah login -->
-                    <nav class="flex space-x-4">
-                        {{-- Contoh menu tambahan jika diperlukan --}}
-                        <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
-                        <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
-                        <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
-                    </nav>
+            <!-- Tampilan untuk user yang sudah login -->
+            <nav class="hidden md:flex space-x-4">
+                <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
+                <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
+                <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
+            </nav>
 
-                    <div class="flex items-center space-x-4">
-                        <button class="text-black hover:text-gray-600">
-                            <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
-                        </button>
-                        <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
-                            <span>Keranjang</span>
-                        </button>
-                        <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
-                            {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
-                        </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-black hover:text-gray-600">
+                    <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
+                </button>
+                <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+                    <span>Keranjang</span>
+                </button>
+                <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
+                    {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
+                </div>
 
-                        <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
-                    </div>
-                @else
-                    <!-- Tampilan untuk user yang belum login -->
-                    <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex space-x-4">
-                        <a href="{{ route('login') }}"
-                            class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                            Log in
-                        </a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                                Register
-                            </a>
-                        @endif
-                    </div>
-                @endauth
-            @endif
+                <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
+            </div>
         </div>
     </div>
 </header>
