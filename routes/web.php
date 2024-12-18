@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\RegisterController;
 use App\Http\Controllers\User\LoginController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,5 +64,8 @@ Route::post('/login-user', [LoginController::class, 'login'])->name('login.submi
 //keranjang
 Route ::view('/cart-user','user.cart-user')->name ('keranjang');
 
-//profile
-Route ::view('/profile-user','user.profile-user')->name ('profile');
+// Menampilkan profil user
+Route::get('/profile/{id}', [ProfileController::class, 'showProfile'])->name('profile.show');
+
+// Menambahkan alamat baru
+Route::post('/profile/{id}/add-address', [ProfileController::class, 'addAddress'])->name('profile.addAddress');
