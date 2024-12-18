@@ -19,17 +19,68 @@ class ProductCart extends Component
         ],
     ];
 
-    public $quantities = [];
-    public $selected = [];
+    public $quantities = [];  // Jumlah produk
+    public $selected = [];    // Status checkbox produk
+    public $selectAll = false; // Status "Pilih Semua"
 
-
-    // Menyimpan jumlah untuk per produk
+    // Inisialisasi data
     public function mount()
     {
         foreach ($this->products as $index => $product) {
             $this->quantities[$index] = 1;
-            $this->selected[$index] = false; // Default produk tidak dipilih
+            $this->selected[$index] = false;
         }
+    }
+
+    /**
+     * Toggle checkbox produk individu.
+     * Jika semua produk dicentang, "Pilih Semua" akan aktif.
+     */
+    public function toggleSelection($index)
+    {
+        // Toggle checkbox individu
+        $this->selected[$index] = !$this->selected[$index];
+
+        // Perbarui status "Pilih Semua"
+        $this->selectAll = collect($this->selected)->every(fn($isSelected) => $isSelected);
+    }
+
+    /**
+     * Toggle "Pilih Semua".
+     * Semua checkbox produk akan mengikuti status "Pilih Semua".
+     */
+    public function toggleSelectAll()
+    {
+        $this->selectAll = !$this->selectAll;
+
+        // Atur semua checkbox sesuai status "Pilih Semua"
+        foreach ($this->products as $index => $product) {
+            $this->selected[$index] = $this->selectAll;
+        }
+    }
+
+    /**
+     * Menghitung total produk yang diceklis.
+     */
+    public function getSelectedProductCount()
+    {
+        return collect($this->selected)->filter()->count();
+    }
+
+    /**
+     * Menghitung total harga produk yang diceklis.
+     */
+    public function getTotalSelectedPrice()
+    {
+        $total = 0;
+
+        foreach ($this->products as $index => $product) {
+            if ($this->selected[$index]) {
+                $total += $product['productPrice'] * $this->quantities[$index];
+            }
+        }
+
+        return $total;
     }
 
     // Menghitung harga total per produk
@@ -54,31 +105,6 @@ class ProductCart extends Component
         }
     }
 
-    // Menceklist produk
-    public function toggleSelection($index)
-    {
-        $this->selected[$index] = !$this->selected[$index];
-    }
-
-    // Menghitung jumlah produk yang diceklist
-    public function getSelectedProductCount()
-    {
-        return collect($this->selected)->filter(fn($isSelected) => $isSelected)->count();
-    }
-
-    // Menghitung harga total produk yang diceklist
-    public function getTotalSelectedPrice()
-    {
-        $total = 0;
-        foreach ($this->products as $index => $product) {
-            if ($this->selected[$index]) {
-                $total += $this->getTotalPrice($index);
-            }
-        }
-        return $total;
-    }
-
-    // Koneksi ke view product-cart.blade.php
     public function render()
     {
         return view('livewire.product-cart', [
