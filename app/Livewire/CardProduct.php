@@ -20,12 +20,12 @@ class CardProduct extends Component
         [
             'productName' => 'Lorem Ipsum 3',
             'productPrice' => 95000,
-            'productImage' => 'images/barang/pouch3.jpg',
+            'productImage' => 'images/barang/pouch3.png',
         ],
         [
             'productName' => 'Lorem Ipsum 4',
             'productPrice' => 105000,
-            'productImage' => 'images/barang/pouch4.jpg',
+            'productImage' => 'images/barang/pouch4.png',
         ],
         [
             'productName' => 'Lorem Ipsum 5',
