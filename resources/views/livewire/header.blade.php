@@ -32,7 +32,9 @@
                     <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
                 </button>
                 <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
-                    <span>Keranjang</span>
+                    <a href="cart-user">
+                        <span>Keranjang</span>
+                    </a>
                 </button>
                 <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
                     {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
