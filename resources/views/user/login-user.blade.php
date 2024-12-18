@@ -60,12 +60,18 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
                             Kata Sandi
                         </label>
+<<<<<<< HEAD
                         <input type="password" name="password"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="password" placeholder="*******" required>
                         @error('password')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
+=======
+                        <input type="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                               id="password" placeholder="*******" required>
+                        @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+>>>>>>> dcada9a6d00b9e5020f765cad16f3cfb75300d77
                     </div>
 
                     <div class="flex items-center justify-between">
