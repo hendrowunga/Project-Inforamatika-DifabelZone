@@ -1,5 +1,5 @@
 <!-- resources/views/layouts/header.blade.php -->
-<header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
+<header class="shadow-md py-4 text-yellow-900 sticky top-0 z-50" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
         <div class="flex items-center w-1/2 space-x-5 ml-10" id="kiri">
@@ -20,16 +20,17 @@
         <!-- Kanan -->
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
             <!-- Tampilan untuk user yang belum login -->
-            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10 flex space-x-4">
-                <a href="{{ route('login') }}"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Log in
-                </a>
-                <a href="{{ route('register') }}"
-                    class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            <!-- Login -->
+            <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
+                <a href="{{ route('login') }}">Log in</a>
+            </button>
+
+            <!-- Register -->
+            <button class="px-4 py-2 text-white bg-yellow-600 rounded hover:bg-yellow-700">
+                <a href="{{ route('register') }}">
                     Register
                 </a>
-            </div>
+            </button>
         </div>
     </div>
 </header>
