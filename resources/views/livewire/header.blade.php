@@ -1,6 +1,6 @@
 <!-- resources/views/layouts/header.blade.php -->
 
-<header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
+<header class="shadow-md py-4 text-yellow-900 sticky top-0 z-50" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
         <div class="flex items-center w-1/2 space-x-5 ml-10" id="kiri">
@@ -22,7 +22,7 @@
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
             <!-- Tampilan untuk user yang sudah login -->
             <nav class="hidden md:flex space-x-4">
-                <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
+                <a href="{{ url('/dashboard') }}" class="hover:text-gray-700">Home</a>
                 <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
                 <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
             </nav>
@@ -32,7 +32,9 @@
                     <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
                 </button>
                 <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
-                    <span>Keranjang</span>
+                    <a href="cart-user">
+                        <span>Keranjang</span>
+                    </a>
                 </button>
                 <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
                     {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}

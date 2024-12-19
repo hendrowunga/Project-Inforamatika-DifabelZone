@@ -4,17 +4,10 @@
             <div class="bg-white p-4 rounded shadow-md text-center">
                 <!-- Product Image -->
                 <div class="h-52 w-full rounded mb-4 bg-white overflow-hidden flex items-center justify-center">
-                    {{-- Cek jika produk memiliki gambar --}}
-                    @if (!empty($product->images) && count($product->images) > 0)
-                        {{-- Tampilkan gambar pertama --}}
-                        <img src="{{ asset('storage/' . $product->images[0]) }}" alt="Product Image"
-                            class="max-h-full max-w-full object-contain">
-                    @else
-                        {{-- Jika tidak ada gambar, tampilkan gambar default --}}
-                        <img src="{{ asset('images/default-product.jpg') }}" alt="Default Product Image"
-                            class="max-h-full max-w-full object-contain">
-                    @endif
+                    <img src="{{ asset($product['productImage']) }}" alt="Product Image"
+                        class="max-h-full max-w-full object-contain">
                 </div>
+
                 <!-- Product Price dan Product Name -->
                 <div class="flex flex-col items-start mb-4 text-yellow-900">
                     <span class="font-semibold text-left">{{ $product['productName'] }}</span>

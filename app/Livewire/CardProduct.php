@@ -13,24 +13,24 @@ class CardProduct extends Component
             'productImage' => 'images/barang/pouch1.png',
         ],
         [
-            'productName' => 'Lorem Ipsum 2',
+            'productName' => 'Pouch Batik Elegan',
             'productPrice' => 85000,
             'productImage' => 'images/barang/pouch2.png',
         ],
         [
-            'productName' => 'Lorem Ipsum 3',
+            'productName' => 'Pouch Batik Natural Elegan',
             'productPrice' => 95000,
-            'productImage' => 'images/barang/pouch5.jpg',
+            'productImage' => 'images/barang/pouch3.png',
         ],
         [
-            'productName' => 'Lorem Ipsum 4',
+            'productName' => 'Pouch Batik Cantik',
             'productPrice' => 105000,
-            'productImage' => 'images/categories/1730892104_bag-batic.png',
+            'productImage' => 'images/barang/pouch4.png',
         ],
         [
-            'productName' => 'Lorem Ipsum 5',
+            'productName' => 'Pouch Batik Mas Slamet',
             'productPrice' => 115000,
-            'productImage' => 'images/categories/1730892104_bag-batic.png',
+            'productImage' => 'images/barang/pouch5.jpg',
         ],
     ];
 
