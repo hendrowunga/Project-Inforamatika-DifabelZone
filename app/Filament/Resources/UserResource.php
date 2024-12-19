@@ -12,8 +12,7 @@ use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\UserResource\Pages;
 use Filament\Resources\Pages\Page;
 use App\Filament\Resources\UserResource\RelationManagers\OrderRelationManager;
-
-
+use Illuminate\Support\Facades\Hash; // Import Hash
 
 class UserResource extends Resource
 {
@@ -27,8 +26,6 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                // Forms\Components\TextInput::make('name')
-                //     ->required(),
                 Forms\Components\TextInput::make('firstname')
                     ->required(),
                 Forms\Components\TextInput::make('lastname')
@@ -47,7 +44,17 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->dehydrated(fn($state) => filled($state))
-                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord),
+                    ->required(fn(Page $livewire): bool => $livewire instanceof CreateRecord)
+                    ->afterStateHydrated(function ($state, $set, $get) {
+                        if (!$state && $get('id')) {
+                            $set('password', ''); // Pastikan password tidak terisi ulang saat edit
+                        }
+                    })
+                    ->afterStateUpdated(function ($state, $set, $get) {
+                        if (filled($state)) {
+                            $set('password', Hash::make($state)); // Enkripsi kata sandi
+                        }
+                    }),
             ]);
     }
 
@@ -55,8 +62,6 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                // Tables\Columns\TextColumn::make('name')
-                //     ->searchable(),
                 Tables\Columns\TextColumn::make('firstname')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('lastname')
@@ -95,6 +100,7 @@ class UserResource extends Resource
             OrderRelationManager::class
         ];
     }
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['username', 'email'];

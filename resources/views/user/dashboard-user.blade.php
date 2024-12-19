@@ -26,7 +26,7 @@
         </div>
 
 
-        <div class="mt-10 flex items-center justify-center text-yellow-600">
+        <div class="mt-10 flex items-center justify-center text-yellow-900">
             <h1 class="text-4xl sm:text-5xl font-bold text-center">
                 Produk Unggulan Kami
             </h1>

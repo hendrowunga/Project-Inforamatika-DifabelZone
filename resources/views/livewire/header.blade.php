@@ -1,11 +1,14 @@
 <!-- resources/views/layouts/header.blade.php -->
-<header class="shadow-md py-4 text-yellow-900" style="background-color: #E6DF96;">
+
+<header class="shadow-md py-4 text-yellow-900 sticky top-0 z-50" style="background-color: #E6DF96;">
     <div class="max-w-full mx-auto flex justify-between items-center">
         <!-- Kiri -->
         <div class="flex items-center w-1/2 space-x-5 ml-10" id="kiri">
             <!-- Logo -->
-            <div class="text-xl font-bold flex items-center space-x-2">
-                <img class="w-28" src="{{ asset('images/logo/logoDifabelZone.svg') }}" alt="Logo">
+            <div class="shrink-0 flex items-left">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo/logoDifabelZone.svg') }}" alt="Logo" class="h-9">
+                </a>
             </div>
 
             <!-- Search -->
@@ -17,35 +20,37 @@
 
         <!-- Kanan -->
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
-            @auth
-                <!-- Tampilan untuk user yang sudah login -->
-                <nav class="flex space-x-4">
-                    <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
-                    {{-- <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a> --}}
-                    {{-- <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a> --}}
-                </nav>
+            <!-- Tampilan untuk user yang sudah login -->
+            <nav class="hidden md:flex space-x-4">
+<<<<<<< HEAD
+                <a href="{{ url('/dashboard') }}" class="hover:text-gray-700">Home</a>
+=======
+                <a href="{{ url('dashboard') }}" class="hover:text-gray-700">Home</a>
+>>>>>>> 3e7667c9455116ffb79d9b5e74cccb9ff4d37962
+                <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
+                <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
+            </nav>
 
-                <div class="flex items-center space-x-4">
-                    <button class="text-black hover:text-gray-600">
-                        <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
-                    </button>
-                    <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+            <div class="flex items-center space-x-4">
+                <button class="text-black hover:text-gray-600">
+                    <img class="mx-auto" src="{{ asset('images/logo/notifications.svg') }}" alt="Notifications">
+                </button>
+                <button class="flex items-center px-3 py-1 border rounded hover:bg-yellow-600 border-yellow-900">
+                    <a href="cart-user">
                         <span>Keranjang</span>
-                    </button>
-                    <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
-                        <img src="{{ Auth::user()->avatar_url }}" alt="User" class="w-full h-full">
-                    </div>
-                    <a href="{{ route('logout') }}" class="text-red-600 hover:underline">Logout</a>
+                    </a>
+                </button>
+                <div class="w-12 h-12 rounded-full bg-purple-500 overflow-hidden">
+                    {{-- <img src="{{ Customer::username()->username }}" alt="User" class="w-full h-full"> --}}
                 </div>
-            @endauth
 
-            @guest
-                <!-- Tampilan untuk user yang belum login -->
-                <div class="flex space-x-4">
-                    <a href="{{ route('login') }}" class="text-black hover:text-gray-600">Login</a>
-                    <a href="{{ route('register') }}" class="text-black hover:text-gray-600">Daftar</a>
-                </div>
-            @endguest
+                <!-- Tombol Logout -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Logout</button>
+                </form>
+
+            </div>
         </div>
     </div>
 </header>

@@ -18,13 +18,10 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\IconColumn;
-use Illuminate\Support\Str; // Correct import for Str
-use Filament\Forms\Components\FileUpload; // Correct import for FileUpload
+use Filament\Tables\Columns\ImageColumn; // Import ImageColumn
+use Illuminate\Support\Str;
+use Filament\Forms\Components\FileUpload;
 use Filament\Tables\Filters\SelectFilter;
-
-
-
-
 
 class ProductResource extends Resource
 {
@@ -34,17 +31,16 @@ class ProductResource extends Resource
     protected static ?string $recordTitleAttribute = 'name';
     protected static ?int $navigationSort = 4;
 
-
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Group::make()->schema([ // Membuat grup utama
-                    Section::make('Product Information') // Membuat bagian dengan judul "Product Information"
+                Group::make()->schema([
+                    Section::make('Product Information')
                         ->schema([
-                            TextInput::make('name') // Input teks untuk "name"
-                                ->required() // Kolom ini wajib diisi
-                                ->maxLength(255) // Maksimal karakter 255
+                            TextInput::make('name')
+                                ->required()
+                                ->maxLength(255)
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(function (string $operation, $state, $set) {
                                     if ($operation !== 'create') {
@@ -53,18 +49,18 @@ class ProductResource extends Resource
                                     $set('slug', Str::slug($state));
                                 }),
 
-                            TextInput::make('slug') // Input teks untuk "slug"
-                                ->required() // Kolom ini wajib diisi
-                                ->maxLength(255) // Maksimal karakter 255
-                                ->disabled() // Tidak dapat diubah
+                            TextInput::make('slug')
+                                ->required()
+                                ->maxLength(255)
+                                ->disabled()
                                 ->dehydrated()
                                 ->unique(Product::class, 'slug', ignoreRecord: true),
 
-                            MarkdownEditor::make('description') // Editor Markdown untuk deskripsi produk
-                                ->columnSpanFull() // Membentangkan kolom secara penuh
-                                ->fileAttachmentsDirectory('products'), // Folder penyimpanan untuk file yang diunggah
+                            MarkdownEditor::make('description')
+                                ->columnSpanFull()
+                                ->fileAttachmentsDirectory('products'),
                         ])
-                        ->columns(2), // Membagi schema dalam 2 kolom
+                        ->columns(2),
                     Section::make('Images')->schema([
                         FileUpload::make('images')
                             ->multiple()
@@ -73,14 +69,14 @@ class ProductResource extends Resource
                             ->reorderable()
 
                     ])
-                ])->columnSpan(2), // Mengatur lebar grup menjadi 2 kolom
+                ])->columnSpan(2),
                 Group::make()->schema([
-                    Section::make('Price') // Membuat bagian dengan judul "Price"
+                    Section::make('Price')
                         ->schema([
-                            TextInput::make('price') // Input teks untuk "price"
-                                ->required() // Kolom ini wajib diisi
-                                ->numeric() // Tipe // Tipe data hanya angka
-                                ->minValue(0) // Nilai minimum 0
+                            TextInput::make('price')
+                                ->required()
+                                ->numeric()
+                                ->minValue(0)
                                 ->prefix('IDR '),
                         ]),
                     Section::make('Associations')->schema([
@@ -100,19 +96,19 @@ class ProductResource extends Resource
                             ->default(true),
                         Toggle::make('is_featured')
                             ->required(),
-                        // Toggle::make('on_sale')
-                        //     ->required(),
                     ]),
-                ])->columnSpan(1) //
+                ])->columnSpan(1)
             ])
-            ->columns(3); // Membagi form utama menjadi 3 kolom
+            ->columns(3);
     }
-
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
+                ImageColumn::make('images') // Menggunakan ImageColumn untuk menampilkan gambar
+                    ->disk('public')
+                    ->label('Images'),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('category.name')
@@ -122,8 +118,6 @@ class ProductResource extends Resource
                     ->sortable(),
                 IconColumn::make('is_featured')
                     ->boolean(),
-                // IconColumn::make('on_sale')
-                //     ->boolean(),
                 IconColumn::make('in_stock')
                     ->boolean(),
                 IconColumn::make('is_active')
@@ -131,13 +125,9 @@ class ProductResource extends Resource
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable(),
-                // ->toggleable(toggledHiddenByDefault: true)
-                TextColumn::make('update_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable(),
-                // ->toggleable(toggledHiddenByDefault: true)
-
-
             ])
             ->filters([
                 SelectFilter::make('category')
