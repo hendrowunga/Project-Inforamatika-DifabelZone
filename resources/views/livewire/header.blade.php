@@ -22,7 +22,7 @@
         <div class="flex items-center w-1/2 justify-end space-x-5 mr-10" id="kanan">
             <!-- Tampilan untuk user yang sudah login -->
             <nav class="hidden md:flex space-x-4">
-                <a href="{{ url('/home') }}" class="hover:text-gray-700">Home</a>
+                <a href="{{ url('dashboard') }}" class="hover:text-gray-700">Home</a>
                 <a href="{{ route('donation') }}" class="hover:text-gray-700">Donasi</a>
                 <a href="{{ route('about') }}" class="hover:text-gray-700">Tentang Kami</a>
             </nav>
