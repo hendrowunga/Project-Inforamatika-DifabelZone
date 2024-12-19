@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c94ef9360747b49848b26e551c4f4524",
+
+    "content-hash": "237a3b8cc300cb7eee3e1d1c9fa85334",
+
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -2504,16 +2506,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v10.48.23",
+            "version": "v10.48.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "625269ca4881d2b50eded2045cb930960a181d98"
+                "reference": "2add73f71b88fc45ee1d4f3421f22366247f6155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/625269ca4881d2b50eded2045cb930960a181d98",
-                "reference": "625269ca4881d2b50eded2045cb930960a181d98",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2add73f71b88fc45ee1d4f3421f22366247f6155",
+                "reference": "2add73f71b88fc45ee1d4f3421f22366247f6155",
                 "shasum": ""
             },
             "require": {
@@ -2707,7 +2709,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2024-11-12T15:39:10+00:00"
+            "time": "2024-11-20T15:57:07+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2835,16 +2837,16 @@
         },
         {
             "name": "laravel/serializable-closure",
-            "version": "v1.3.6",
+            "version": "v1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/serializable-closure.git",
-                "reference": "f865a58ea3a0107c336b7045104c75243fa59d96"
+                "reference": "4f48ade902b94323ca3be7646db16209ec76be3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/f865a58ea3a0107c336b7045104c75243fa59d96",
-                "reference": "f865a58ea3a0107c336b7045104c75243fa59d96",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/4f48ade902b94323ca3be7646db16209ec76be3d",
+                "reference": "4f48ade902b94323ca3be7646db16209ec76be3d",
                 "shasum": ""
             },
             "require": {
@@ -2892,7 +2894,7 @@
                 "issues": "https://github.com/laravel/serializable-closure/issues",
                 "source": "https://github.com/laravel/serializable-closure"
             },
-            "time": "2024-11-11T17:06:04+00:00"
+            "time": "2024-11-14T18:34:49+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3599,17 +3601,80 @@
             "time": "2024-03-23T07:42:40+00:00"
         },
         {
-            "name": "livewire/livewire",
-            "version": "v3.5.12",
+            "name": "livewire/flux",
+            "version": "v1.0.27",
             "source": {
                 "type": "git",
-                "url": "https://github.com/livewire/livewire.git",
-                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d"
+                "url": "https://github.com/livewire/flux.git",
+                "reference": "e787bb0ceef61b092cf1030943ef8355cd8261b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
-                "reference": "3c8d1f9d7d9098aaea663093ae168f2d5d2ae73d",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/e787bb0ceef61b092cf1030943ef8355cd8261b5",
+                "reference": "e787bb0ceef61b092cf1030943ef8355cd8261b5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
+                "laravel/prompts": "^0.1|^0.2|^0.3",
+                "livewire/livewire": "^3.5.12",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Flux\\FluxServiceProvider"
+                    ],
+                    "aliases": {
+                        "Flux": "Flux\\Flux"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flux\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire/flux/issues",
+                "source": "https://github.com/livewire/flux/tree/v1.0.27"
+            },
+            "time": "2024-11-25T12:36:38+00:00"
+        },
+        {
+            "name": "livewire/livewire",
+            "version": "v3.5.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "7bbf80d93db9b866776bf957ca6229364bca8d87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/7bbf80d93db9b866776bf957ca6229364bca8d87",
+                "reference": "7bbf80d93db9b866776bf957ca6229364bca8d87",
                 "shasum": ""
             },
             "require": {
@@ -3635,12 +3700,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Livewire\\LivewireServiceProvider"
-                    ],
                     "aliases": {
                         "Livewire": "Livewire\\Livewire"
-                    }
+                    },
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -3664,7 +3729,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.12"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.17"
             },
             "funding": [
                 {
@@ -3672,7 +3737,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-15T19:35:06+00:00"
+            "time": "2024-12-06T13:41:21+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -4159,32 +4224,32 @@
         },
         {
             "name": "nunomaduro/termwind",
-            "version": "v1.16.0",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/termwind.git",
-                "reference": "dcf1ec3dfa36137b7ce41d43866644a7ab8fc257"
+                "reference": "5369ef84d8142c1d87e4ec278711d4ece3cbf301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/dcf1ec3dfa36137b7ce41d43866644a7ab8fc257",
-                "reference": "dcf1ec3dfa36137b7ce41d43866644a7ab8fc257",
+                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/5369ef84d8142c1d87e4ec278711d4ece3cbf301",
+                "reference": "5369ef84d8142c1d87e4ec278711d4ece3cbf301",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": "^8.1",
-                "symfony/console": "^6.4.12"
+                "symfony/console": "^6.4.15"
             },
             "require-dev": {
-                "illuminate/console": "^10.48.22",
-                "illuminate/support": "^10.48.22",
-                "laravel/pint": "^1.18.1",
-                "pestphp/pest": "^2",
+                "illuminate/console": "^10.48.24",
+                "illuminate/support": "^10.48.24",
+                "laravel/pint": "^1.18.2",
+                "pestphp/pest": "^2.36.0",
                 "pestphp/pest-plugin-mock": "2.0.0",
-                "phpstan/phpstan": "^1.12.6",
+                "phpstan/phpstan": "^1.12.11",
                 "phpstan/phpstan-strict-rules": "^1.6.1",
-                "symfony/var-dumper": "^6.4.11",
+                "symfony/var-dumper": "^6.4.15",
                 "thecodingmachine/phpstan-strict-rules": "^1.0.0"
             },
             "type": "library",
@@ -4224,7 +4289,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/termwind/issues",
-                "source": "https://github.com/nunomaduro/termwind/tree/v1.16.0"
+                "source": "https://github.com/nunomaduro/termwind/tree/v1.17.0"
             },
             "funding": [
                 {
@@ -4240,7 +4305,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-15T15:27:12+00:00"
+            "time": "2024-11-21T10:36:35+00:00"
         },
         {
             "name": "openspout/openspout",
@@ -4409,6 +4474,156 @@
                 }
             ],
             "time": "2024-07-20T21:41:07+00:00"
+        },
+        {
+            "name": "protonemedia/laravel-splade",
+            "version": "1.4.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protonemedia/laravel-splade.git",
+                "reference": "dffa10b8175aea1482fa8bdd117ce85b4da9aef1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protonemedia/laravel-splade/zipball/dffa10b8175aea1482fa8bdd117ce85b4da9aef1",
+                "reference": "dffa10b8175aea1482fa8bdd117ce85b4da9aef1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.48.2|^11.0.1",
+                "php": "^8.2|^8.3"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.10|^8.1",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0|^9.0",
+                "phpunit/phpunit": "^10.4"
+            },
+            "suggest": {
+                "kirschbaum-development/eloquent-power-joins": "Required to enable support sorting by (nested) relationships in Splade Tables (^3.0)",
+                "maatwebsite/excel": "Required to enable support exports in Splade Tables (^3.1)",
+                "spatie/fractalistic": "Required to enable support for Fractal transformers (^2.9)"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ProtoneMedia\\Splade\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Animation": "ProtoneMedia\\Splade\\Facades\\Animation",
+                        "SEO": "ProtoneMedia\\Splade\\Facades\\SEO",
+                        "Splade": "ProtoneMedia\\Splade\\Facades\\Splade",
+                        "Toast": "ProtoneMedia\\Splade\\Facades\\Toast"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ProtoneMedia\\Splade\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pascal Baljet",
+                    "email": "pascal@protone.media",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Splade: the magic of Inertia.js with the simplicity of Blade.",
+            "homepage": "https://github.com/protonemedia/laravel-splade",
+            "keywords": [
+                "laravel",
+                "laravel-splade",
+                "protonemedia"
+            ],
+            "support": {
+                "issues": "https://github.com/protonemedia/laravel-splade/issues",
+                "source": "https://github.com/protonemedia/laravel-splade/tree/1.4.18"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/pascalbaljet",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-18T14:32:49+00:00"
+        },
+        {
+            "name": "protonemedia/laravel-splade-breeze",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protonemedia/laravel-splade-breeze.git",
+                "reference": "5eddfe75bcb3c81f703df9b9173020840394122f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protonemedia/laravel-splade-breeze/zipball/5eddfe75bcb3c81f703df9b9173020840394122f",
+                "reference": "5eddfe75bcb3c81f703df9b9173020840394122f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^9.37|^10.0",
+                "illuminate/filesystem": "^9.37|^10.0",
+                "illuminate/support": "^9.37|^10.0",
+                "illuminate/validation": "^9.37|^10.0",
+                "php": "^8.0.2",
+                "protonemedia/laravel-splade": "^1.3.0"
+            },
+            "conflict": {
+                "laravel/framework": "<9.37.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Pascal Baljet",
+                    "email": "pascal@protone.media"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Laravel Splade.",
+            "keywords": [
+                "auth",
+                "laravel",
+                "laravel-splade",
+                "splade"
+            ],
+            "support": {
+                "issues": "https://github.com/protonemedia/laravel-splade-breeze/issues",
+                "source": "https://github.com/protonemedia/laravel-splade-breeze"
+            },
+            "time": "2023-02-28T16:22:47+00:00"
         },
         {
             "name": "psr/cache",
@@ -5314,16 +5529,16 @@
         },
         {
             "name": "spatie/invade",
-            "version": "2.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/invade.git",
-                "reference": "b920f6411d21df4e8610a138e2e87ae4957d7f63"
+                "reference": "d0a9c895a96152549d478a7e3420e19039eef038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/invade/zipball/b920f6411d21df4e8610a138e2e87ae4957d7f63",
-                "reference": "b920f6411d21df4e8610a138e2e87ae4957d7f63",
+                "url": "https://api.github.com/repos/spatie/invade/zipball/d0a9c895a96152549d478a7e3420e19039eef038",
+                "reference": "d0a9c895a96152549d478a7e3420e19039eef038",
                 "shasum": ""
             },
             "require": {
@@ -5335,6 +5550,13 @@
                 "spatie/ray": "^1.28"
             },
             "type": "library",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "phpstan-extension.neon"
+                    ]
+                }
+            },
             "autoload": {
                 "files": [
                     "src/functions.php"
@@ -5361,7 +5583,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/invade/tree/2.1.0"
+                "source": "https://github.com/spatie/invade/tree/1.1.1"
             },
             "funding": [
                 {
@@ -5369,7 +5591,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-17T09:06:10+00:00"
+            "time": "2022-07-05T09:31:00+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -7798,16 +8020,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "b56450eed252f6801410d810c8e1727224ae0743"
+                "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/b56450eed252f6801410d810c8e1727224ae0743",
-                "reference": "b56450eed252f6801410d810c8e1727224ae0743",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
+                "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
                 "shasum": ""
             },
             "require": {
@@ -7832,7 +8054,7 @@
             "authors": [
                 {
                     "name": "Lars Moelleken",
-                    "homepage": "http://www.moelleken.org/"
+                    "homepage": "https://www.moelleken.org/"
                 }
             ],
             "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
@@ -7844,7 +8066,7 @@
             ],
             "support": {
                 "issues": "https://github.com/voku/portable-ascii/issues",
-                "source": "https://github.com/voku/portable-ascii/tree/2.0.1"
+                "source": "https://github.com/voku/portable-ascii/tree/2.0.3"
             },
             "funding": [
                 {
@@ -7868,7 +8090,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-08T17:03:00+00:00"
+            "time": "2024-11-21T01:49:47+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -8285,6 +8507,140 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "laravel/breeze",
+            "version": "v1.29.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/breeze.git",
+                "reference": "22c53b84b7fff91b01a318d71a10dfc251e92849"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/breeze/zipball/22c53b84b7fff91b01a318d71a10dfc251e92849",
+                "reference": "22c53b84b7fff91b01a318d71a10dfc251e92849",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.17",
+                "illuminate/filesystem": "^10.17",
+                "illuminate/support": "^10.17",
+                "illuminate/validation": "^10.17",
+                "php": "^8.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.0",
+                "phpstan/phpstan": "^1.10"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Breeze\\BreezeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Breeze\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
+            "keywords": [
+                "auth",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/breeze/issues",
+                "source": "https://github.com/laravel/breeze"
+            },
+            "time": "2024-03-04T14:35:21+00:00"
+        },
+        {
+            "name": "laravel/dusk",
+            "version": "v8.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/dusk.git",
+                "reference": "c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c",
+                "reference": "c667db6d8795f0ccc8f63d54a7780ce8a0cc3d3c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-zip": "*",
+                "guzzlehttp/guzzle": "^7.5",
+                "illuminate/console": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "php": "^8.1",
+                "php-webdriver/webdriver": "^1.9.0",
+                "symfony/console": "^6.2|^7.0",
+                "symfony/finder": "^6.2|^7.0",
+                "symfony/process": "^6.2|^7.0",
+                "vlucas/phpdotenv": "^5.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "orchestra/testbench": "^8.19|^9.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.1|^11.0",
+                "psy/psysh": "^0.11.12|^0.12"
+            },
+            "suggest": {
+                "ext-pcntl": "Used to gracefully terminate Dusk when tests are running."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Dusk\\DuskServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Dusk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel Dusk provides simple end-to-end testing and browser automation.",
+            "keywords": [
+                "laravel",
+                "testing",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/dusk/issues",
+                "source": "https://github.com/laravel/dusk/tree/v8.2.11"
+            },
+            "time": "2024-11-07T21:51:32+00:00"
         },
         {
             "name": "laravel/pint",
@@ -8841,6 +9197,72 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+            "name": "php-webdriver/webdriver",
+            "version": "1.15.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-webdriver/php-webdriver.git",
+                "reference": "998e499b786805568deaf8cbf06f4044f05d91bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-webdriver/php-webdriver/zipball/998e499b786805568deaf8cbf06f4044f05d91bf",
+                "reference": "998e499b786805568deaf8cbf06f4044f05d91bf",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-zip": "*",
+                "php": "^7.3 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.12",
+                "symfony/process": "^5.0 || ^6.0 || ^7.0"
+            },
+            "replace": {
+                "facebook/webdriver": "*"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.20.0",
+                "ondram/ci-detector": "^4.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "php-mock/php-mock-phpunit": "^2.0",
+                "php-parallel-lint/php-parallel-lint": "^1.2",
+                "phpunit/phpunit": "^9.3",
+                "squizlabs/php_codesniffer": "^3.5",
+                "symfony/var-dumper": "^5.0 || ^6.0 || ^7.0"
+            },
+            "suggest": {
+                "ext-SimpleXML": "For Firefox profile creation"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/Exception/TimeoutException.php"
+                ],
+                "psr-4": {
+                    "Facebook\\WebDriver\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP client for Selenium WebDriver. Previously facebook/webdriver.",
+            "homepage": "https://github.com/php-webdriver/php-webdriver",
+            "keywords": [
+                "Chromedriver",
+                "geckodriver",
+                "php",
+                "selenium",
+                "webdriver"
+            ],
+            "support": {
+                "issues": "https://github.com/php-webdriver/php-webdriver/issues",
+                "source": "https://github.com/php-webdriver/php-webdriver/tree/1.15.2"
+            },
+            "time": "2024-11-21T15:12:59+00:00"
+        },
+        {
             "name": "phpunit/php-code-coverage",
             "version": "10.1.16",
             "source": {
@@ -9261,6 +9683,73 @@
                 }
             ],
             "time": "2024-10-28T13:06:21+00:00"
+        },
+        {
+            "name": "protonemedia/laravel-dusk-fakes",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/protonemedia/laravel-dusk-fakes.git",
+                "reference": "b85bc7f25ac8fecd6a1b813e6ee7d56cf740b8fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/protonemedia/laravel-dusk-fakes/zipball/b85bc7f25ac8fecd6a1b813e6ee7d56cf740b8fb",
+                "reference": "b85bc7f25ac8fecd6a1b813e6ee7d56cf740b8fb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^10.0|^11.0",
+                "laravel/dusk": "^7.0|^8.0",
+                "php": "^8.2|^8.3|^8.4",
+                "spatie/invade": "^1.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nesbot/carbon": "^2.66",
+                "nunomaduro/collision": "^7.0|^8.0",
+                "orchestra/testbench": "^8.0|^9.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpunit/phpunit": "^10.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ProtoneMedia\\LaravelDuskFakes\\LaravelDuskFakesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ProtoneMedia\\LaravelDuskFakes\\": "src",
+                    "ProtoneMedia\\LaravelDuskFakes\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pascal Baljet",
+                    "email": "pascal@protone.media",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Persistent Fakes for Laravel Dusk",
+            "homepage": "https://github.com/protonemedia/laravel-dusk-fakes",
+            "keywords": [
+                "laravel",
+                "laravel-dusk-fakes",
+                "protonemedia"
+            ],
+            "support": {
+                "issues": "https://github.com/protonemedia/laravel-dusk-fakes/issues",
+                "source": "https://github.com/protonemedia/laravel-dusk-fakes/tree/1.7.0"
+            },
+            "time": "2024-11-20T21:50:35+00:00"
         },
         {
             "name": "sebastian/cli-parser",
